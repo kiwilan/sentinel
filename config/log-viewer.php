@@ -3,7 +3,6 @@
 use Opcodes\LogViewer\Level;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Log Viewer
@@ -176,7 +175,7 @@ return [
         'laravel' => [
             'log_matching_regex' => '/^\[(\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}\.?(\d{6}([\+-]\d\d:\d\d)?)?)\].*/',
 
-            /**
+            /*
              * This pattern, used for processing Laravel logs, returns these results:
              * $matches[0] - the full log line being tested.
              * $matches[1] - full timestamp between the square brackets (includes microseconds and timezone offset)

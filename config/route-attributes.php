@@ -1,9 +1,7 @@
 <?php
 
 return [
-    /*
-     *  Automatic registration of routes will only happen if this setting is `true`
-     */
+    // Automatic registration of routes will only happen if this setting is `true`
     'enabled' => true,
 
     /*
@@ -13,19 +11,18 @@ return [
      * Optionally, you can specify group configuration by using key/values
      */
     'directories' => [
-        app_path('Http/Controllers'),
-        /*
-        app_path('Http/Controllers/Api') => [
-           'prefix' => 'api',
-           'middleware' => 'api',
+        app_path('Http/Controllers') => [
+            'prefix' => '',
+            'middleware' => 'web',
         ],
-        */
+        app_path('Http/Controllers/Api') => [
+            'prefix' => 'api',
+            'middleware' => 'api',
+        ],
     ],
 
-    /**
-     * This middleware will be applied to all routes.
-     */
+    // This middleware will be applied to all routes.
     'middleware' => [
-        \Illuminate\Routing\Middleware\SubstituteBindings::class
-    ]
+        \Illuminate\Routing\Middleware\SubstituteBindings::class,
+    ],
 ];

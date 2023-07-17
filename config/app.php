@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -56,6 +55,11 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+
+    'admin' => [
+        'email' => env('APP_ADMIN_EMAIL', 'superadmin@example.com'),
+        'password' => env('APP_ADMIN_PASSWORD', 'password'),
+    ],
 
     'asset_url' => env('ASSET_URL'),
 
@@ -156,18 +160,16 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
+        // Package Service Providers...
 
-        /*
-         * Application Service Providers...
-         */
+        // Application Service Providers...
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FortifyServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
     ])->toArray(),
 
@@ -185,5 +187,4 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
-
 ];
