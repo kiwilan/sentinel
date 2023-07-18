@@ -15,6 +15,7 @@ use Laravel\Jetstream\Events\InvitingTeamMember;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Jetstream\Mail\TeamInvitation;
 use Laravel\Jetstream\Rules\Role;
+use Laravel\Jetstream\TeamInvitation as JetstreamTeamInvitation;
 
 class InviteTeamMember implements InvitesTeamMembers
 {
@@ -29,6 +30,7 @@ class InviteTeamMember implements InvitesTeamMembers
 
         InvitingTeamMember::dispatch($team, $email, $role);
 
+        /** @var JetstreamTeamInvitation */
         $invitation = $team->teamInvitations()->create([
             'email' => $email,
             'role' => $role,

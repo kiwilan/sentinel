@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Artesaos\SEOTools\Facades\SEOTools;
 use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 use Spatie\RouteAttributes\Attributes\Get;
 
@@ -20,6 +21,8 @@ class HomeController extends Controller
     ])]
     public function dashboard()
     {
+        SEOTools::setTitle('Dashboard');
+
         return view('dashboard');
     }
 }

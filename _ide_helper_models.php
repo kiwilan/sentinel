@@ -12,6 +12,68 @@
 
 namespace App\Models{
 /**
+ * App\Models\Application
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $url
+ * @property string $public_key
+ * @property string $private_key
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\ApplicationFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Application newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Application newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Application query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application wherePrivateKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application wherePublicKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Application whereUrl($value)
+ */
+	class Application extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Log
+ *
+ * @property int $id
+ * @property string|null $app
+ * @property string|null $env
+ * @property bool|null $is_production
+ * @property string|null $url
+ * @property string|null $method
+ * @property string|null $user_agent
+ * @property string|null $ip
+ * @property \Illuminate\Support\Carbon|null $date_time
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Report|null $previous
+ * @property-read \App\Models\Report|null $report
+ * @method static \Database\Factories\LogFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Log newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Log newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Log query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereApp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereDateTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereEnv($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereIsProduction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereUserAgent($value)
+ */
+	class Log extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Membership
  *
  * @property int $id
@@ -31,6 +93,38 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
  */
 	class Membership extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Report
+ *
+ * @property int $id
+ * @property int|null $log_id
+ * @property int|null $code
+ * @property string|null $file
+ * @property int|null $line
+ * @property string|null $message
+ * @property array|null $trace_string
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Trace> $traces
+ * @property-read int|null $traces_count
+ * @method static \Database\Factories\ReportFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Report newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Report newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Report query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereLine($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereLogId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereTraceString($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Report whereUpdatedAt($value)
+ */
+	class Report extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -84,6 +178,39 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TeamInvitation whereUpdatedAt($value)
  */
 	class TeamInvitation extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Trace
+ *
+ * @property int $id
+ * @property int $report_id
+ * @property string|null $file
+ * @property int|null $line
+ * @property string|null $function
+ * @property string|null $class
+ * @property string|null $type
+ * @property array|null $args
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Report $report
+ * @method static \Database\Factories\TraceFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereArgs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereFunction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereLine($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereReportId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Trace whereUpdatedAt($value)
+ */
+	class Trace extends \Eloquent {}
 }
 
 namespace App\Models{
