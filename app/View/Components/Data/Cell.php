@@ -6,13 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Row extends Component
+class Cell extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public ?string $href = null,
+        public bool $primary = false,
+        public bool $code = false,
+        public bool $tooltip = false,
+        public int $tooltipLimit = 60,
     ) {
     }
 
@@ -21,6 +24,6 @@ class Row extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.data.row');
+        return view('components.data.cell');
     }
 }

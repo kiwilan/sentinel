@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use Artesaos\SEOTools\Facades\SEOTools;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 use Spatie\RouteAttributes\Attributes\Get;
 
 class HomeController extends Controller
 {
-    #[Get('/')]
-    public function index()
-    {
-        return view('welcome');
-    }
+    // #[Get('/')]
+    // public function index()
+    // {
+    //     if (! Auth::check()) {
+    //         return redirect()->route('login');
+    //     }
 
-    #[Get('/dashboard', name: 'dashboard', middleware: [
+    //     return view('dashboard');
+    // }
+
+    #[Get('/', name: 'dashboard', middleware: [
         'auth:sanctum',
         AuthenticateSession::class,
         'verified',

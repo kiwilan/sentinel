@@ -11,10 +11,10 @@
 >
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-gray-900">
+      <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">
         {{ $title }}
       </h1>
-      <p class="mt-2 text-sm text-gray-700">
+      <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">
         {{ $subtitle }}
       </p>
     </div>
@@ -23,12 +23,12 @@
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-300">
-            <thead class="bg-gray-50">
+          <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
+            <thead class="bg-gray-50 dark:bg-gray-800">
               <tr>
                 @foreach ($head as $item)
                   <th
-                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
                     scope="col"
                   >
                     {{ $item }}
@@ -36,20 +36,15 @@
                 @endforeach
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 bg-white">
-              @foreach ($models as $project)
-                <tr class="even:bg-gray-50">
-                  <x-data.row>
-                    {{ $project->name }}
-                  </x-data.row>
-                  <x-data.row>
-                    {{ $project->url }}
-                  </x-data.row>
-                  <x-data.row>
-                    {{ $project->public_key }}
-                  </x-data.row>
+            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-800">
+              {{ $slot }}
+              @if ($empty)
+                <tr>
+                  <x-data.cell>
+                    No data
+                  </x-data.cell>
                 </tr>
-              @endforeach
+              @endif
             </tbody>
           </table>
         </div>

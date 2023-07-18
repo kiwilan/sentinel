@@ -4,10 +4,15 @@ namespace App\Http\Livewire\Project;
 
 use App\Models\Project;
 use Illuminate\Support\Collection;
+use Kiwilan\Steward\Traits\LiveListing;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Table extends Component
 {
+    use WithPagination;
+    use LiveListing;
+
     public array $head = [
         'Name',
         'URL',
@@ -18,6 +23,36 @@ class Table extends Component
      * @var Collection<int, Project>
      */
     public Collection $models;
+
+    public $queryString = [];
+
+    public array $filter = [
+        'statuses' => [],
+        'armies' => [],
+        'universes' => [],
+        'matters' => [],
+        'techniques' => [],
+    ];
+
+    public function model(): string
+    {
+        return Project::class;
+    }
+
+    public function relations(): array
+    {
+        return [];
+    }
+
+    public function defaultSort(): string
+    {
+        return '-created_at';
+    }
+
+    public function sortable(): array
+    {
+        return Project::getSortable();
+    }
 
     public function fetch(): void
     {
@@ -41,6 +76,17 @@ class Table extends Component
 
     public function render()
     {
+        $this->models = Project::query()
+            ->liveFilter([
+                ...$this->filter,
+                'q' => $this->q,
+            ])
+            ->liveSort($this->sort)
+            ->with($this->relations())
+            ->get()
+            // ->paginate(perPage: $this->size, page: $this->page)
+        ;
+
         return view('livewire.project.table');
     }
 }

@@ -1,8 +1,7 @@
-@php
-  $defaultClass = 'whitespace-nowrap px-3 py-4 text-sm text-gray-500';
-  $mainClass = 'pl-4 pr-3 font-medium text-gray-900 sm:pl-3';
-@endphp
-
-<td class="{{ $defaultClass }}">
+<tr
+  class="relative cursor-pointer even:bg-gray-50 hover:bg-primary-200 hover:bg-opacity-20 dark:even:bg-gray-800 dark:hover:bg-primary-700"
+  x-data
+  @click="window.open('{{ $href }}', '_self')"
+>
   {{ $slot }}
-</td>
+</tr>

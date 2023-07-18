@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LogApiRequest;
-use App\Models\Application;
 use App\Models\Log;
+use App\Models\Project;
 use Illuminate\Support\Facades\Hash;
 use Spatie\RouteAttributes\Attributes\Post;
 
@@ -15,7 +15,7 @@ class ReportController extends Controller
     public function reports(LogApiRequest $request)
     {
         ray($request->all());
-        $app = Application::where('public_key', $request->token)->first();
+        $app = Project::where('public_key', $request->token)->first();
 
         if (! $app || ! Hash::check($request->token, $app->private_key)) {
             return response()->json([
