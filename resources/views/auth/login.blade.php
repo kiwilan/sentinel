@@ -8,6 +8,16 @@
   <x-authentication-card>
     <x-slot name="logo">
       <x-authentication-card-logo />
+      <div class="w-full">
+        {{-- <img
+          class="mx-auto h-32 w-32 drop-shadow"
+          src="{{ asset('images/eve-chibi.svg') }}"
+          alt=""
+        > --}}
+        {{-- <h1 class="mt-5 text-center font-mono text-3xl uppercase">
+          Sentinel
+        </h1> --}}
+      </div>
     </x-slot>
 
     <x-validation-errors class="mb-4" />
