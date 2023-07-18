@@ -12,32 +12,6 @@
 
 namespace App\Models{
 /**
- * App\Models\Application
- *
- * @property int $id
- * @property string $name
- * @property string $url
- * @property string $public_key
- * @property string $private_key
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Database\Factories\ApplicationFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Application newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Application newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Application query()
- * @method static \Illuminate\Database\Eloquent\Builder|Application whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Application whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Application whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Application wherePrivateKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Application wherePublicKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Application whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Application whereUrl($value)
- */
-	class Application extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
  * App\Models\Log
  *
  * @property int $id
@@ -93,6 +67,36 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUserId($value)
  */
 	class Membership extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Project
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $slug
+ * @property string $url
+ * @property string $public_key
+ * @property string $private_key
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\ProjectFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Project liveFilter(array $filters, ?array $configuration = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Project liveSort(string $field)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Project newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Project query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project wherePrivateKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project wherePublicKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereUrl($value)
+ */
+	class Project extends \Eloquent {}
 }
 
 namespace App\Models{

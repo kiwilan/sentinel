@@ -26,7 +26,7 @@ class ProjectFactory extends Factory
 
         return [
             'name' => $this->faker->company(),
-            'url' => $this->faker->url(),
+            'url' => 'http://'.$this->faker->domainName(),
             'public_key' => $uuid,
             'private_key' => Hash::make($uuid),
         ];

@@ -22,5 +22,14 @@ class ProjectSeeder extends Seeder
                 'private_key' => Hash::make($key),
             ])
         ;
+
+        $projects = Project::factory(25)->create();
+
+        $projects->each(function (Project $project): void {
+            // $project->update([
+            //     'public_key' => $project->id,
+            //     'private_key' => Hash::make($project->id),
+            // ]);
+        });
     }
 }
