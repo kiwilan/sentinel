@@ -19,7 +19,7 @@ class ReportController extends Controller
 
         if (! $app || ! Hash::check($request->token, $app->private_key)) {
             return response()->json([
-                'message' => 'unauthorized',
+                'message' => 'Token is invalid',
             ], 401);
         }
 
