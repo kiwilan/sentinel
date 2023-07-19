@@ -4,7 +4,7 @@ import { Notification } from '../../../vendor/filament/notifications/dist/module
 /**
  * Copy module
  */
-function copy(): AlpineComponent<{
+function Copy(): AlpineComponent<{
   value: string
   copy: boolean
   secureContext: () => Promise<void>
@@ -68,5 +68,5 @@ function copy(): AlpineComponent<{
 }
 
 export {
-  copy,
+  Copy,
 }

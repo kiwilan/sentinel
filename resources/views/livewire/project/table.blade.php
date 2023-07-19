@@ -4,7 +4,7 @@
   subtitle="All your projects in one place."
   :empty="$models->isEmpty()"
 >
-  @foreach ($models as $project)
+  @loop($models as $project)
     <x-data.row href="{{ route('projects.show', ['project_slug' => $project->slug]) }}">
       <x-data.cell primary>
         {{ $project->name }}
@@ -21,5 +21,5 @@
         </a>
       </x-data.cell>
     </x-data.row>
-  @endforeach
+  @endloop
 </x-data.table>

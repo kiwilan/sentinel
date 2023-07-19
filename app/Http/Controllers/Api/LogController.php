@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LogApiRequest;
+use App\Http\Requests\LogCreateRequest;
 use App\Models\Log;
 use App\Models\Project;
 use Illuminate\Support\Facades\Hash;
+use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
+use Spatie\RouteAttributes\Attributes\Prefix;
 
-class ReportController extends Controller
+#[Prefix('api/logs')]
+#[Middleware('api')]
+class LogController extends Controller
 {
-    #[Post('/reports', name: 'reports')]
-    public function reports(LogApiRequest $request)
+    #[Post('/', name: 'api.logs.create')]
+    public function create(LogCreateRequest $request)
     {
-        ray($request->all());
         $app = Project::where('public_key', $request->token)->first();
 
         if (! $app || ! Hash::check($request->token, $app->private_key)) {
@@ -39,13 +42,9 @@ class ReportController extends Controller
             $log->saveReport($current);
         }
 
-        if ($request->get('previous')) {
-            $previous = $request->get('previous');
-            $log->saveReport($previous, 'previous');
-        }
-
         return response()->json([
             'message' => 'success',
+            'log' => $log->toArray(),
         ]);
     }
 }

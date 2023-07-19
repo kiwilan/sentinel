@@ -21,6 +21,13 @@ return new class extends Migration
             $table->string('user_agent')->nullable();
             $table->string('ip')->nullable();
             $table->dateTime('date_time')->nullable();
+
+            $table->integer('code')->nullable();
+            $table->string('file')->nullable();
+            $table->integer('line')->nullable();
+            $table->string('message')->nullable();
+            $table->json('trace_string')->nullable();
+
             $table->timestamps();
         });
     }

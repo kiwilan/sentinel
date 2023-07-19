@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('traces', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('report_id')->constrained()->onDelete('cascade');
+            $table->foreignId('log_id')->constrained()->onDelete('cascade');
             $table->string('file')->nullable();
             $table->integer('line')->nullable();
             $table->string('function')->nullable();

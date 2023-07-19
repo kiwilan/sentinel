@@ -15,10 +15,6 @@ return [
             'prefix' => '',
             'middleware' => 'web',
         ],
-        app_path('Http/Controllers/Api') => [
-            'prefix' => 'api',
-            'middleware' => 'api',
-        ],
     ],
 
     // This middleware will be applied to all routes.

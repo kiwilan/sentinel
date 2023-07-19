@@ -23,7 +23,7 @@ class ProjectSeeder extends Seeder
             ])
         ;
 
-        // $projects = Project::factory(25)->create();
+        $projects = Project::factory(25)->create();
 
         // $projects->each(function (Project $project): void {
         // });

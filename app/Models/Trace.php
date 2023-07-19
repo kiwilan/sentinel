@@ -24,8 +24,8 @@ class Trace extends Model
         'args' => 'array',
     ];
 
-    public function report(): BelongsTo
+    public function log(): BelongsTo
     {
-        return $this->belongsTo(Report::class);
+        return $this->belongsTo(Log::class);
     }
 }

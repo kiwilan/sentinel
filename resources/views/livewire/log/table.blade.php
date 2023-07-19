@@ -4,7 +4,7 @@
   :empty="$models->isEmpty()"
   subtitle="All your logs in one place."
 >
-  @foreach ($models as $log)
+  @loop($models as $log)
     <x-data.row href="{{ route('logs.show', ['log_id' => $log->id]) }}">
       <x-data.cell primary>
         {{ $log->date_time }}
@@ -26,5 +26,5 @@
         Details
       </x-data.cell>
     </x-data.row>
-  @endforeach
+  @endloop
 </x-data.table>

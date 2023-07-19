@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Kiwilan\Steward\Traits\LiveQueryable;
 
 class Log extends Model
@@ -21,45 +21,61 @@ class Log extends Model
         'user_agent',
         'ip',
         'date_time',
+
+        'code',
+        'file',
+        'line',
+        'message',
+        'trace_string',
     ];
 
     protected $casts = [
         'is_production' => 'boolean',
         'date_time' => 'datetime',
+
+        'code' => 'integer',
+        'line' => 'integer',
+        'trace_string' => 'array',
     ];
 
-    public function saveReport(array $input, string $type = 'report'): Report
+    public function saveReport(array $input): self
     {
         $trace_string = $input['trace_string'] ?? null;
         $trace_string = explode("\n", $trace_string);
-        $report = Report::create([
-            'code' => $input['code'] ?? null,
-            'file' => $input['file'] ?? null,
-            'line' => $input['line'] ?? null,
-            'message' => $input['message'] ?? null,
-            'trace_string' => $trace_string,
-        ]);
+
+        $this->code = $input['code'] ?? null;
+        $this->file = $input['file'] ?? null;
+        $this->line = $input['line'] ?? null;
+        $this->message = $input['message'] ?? null;
+        $this->trace_string = $trace_string;
 
         $traces = $input['trace'] ?? null;
 
         if (is_array($traces)) {
             foreach ($traces as $trace) {
-                $report->saveTrace($trace);
+                $this->saveTrace($trace);
             }
         }
 
-        $this->{$type}()->save($report);
-
-        return $report;
+        return $this;
     }
 
-    public function report(): HasOne
+    public function saveTrace(array $trace): void
     {
-        return $this->hasOne(Report::class);
+        $trace = new Trace([
+            'file' => $trace['file'] ?? null,
+            'line' => $trace['line'] ?? null,
+            'function' => $trace['function'] ?? null,
+            'class' => $trace['class'] ?? null,
+            'type' => $trace['type'] ?? null,
+            'args' => $trace['args'] ?? null,
+        ]);
+
+        $this->traces()->save($trace);
     }
 
-    public function previous(): HasOne
+    public function traces(): HasMany
     {
-        return $this->hasOne(Report::class);
+        return $this->hasMany(Trace::class);
     }
 }

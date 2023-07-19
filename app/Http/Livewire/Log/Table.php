@@ -47,7 +47,7 @@ class Table extends Component
 
     public function defaultSort(): string
     {
-        return '-created_at';
+        return '-date_time';
     }
 
     public function sortable(): array
@@ -58,14 +58,17 @@ class Table extends Component
     public function fetch(): void
     {
         $this->models = Log::query()
-            ->orderBy('date_time')
+            ->liveSort($this->sort)
+            ->with($this->relations())
+            ->orderBy('date_time', 'desc')
+            // ->liveSort($this->sort)
             ->get()
         ;
     }
 
     public function mount(): void
     {
-        $this->fetch();
+        // $this->fetch();
     }
 
     public function delete(int $id): void
@@ -77,16 +80,18 @@ class Table extends Component
 
     public function render()
     {
-        $this->models = Log::query()
-            ->liveFilter([
-                ...$this->filter,
-                'q' => $this->q,
-            ])
-            ->liveSort($this->sort)
-            ->with($this->relations())
-            ->get()
-            // ->paginate(perPage: $this->size, page: $this->page)
-        ;
+        // $this->models = Log::query()
+        //     ->liveFilter([
+        //         ...$this->filter,
+        //         'q' => $this->q,
+        //     ])
+        //     ->liveSort($this->sort)
+        // ->with($this->relations())
+        //     ->get()
+        //     // ->paginate(perPage: $this->size, page: $this->page)
+        // ;
+
+        $this->fetch();
 
         return view('livewire.log.table');
     }
