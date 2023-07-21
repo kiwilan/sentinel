@@ -29,6 +29,7 @@ class ProjectFactory extends Factory
             'url' => 'http://'.$this->faker->domainName(),
             'public_key' => $uuid,
             'private_key' => Hash::make($uuid),
+            'is_enabled' => true,
         ];
     }
 }

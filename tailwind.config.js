@@ -1,6 +1,7 @@
 import colors from 'tailwindcss/colors'
 import forms from '@tailwindcss/forms'
 import typography from '@tailwindcss/typography'
+import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -16,11 +17,43 @@ export default {
     extend: {
       colors: {
         danger: colors.rose,
-        primary: colors.blue,
+        primary: colors.purple,
         success: colors.green,
         warning: colors.yellow,
       },
     },
   },
-  plugins: [forms, typography],
+  plugins: [
+    plugin(({ addComponents }) => {
+      addComponents({
+        '.main-container': {
+          '@apply container mx-auto max-w-7xl px-4 lg:px-8':
+          {},
+        },
+        '.center': {
+          '@apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2':
+          {},
+        },
+        '.debug-screens': {
+          '@apply before:bottom-0 before:left-0 before:fixed before:px-1 before:text-sm before:bg-black before:text-white before:shadow-xl before:content-["screen:_"] sm:before:content-["screen:sm"] md:before:content-["screen:md"] lg:before:content-["screen:lg"] xl:before:content-["screen:xl"] 2xl:before:content-["screen:2xl"]':
+            {},
+          '&:before': {
+            'z-index': '2147483647',
+          },
+        },
+        '.word-wraping': {
+          'text-align': 'justify',
+          '-webkit-hyphens': 'auto',
+          '-moz-hyphens': 'auto',
+          '-ms-hyphens': 'auto',
+          'hyphens': 'auto',
+        },
+        '.scrollbar-thin': {
+          'scrollbar-width': 'thin',
+        },
+      })
+    }),
+    forms,
+    typography,
+  ],
 }

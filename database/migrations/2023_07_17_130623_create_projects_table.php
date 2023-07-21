@@ -18,6 +18,15 @@ return new class extends Migration
             $table->string('url');
             $table->text('public_key');
             $table->text('private_key');
+
+            $table->boolean('is_enabled')->default(true);
+            $table->boolean('with_notifications')->default(false);
+            $table->boolean('use_discord')->default(false);
+            $table->boolean('use_slack')->default(false);
+            $table->boolean('use_mail')->default(false);
+            $table->string('discord_token')->nullable();
+            $table->string('slack_token')->nullable();
+            $table->string('mail_token')->nullable();
             $table->timestamps();
         });
     }

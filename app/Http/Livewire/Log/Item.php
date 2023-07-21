@@ -3,22 +3,23 @@
 namespace App\Http\Livewire\Log;
 
 use App\Models\Log;
+use App\Models\Trace;
 use Livewire\Component;
 
 class Item extends Component
 {
     public Log $log;
 
-    public bool $displaying = false;
+    public Trace $trace;
 
-    public function open()
+    public function selectTrace(int $id)
     {
-        $this->displaying = ! $this->displaying;
+        $this->trace = Trace::find($id);
     }
 
-    public function close()
+    public function mount()
     {
-        $this->displaying = ! $this->displaying;
+        $this->trace = $this->log->main_trace;
     }
 
     public function render()

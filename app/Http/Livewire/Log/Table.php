@@ -15,8 +15,11 @@ class Table extends Component
 
     public array $head = [
         'Date',
+        'Ago',
+        'App',
         'Env.',
         'Error',
+        'Method',
         'URL',
     ];
 
@@ -42,12 +45,12 @@ class Table extends Component
 
     public function relations(): array
     {
-        return ['report'];
+        return ['project'];
     }
 
     public function defaultSort(): string
     {
-        return '-date_time';
+        return '-id';
     }
 
     public function sortable(): array
@@ -59,16 +62,13 @@ class Table extends Component
     {
         $this->models = Log::query()
             ->liveSort($this->sort)
+            ->liveFilter([
+                ...$this->filter,
+                'q' => $this->q,
+            ])
             ->with($this->relations())
-            ->orderBy('date_time', 'desc')
-            // ->liveSort($this->sort)
             ->get()
         ;
-    }
-
-    public function mount(): void
-    {
-        // $this->fetch();
     }
 
     public function delete(int $id): void

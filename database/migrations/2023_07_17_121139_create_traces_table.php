@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('traces', function (Blueprint $table) {
             $table->id();
             $table->foreignId('log_id')->constrained()->onDelete('cascade');
+            $table->string('path')->nullable();
             $table->string('file')->nullable();
+            $table->string('vendor')->nullable();
+            $table->string('filename')->nullable();
             $table->integer('line')->nullable();
             $table->string('function')->nullable();
             $table->string('class')->nullable();

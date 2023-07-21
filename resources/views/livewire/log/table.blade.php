@@ -4,23 +4,40 @@
   :empty="$models->isEmpty()"
   subtitle="All your logs in one place."
 >
+  <x-slot name="item">
+    <div class="italic text-gray-500">Auto-fetch enabled</div>
+  </x-slot>
   @loop($models as $log)
-    <x-data.row href="{{ route('logs.show', ['log_id' => $log->id]) }}">
-      <x-data.cell primary>
+    <x-data.row
+      href="{{ route('logs.show', [
+          'project_slug' => $log->project->slug,
+          'log_id' => $log->id,
+      ]) }}"
+    >
+      <x-data.cell
+        primary
+        full
+      >
+        {{ $log->id }}
         {{ $log->date_time }}
+      </x-data.cell>
+      <x-data.cell full>
+        {{ $log->from_date_time }}
+      </x-data.cell>
+      <x-data.cell response="lg">
+        {{ $log->app }}
       </x-data.cell>
       <x-data.cell>
         <span class="{{ $log->is_production ? 'text-red-500' : '' }}">{{ $log->env }}</span>
       </x-data.cell>
-      <x-data.cell
-        code
-        tooltip
-        :tooltip-limit="60"
-      >
-        {{ $log->report?->message }}
+      <x-data.cell>
+        {{ $log->message }}
       </x-data.cell>
-      <x-data.cell code>
-        {{ $log->method }} {{ $log->url }}
+      <x-data.cell mono>
+        {{ $log->method }}
+      </x-data.cell>
+      <x-data.cell mono>
+        {{ $log->url }}
       </x-data.cell>
       <x-data.cell>
         Details

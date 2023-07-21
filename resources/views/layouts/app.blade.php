@@ -17,16 +17,13 @@
     content="width=device-width, initial-scale=1"
   />
 
-  <title>{{ config('app.name') }}</title>
-
   {!! SEO::generate() !!}
 
   @vite(['resources/css/app.css', 'resources/js/app.ts'])
-  @livewireStyles
   @stack('scripts')
 </head>
 
-<body class="font-sans antialiased">
+<body class="{{ config('app.env') === 'local' ? 'debug-screens' : '' }} font-sans antialiased">
   <x-banner />
 
   <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -35,21 +32,21 @@
     <!-- Page Heading -->
     @if (isset($header))
       <header class="bg-white shadow dark:bg-gray-800">
-        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div class="main-container py-6">
           {{ $header }}
         </div>
       </header>
     @endif
 
     <!-- Page Content -->
-    <main>
+    <main class="min-h-[74vh] md:min-h-[80vh]">
       {{ $slot }}
     </main>
+    <x-layout.footer />
   </div>
 
   @stack('modals')
   @livewire('notifications')
-  @livewireScripts
 </body>
 
 </html>

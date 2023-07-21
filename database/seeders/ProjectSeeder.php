@@ -13,19 +13,20 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        $key = '98762df2-5ae7-3ffb-94dd-05242abfd2fc';
+        $key = 'd7b57f8f-e45a-4535-a73c-44191b6a78c5';
         Project::factory()
             ->create([
                 'name' => 'P1PDD',
                 'url' => 'http://app.p1pdd.test',
                 'public_key' => $key,
                 'private_key' => Hash::make($key),
+                'is_enabled' => true,
+                'with_notifications' => true,
+                'use_discord' => true,
+                'discord_token' => '934459945498320917:kLlsBIsjYoQOknTRvGNMb2MC2mpaXBW7g8wFvX-9a9oSKM9lPfHxZeQJon9RINGt-Mh5',
+                'slack_token' => 'T054NKG4NPM:B054T6H1RPG:9M4geVMJFLUlhiXKHB2jjjKi',
+                'mail_token' => 'ewilan.riviere@gmail.com',
             ])
         ;
-
-        $projects = Project::factory(25)->create();
-
-        // $projects->each(function (Project $project): void {
-        // });
     }
 }

@@ -14,8 +14,11 @@ class Cell extends Component
     public function __construct(
         public bool $primary = false,
         public bool $code = false,
+        public bool $mono = false,
+        public bool $full = false,
         public bool $tooltip = false,
         public int $tooltipLimit = 60,
+        public string $responsive = 'sm',
     ) {
     }
 
@@ -24,6 +27,15 @@ class Cell extends Component
      */
     public function render(): View|Closure|string
     {
+        match ($this->responsive) {
+            'sm' => $this->responsive = 'sm:table-cell',
+            'md' => $this->responsive = 'md:table-cell',
+            'lg' => $this->responsive = 'lg:table-cell',
+            'xl' => $this->responsive = 'xl:table-cell',
+            '2xl' => $this->responsive = '2xl:table-cell',
+            default => $this->responsive = 'table-cell',
+        };
+
         return view('components.data.cell');
     }
 }

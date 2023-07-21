@@ -14,9 +14,18 @@
   if ($code) {
       $subClass = " $codeClass";
   }
+  
+  if ($mono) {
+      $subClass .= ' font-mono';
+  }
+  
+  if ($full) {
+      $subClass .= ' whitespace-nowrap';
+  }
+  
 @endphp
 
-<td class="{{ $class }}">
+<td class="{{ $class }} {{ $responsive }}">
   <div
     class="{{ $subClass }}"
     x-data
