@@ -62,7 +62,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [<img src="https://user-images.githubusercontent.com/48261459/201463225-0a5a084e-df15-4b11-b1d2-40fafd3555cf.svg" height="120rem" width="100%" />](https://github.com/kiwilan)
 
-[version-src]: https://img.shields.io/badge/dynamic/json?label=version&query=version&url=https://raw.githubusercontent.com/kiwilan/sentinel/main/composer.json&message=v3&color=28cf8d&labelColor=18181b&style=flat-square
+[version-src]: https://img.shields.io/badge/dynamic/json?label=version&query=version&url=https://raw.githubusercontent.com/kiwilan/sentinel/main/composer.json&style=flat-square&color=777BB4&labelColor=18181b
 [version-href]: https://packagist.org/packages/kiwilan/sentinel
 [php-version-src]: https://img.shields.io/static/v1?style=flat-square&label=PHP&message=v8.1&color=777BB4&logo=php&logoColor=ffffff&labelColor=18181b
 [php-version-href]: https://www.php.net/
