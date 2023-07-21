@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Log;
+namespace App\Livewire\Log;
 
 use App\Models\Log;
 use Illuminate\Support\Collection;

@@ -46,7 +46,7 @@ function Copy(): AlpineComponent<{
         await this.unsecureContext()
 
       // if (this.copy) {
-      //   new Notification()
+      //   new FilamentNotification()
       //     .title('Copied to clipboard')
       //     .body(`${this.value} copied to clipboard.`)
       //     .success()
@@ -57,7 +57,7 @@ function Copy(): AlpineComponent<{
       //   }, 1500)
       // }
       // else {
-      //   new Notification()
+      //   new FilamentNotification()
       //     .title('Error')
       //     .body(`${this.value} is not copied to your clipboard.`)
       //     .warning()

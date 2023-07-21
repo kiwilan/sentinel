@@ -49,6 +49,7 @@
             :label="__('Name')"
             placeholder="My application"
             wire:model="name"
+            required
           />
           <x-input-text
             name="url"
@@ -56,6 +57,7 @@
             :label="__('URL')"
             placeholder="https://example.com"
             wire:model="url"
+            required
           />
           <x-toggle
             name="is_enabled"

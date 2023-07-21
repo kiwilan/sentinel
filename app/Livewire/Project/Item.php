@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Project;
+namespace App\Livewire\Project;
 
 use App\Models\Project;
 use Kiwilan\Steward\Http\Livewire\Traits\Notifiable;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class Item extends Component
@@ -12,18 +13,25 @@ class Item extends Component
 
     public ?Project $project = null;
 
+    #[Rule('required|string|max:255')]
     public ?string $name = null;
 
+    #[Rule('required|url|max:255')]
     public ?string $url = null;
 
+    #[Rule('boolean')]
     public bool $is_enabled = false;
 
+    #[Rule('boolean')]
     public bool $with_notifications = false;
 
+    #[Rule('boolean')]
     public bool $use_discord = false;
 
+    #[Rule('boolean')]
     public bool $use_slack = false;
 
+    #[Rule('boolean')]
     public bool $use_mail = false;
 
     public ?string $discord_token = null;
