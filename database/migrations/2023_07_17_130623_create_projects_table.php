@@ -27,6 +27,10 @@ return new class extends Migration
             $table->string('discord_token')->nullable();
             $table->string('slack_token')->nullable();
             $table->string('mail_token')->nullable();
+
+            $table->string('type')->nullable();
+            $table->string('instance')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

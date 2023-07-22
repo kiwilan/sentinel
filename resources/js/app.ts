@@ -1,21 +1,23 @@
 import './bootstrap'
 
-import type { Alpine as AlpineType } from 'alpinejs'
-
+import Alpine from 'alpinejs'
+import focus from '@alpinejs/focus'
+import collapse from '@alpinejs/collapse'
 import AlpineFloatingUI from '@awcodes/alpine-floating-ui'
 import { SlideOver } from '@kiwilan/steward-laravel'
-import { Alpine as A, Livewire } from '../../vendor/livewire/livewire/dist/livewire.esm'
+import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/module.esm'
+
 import { Copy } from './modules/copy'
 
-// import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/module.esm'
-
-const Alpine: AlpineType = A
 Alpine.plugin(AlpineFloatingUI)
-// Alpine.plugin(NotificationsAlpinePlugin)
+Alpine.plugin(NotificationsAlpinePlugin)
+
+Alpine.plugin(focus)
+Alpine.plugin(collapse)
 
 window.Alpine = Alpine
 
 Alpine.data('copy', Copy)
 Alpine.store('slideOver', SlideOver)
 
-Livewire.start()
+Alpine.start()

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ProjectTypeEnum;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +27,9 @@ class ProjectSeeder extends Seeder
                 'discord_token' => '934459945498320917:kLlsBIsjYoQOknTRvGNMb2MC2mpaXBW7g8wFvX-9a9oSKM9lPfHxZeQJon9RINGt-Mh5',
                 'slack_token' => 'T054NKG4NPM:B054T6H1RPG:9M4geVMJFLUlhiXKHB2jjjKi',
                 'mail_token' => 'ewilan.riviere@gmail.com',
+                'type' => ProjectTypeEnum::laravel,
+                'instance' => 'local',
+                'comment' => 'Locall project of P1PDD podcast website.',
             ])
         ;
     }

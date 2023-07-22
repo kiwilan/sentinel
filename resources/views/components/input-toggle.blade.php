@@ -1,3 +1,10 @@
+@props([
+    'checked' => false,
+    'label' => '',
+    'name' => '',
+    'subtitle' => '',
+])
+
 <div
   class="flex items-center justify-between"
   x-data="{

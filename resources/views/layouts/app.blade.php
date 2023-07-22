@@ -19,7 +19,8 @@
 
   {!! SEO::generate() !!}
 
-  @vite(['resources/css/app.css'])
+  @vite(['resources/css/app.css', 'resources/js/app.ts'])
+  @livewireStyles
 </head>
 
 <body class="{{ config('app.env') === 'local' ? 'debug-screens' : '' }} font-sans antialiased">
@@ -47,7 +48,7 @@
   @stack('modals')
   @livewire('notifications')
   @vite(['resources/js/app.ts'])
-  @livewireScriptConfig
+  @livewireScripts
 </body>
 
 </html>

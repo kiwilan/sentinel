@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,6 +30,10 @@ class Project extends Model
         'discord_token',
         'slack_token',
         'mail_token',
+
+        'type',
+        'instance',
+        'comment',
     ];
 
     protected $hidden = [
@@ -41,6 +46,7 @@ class Project extends Model
         'use_discord' => 'boolean',
         'use_slack' => 'boolean',
         'use_mail' => 'boolean',
+        'type' => ProjectTypeEnum::class,
     ];
 
     public static function randomUuid()

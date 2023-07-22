@@ -5,6 +5,15 @@
       <div class="mt-3 font-mono text-gray-500">
         {{ $project->url }}
       </div>
+      <p>
+        {{ $project->type->locale() }}
+      </p>
+      <p>
+        {{ $project->instance }}
+      </p>
+      <p>
+        {{ $project->comment }}
+      </p>
     </div>
     <div class="flex items-center space-x-3">
       <div
@@ -59,13 +68,22 @@
             wire:model="url"
             required
           />
-          <x-toggle
+          <x-input-text
+            class="col-span-2"
+            name="comment"
+            type="text"
+            :label="__('Comment')"
+            placeholder="About this application"
+            wire:model="comment"
+            multiline
+          />
+          <x-input-toggle
             name="is_enabled"
             label="Enabled"
             subtitle="Enable Sentinel for this project."
             wire:model="is_enabled"
           />
-          <x-toggle
+          <x-input-toggle
             name="with_notifications"
             label="With notifications"
             subtitle="Enable Sentinel notifications for this project."
@@ -77,19 +95,19 @@
           @if ($with_notifications)
             <div class="col-span-3 grid grid-cols-2 gap-6">
               <div class="space-y-6">
-                <x-toggle
+                <x-input-toggle
                   name="use_discord"
                   label="Use Discord"
                   subtitle="Enable notifications on Discord."
                   wire:model="use_discord"
                 />
-                <x-toggle
+                <x-input-toggle
                   name="use_slack"
                   label="Use Slack"
                   subtitle="Enable notifications on Slack."
                   wire:model="use_slack"
                 />
-                <x-toggle
+                <x-input-toggle
                   name="use_mail"
                   label="Use mail"
                   subtitle="Enable notifications on mail."

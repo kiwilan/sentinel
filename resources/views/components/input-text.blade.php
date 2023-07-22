@@ -17,5 +17,6 @@
     placeholder="{{ $attributes->get('placeholder') }}"
     wire:model="{{ $attributes->get('wire:model') }}"
     :required="$attributes->get('required')"
+    :multiline="$attributes->get('multiline')"
   />
 </div>

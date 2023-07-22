@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Log;
+namespace App\Http\Livewire\Log;
 
 use App\Models\Log;
 use App\Models\Trace;

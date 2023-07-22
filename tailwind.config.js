@@ -5,7 +5,6 @@ import plugin from 'tailwindcss/plugin'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  // presets: [preset],
   content: [
     './app/Filament/**/*.php',
     './resources/**/*.blade.php',

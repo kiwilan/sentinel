@@ -7,10 +7,10 @@
 
   <div class="py-12">
     <div class="main-container">
+      <livewire:dashboard.card />
       <div class="overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg">
         Dashboard
         <div>
-          <livewire:counter />
           <a href="{{ route('projects.index') }}">
             Projects
           </a>
