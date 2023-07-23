@@ -1,8 +1,8 @@
 @php
-  $dlItemClass = 'border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0';
-  $dlItemTitleClass = 'text-sm font-medium leading-6 text-gray-900';
-  $dlItemDescriptionClass = 'mt-1 text-sm leading-6 text-gray-700 sm:mt-2';
-
+  $dlItemClass = 'border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0 dark:border-gray-800';
+  $dlItemTitleClass = 'text-sm font-medium leading-6 text-gray-900 dark:text-gray-100';
+  $dlItemDescriptionClass = 'mt-1 text-sm leading-6 text-gray-700 sm:mt-2 dark:text-gray-300';
+  
   $items = [
       'Enabled' => $project->is_enabled ? 'Yes' : 'No',
       'URL' => $project->url,
@@ -12,18 +12,18 @@
 @endphp
 
 <section
-  class="group space-y-5 rounded-md bg-white shadow"
+  class="group space-y-5 rounded-md bg-white shadow dark:bg-gray-800"
   x-data="{
       expanded: @entangle('expanded'),
       editable: @entangle('editable')
   }"
 >
   <div
-    class="relative w-full cursor-pointer space-y-3 rounded-md p-5 hover:bg-gray-50 md:flex md:items-center md:justify-between md:space-y-0"
+    class="relative w-full cursor-pointer space-y-3 rounded-md p-5 hover:bg-gray-50 dark:hover:bg-gray-800 md:flex md:items-center md:justify-between md:space-y-0"
   >
     <div>
       <h2 class="text-xl font-semibold">{{ $project->name }}</h2>
-      <p class="mt-1 font-mono text-sm text-gray-500">
+      <p class="mt-1 font-mono text-sm text-gray-500 dark:text-gray-400">
         {{ $project->subtitle }}
       </p>
     </div>
@@ -46,7 +46,7 @@
         wire:model="is_enabled"
       />
     </div>
-    <x-icon-collapse class="h-8 w-8 text-gray-500" />
+    <x-icon-collapse class="h-8 w-8 text-gray-500 dark:text-gray-400" />
     <div
       class="absolute inset-0 z-0"
       @click="expanded = ! expanded"
@@ -74,7 +74,7 @@
   </div>
 
   <div
-    class="items-start justify-between space-y-3 bg-white p-5 md:flex md:space-y-0"
+    class="items-start justify-between space-y-3 bg-white p-5 dark:bg-gray-800 md:flex md:space-y-0"
     x-show="expanded"
     x-collapse
     x-cloak
@@ -89,7 +89,7 @@
     </div>
     <div class="items-center space-x-3 md:flex">
       <button
-        class="flex items-center justify-between rounded-md bg-gray-200 p-2 hover:bg-gray-100 md:w-[23.5rem]"
+        class="flex items-center justify-between rounded-md bg-gray-200 p-2 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 md:w-[23.5rem]"
         x-data="copy"
         @click="clipboard(`{{ $project->public_key }}`)"
       >
@@ -105,12 +105,12 @@
     </div>
   </div>
   <form
-    class="m-5 rounded-md border p-5"
+    class="m-5 rounded-md p-5"
     x-show="editable"
     x-collapse
     x-cloak
   >
-    <div class="space-y-6 divide-y">
+    <div class="space-y-6 divide-y dark:divide-gray-700">
       <div class="grid grid-cols-3 gap-10">
         <x-input-text
           name="name"

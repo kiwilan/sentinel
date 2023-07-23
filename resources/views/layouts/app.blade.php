@@ -19,6 +19,7 @@
 
   {!! SEO::generate() !!}
 
+  @darkMode
   @vite(['resources/css/app.css', 'resources/js/app.ts'])
   @livewireStyles
 </head>

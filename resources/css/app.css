@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 body {
-  @apply scrollbar-thin;
+  @apply scrollbar-thin dark:bg-gray-900 dark:text-gray-100;
 }
 
 [x-cloak] {
   display: none !important;
+}
+
+.filament-notifications-notification {
+  @apply dark:bg-gray-800 dark:border-gray-700;
+}
+
+.filament-notifications-title, .filament-notifications-body {
+  @apply dark:text-white;
 }

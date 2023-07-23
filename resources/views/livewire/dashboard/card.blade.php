@@ -1,145 +1,18 @@
-<div>
-  <h2 class="text-sm font-medium text-gray-500">Pinned Projects</h2>
-  <ul
-    class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4"
-    role="list"
+<li class="relative col-span-1 flex rounded-md shadow-sm">
+  <div
+    class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md bg-pink-600 text-sm font-medium text-white"
+  >GA</div>
+  <div
+    class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
   >
-    <li class="relative col-span-1 flex rounded-md shadow-sm">
-      <div
-        class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md bg-pink-600 text-sm font-medium text-white"
-      >GA</div>
-      <div
-        class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white"
-      >
-        <div class="flex-1 truncate px-4 py-2 text-sm">
-          <span class="font-medium text-gray-900 hover:text-gray-600">Projects</span>
-          <p class="text-gray-500">16 Members</p>
-        </div>
-        <div class="flex-shrink-0 pr-2">
-          <button
-            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            type="button"
-          >
-            <span class="sr-only">Open options</span>
-            <svg
-              class="h-5 w-5"
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <a
-        class="absolute inset-0"
-        href="{{ route('projects.index') }}"
-      ></a>
-    </li>
-    <li class="col-span-1 flex rounded-md shadow-sm">
-      <div
-        class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md bg-purple-600 text-sm font-medium text-white"
-      >CD</div>
-      <div
-        class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white"
-      >
-        <div class="flex-1 truncate px-4 py-2 text-sm">
-          <a
-            class="font-medium text-gray-900 hover:text-gray-600"
-            href="#"
-          >Component Design</a>
-          <p class="text-gray-500">12 Members</p>
-        </div>
-        <div class="flex-shrink-0 pr-2">
-          <button
-            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            type="button"
-          >
-            <span class="sr-only">Open options</span>
-            <svg
-              class="h-5 w-5"
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </li>
-    <li class="col-span-1 flex rounded-md shadow-sm">
-      <div
-        class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md bg-yellow-500 text-sm font-medium text-white"
-      >T</div>
-      <div
-        class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white"
-      >
-        <div class="flex-1 truncate px-4 py-2 text-sm">
-          <a
-            class="font-medium text-gray-900 hover:text-gray-600"
-            href="#"
-          >Templates</a>
-          <p class="text-gray-500">16 Members</p>
-        </div>
-        <div class="flex-shrink-0 pr-2">
-          <button
-            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            type="button"
-          >
-            <span class="sr-only">Open options</span>
-            <svg
-              class="h-5 w-5"
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </li>
-    <li class="col-span-1 flex rounded-md shadow-sm">
-      <div
-        class="flex w-16 flex-shrink-0 items-center justify-center rounded-l-md bg-green-500 text-sm font-medium text-white"
-      >RC</div>
-      <div
-        class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white"
-      >
-        <div class="flex-1 truncate px-4 py-2 text-sm">
-          <a
-            class="font-medium text-gray-900 hover:text-gray-600"
-            href="#"
-          >React Components</a>
-          <p class="text-gray-500">8 Members</p>
-        </div>
-        <div class="flex-shrink-0 pr-2">
-          <button
-            class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-transparent bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            type="button"
-          >
-            <span class="sr-only">Open options</span>
-            <svg
-              class="h-5 w-5"
-              aria-hidden="true"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M10 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM10 8.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM11.5 15.5a1.5 1.5 0 10-3 0 1.5 1.5 0 003 0z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
+    <div class="flex-1 truncate px-4 py-2 text-sm">
+      <span
+        class="font-medium text-gray-900 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-400">Projects</span>
+      <p class="text-gray-500 dark:text-gray-300">16 Members</p>
+    </div>
+  </div>
+  <a
+    class="absolute inset-0"
+    href="{{ route('projects.index') }}"
+  ></a>
+</li>

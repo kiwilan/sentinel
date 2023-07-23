@@ -37,6 +37,7 @@
         </div>
 
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
+          <x-stw-color-mode class="rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-700" />
           <!-- Teams Dropdown -->
           @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
             <div class="relative ml-3">

@@ -3,7 +3,6 @@
 use Laravel\Telescope\EntryType;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Telescope Toolbar Enabled
@@ -46,11 +45,11 @@ return [
      |
      */
     'middleware' => [
-        'telescope'
+        'telescope',
     ],
 
     'asset_middleware' => [
-        'web'
+        'web',
     ],
 
     /*
@@ -155,8 +154,6 @@ return [
             'telescope-toolbar::collectors.redis',
         ],
         EntryType::SCHEDULED_TASK => [
-
         ],
     ],
-
 ];
