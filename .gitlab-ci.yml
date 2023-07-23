@@ -29,7 +29,7 @@ deploy-job:
       supervisorctl stop sentinel-worker:sentinel-worker_00 &&
       composer install &&
       php$PHP_VERSION artisan clear:fresh &&
-      php$PHP_VERSION artisan migrate:fresh --seed --force &&
+      php$PHP_VERSION artisan migrate --force &&
       composer i --no-dev &&
       php$PHP_VERSION artisan optimize:fresh &&
       php$PHP_VERSION artisan scout:fresh &&
