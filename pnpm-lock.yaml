@@ -50,9 +50,6 @@ devDependencies:
   typescript:
     specifier: ^5.1.6
     version: 5.1.6
-  vanilla-cookieconsent:
-    specifier: 3.0.0-rc.16
-    version: 3.0.0-rc.16
   vite:
     specifier: ^4.4.4
     version: 4.4.4
@@ -2652,10 +2649,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /vanilla-cookieconsent@3.0.0-rc.16:
-    resolution: {integrity: sha512-H1ShihSrrQ4xJdN4gS2lQMPxzW8DIsYu/xhKqpRbDUZYYVXFLsuLycZB1IWkLhN3mU0bJLL4Eu+A0UlCipdi1w==}
-    dev: true
 
   /vite-plugin-full-reload@1.0.5(vite@4.4.4):
     resolution: {integrity: sha512-kVZFDFWr0DxiHn6MuDVTQf7gnWIdETGlZh0hvTiMXzRN80vgF4PKbONSq8U1d0WtHsKaFODTQgJeakLacoPZEQ==}
