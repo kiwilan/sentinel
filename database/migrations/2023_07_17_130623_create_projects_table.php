@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\ProjectPriorityEnum;
+use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -28,8 +30,9 @@ return new class extends Migration
             $table->string('slack_token')->nullable();
             $table->string('mail_token')->nullable();
 
-            $table->string('type')->nullable();
-            $table->string('instance')->nullable();
+            $table->enum('type', ProjectTypeEnum::toDatabase())->default(ProjectTypeEnum::laravel->value);
+            $table->enum('priority', ProjectPriorityEnum::toDatabase())->default(ProjectPriorityEnum::low->value);
+            $table->string('subtitle')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
         });

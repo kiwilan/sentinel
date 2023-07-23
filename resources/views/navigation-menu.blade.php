@@ -7,12 +7,6 @@
     <div class="main-container">
       <div class="flex h-16 justify-between">
         <div class="flex">
-          <!-- Logo -->
-          {{-- <div class="flex shrink-0 items-center">
-            <a href="{{ route('dashboard') }}">
-              <x-application-mark class="block h-12 w-auto" />
-            </a>
-          </div> --}}
 
           <!-- Navigation Links -->
           <div class="hidden space-x-8 sm:-my-px sm:flex">

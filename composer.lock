@@ -2006,16 +2006,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.115",
+            "version": "v1.2.116",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "4531e4a70d55d10cbe7d41ac1ff0d75a5fe2ef1e"
+                "reference": "97e9fe30219e60092e107651abb379a38b342921"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/4531e4a70d55d10cbe7d41ac1ff0d75a5fe2ef1e",
-                "reference": "4531e4a70d55d10cbe7d41ac1ff0d75a5fe2ef1e",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/97e9fe30219e60092e107651abb379a38b342921",
+                "reference": "97e9fe30219e60092e107651abb379a38b342921",
                 "shasum": ""
             },
             "require": {
@@ -2052,9 +2052,9 @@
             ],
             "support": {
                 "issues": "https://github.com/JayBizzle/Crawler-Detect/issues",
-                "source": "https://github.com/JayBizzle/Crawler-Detect/tree/v1.2.115"
+                "source": "https://github.com/JayBizzle/Crawler-Detect/tree/v1.2.116"
             },
-            "time": "2023-06-05T21:32:18+00:00"
+            "time": "2023-07-21T15:49:49+00:00"
         },
         {
             "name": "jenssegers/agent",
@@ -2145,12 +2145,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiwilan/steward-laravel.git",
-                "reference": "7f2dd17eedeb33d4729aad6729630930f2dfd389"
+                "reference": "a1b4c8468655f9f36750cbbccf6a892095a0f8d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiwilan/steward-laravel/zipball/7f2dd17eedeb33d4729aad6729630930f2dfd389",
-                "reference": "7f2dd17eedeb33d4729aad6729630930f2dfd389",
+                "url": "https://api.github.com/repos/kiwilan/steward-laravel/zipball/a1b4c8468655f9f36750cbbccf6a892095a0f8d5",
+                "reference": "a1b4c8468655f9f36750cbbccf6a892095a0f8d5",
                 "shasum": ""
             },
             "require": {
@@ -2223,7 +2223,7 @@
                 "issues": "https://github.com/kiwilan/steward-laravel/issues",
                 "source": "https://github.com/kiwilan/steward-laravel/tree/main"
             },
-            "time": "2023-07-21T15:22:56+00:00"
+            "time": "2023-07-22T11:50:02+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -11257,16 +11257,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v2.9.3",
+            "version": "v2.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "cf5275293fe693ec2cf4dbadbadae01daaa08169"
+                "reference": "705f19dd87caf16de4c24f5cfb7eff2e4aab3e3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/cf5275293fe693ec2cf4dbadbadae01daaa08169",
-                "reference": "cf5275293fe693ec2cf4dbadbadae01daaa08169",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/705f19dd87caf16de4c24f5cfb7eff2e4aab3e3f",
+                "reference": "705f19dd87caf16de4c24f5cfb7eff2e4aab3e3f",
                 "shasum": ""
             },
             "require": {
@@ -11342,7 +11342,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v2.9.3"
+                "source": "https://github.com/pestphp/pest/tree/v2.9.4"
             },
             "funding": [
                 {
@@ -11354,7 +11354,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-20T18:47:23+00:00"
+            "time": "2023-07-22T14:42:37+00:00"
         },
         {
             "name": "pestphp/pest-plugin",

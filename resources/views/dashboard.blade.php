@@ -5,17 +5,9 @@
     </h2>
   </x-slot>
 
-  <div class="py-12">
+  <div class="pt-6">
     <div class="main-container">
       <livewire:dashboard.card />
-      <div class="overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg">
-        Dashboard
-        <div>
-          <a href="{{ route('projects.index') }}">
-            Projects
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 </x-app-layout>

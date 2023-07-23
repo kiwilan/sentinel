@@ -47,7 +47,6 @@
 
   @stack('modals')
   @livewire('notifications')
-  @vite(['resources/js/app.ts'])
   @livewireScripts
 </body>
 

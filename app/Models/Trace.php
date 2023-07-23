@@ -59,6 +59,7 @@ class Trace extends Model
     {
         $res = '';
         $index++;
+        $spaces = str_repeat('-', $index * 4);
 
         foreach ($args as $key => $arg) {
             if (is_array($arg) && empty($arg) && is_string($key)) {
@@ -70,18 +71,18 @@ class Trace extends Model
                     $string = trim($string);
 
                     if (is_string($key)) {
-                        $res .= "{$key}: {$string}"."\n";
+                        $res .= "{$spaces}{$key}: {$string}"."\n";
                     } else {
-                        $res .= $string."\n";
+                        $res .= $spaces.$string."\n";
                     }
                 }
             } elseif (! empty($arg)) {
                 $arg = trim($arg);
 
                 if (is_string($key)) {
-                    $res .= "{$key}: {$arg}"."\n";
+                    $res .= "{$spaces}{$key}: {$arg}"."\n";
                 } else {
-                    $res .= $arg."\n";
+                    $res .= $spaces.$arg."\n";
                 }
             }
         }

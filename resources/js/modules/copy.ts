@@ -1,6 +1,5 @@
 import type { AlpineComponent } from 'alpinejs'
-
-// import { Notification } from '../../../vendor/filament/notifications/dist/module.esm'
+import { Notification } from '../../../vendor/filament/notifications/dist/module.esm'
 
 /**
  * Copy module
@@ -45,25 +44,25 @@ function Copy(): AlpineComponent<{
       else
         await this.unsecureContext()
 
-      // if (this.copy) {
-      //   new FilamentNotification()
-      //     .title('Copied to clipboard')
-      //     .body(`${this.value} copied to clipboard.`)
-      //     .success()
-      //     .seconds(1.5)
-      //     .send()
-      //   setTimeout(() => {
-      //     this.copy = false
-      //   }, 1500)
-      // }
-      // else {
-      //   new FilamentNotification()
-      //     .title('Error')
-      //     .body(`${this.value} is not copied to your clipboard.`)
-      //     .warning()
-      //     .seconds(5)
-      //     .send()
-      // }
+      if (this.copy) {
+        new Notification()
+          .title('Copied to clipboard')
+          .body(`${this.value} copied to clipboard.`)
+          .success()
+          .seconds(1.5)
+          .send()
+        setTimeout(() => {
+          this.copy = false
+        }, 1500)
+      }
+      else {
+        new Notification()
+          .title('Error')
+          .body(`${this.value} is not copied to your clipboard.`)
+          .warning()
+          .seconds(5)
+          .send()
+      }
     },
   }
 }

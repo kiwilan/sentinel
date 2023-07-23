@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Project;
 
+use App\Enums\ProjectPriorityEnum;
+use App\Enums\ProjectTypeEnum;
 use App\Models\Project;
 use Kiwilan\Steward\Http\Livewire\Traits\Notifiable;
 use Livewire\Component;
@@ -11,6 +13,10 @@ class Item extends Component
     use Notifiable;
 
     public ?Project $project = null;
+
+    public bool $expanded = false;
+
+    public bool $editable = false;
 
     public ?string $name = null;
 
@@ -32,10 +38,21 @@ class Item extends Component
 
     public ?string $mail_token = null;
 
+    public ?string $type = null;
+
+    public array $typeOptions = [];
+
+    public ?string $priority = null;
+
+    public array $priorityOptions = [];
+
+    public ?string $subtitle = null;
+
+    public ?string $comment = null;
+
     protected $rules = [
         'name' => 'required|string|max:255',
         'url' => 'nullable|url|max:255',
-        'is_enabled' => 'nullable|boolean',
         'with_notifications' => 'nullable|boolean',
         'use_discord' => 'nullable|boolean',
         'use_slack' => 'nullable|boolean',
@@ -43,11 +60,23 @@ class Item extends Component
         'discord_token' => 'nullable|string|max:255',
         'slack_token' => 'nullable|string|max:255',
         'mail_token' => 'nullable|string|max:255',
+        'type' => 'nullable|string|max:255',
+        'priority' => 'nullable|string|max:255',
+        'subtitle' => 'nullable|string|max:255',
+        'comment' => 'nullable|string|max:1500',
     ];
 
     public function regenerateToken()
     {
         $this->project->regenerateToken();
+    }
+
+    public function updatedIsEnabled()
+    {
+        $this->project->is_enabled = $this->is_enabled;
+        $this->project->save();
+
+        $this->notify();
     }
 
     public function mount()
@@ -63,16 +92,22 @@ class Item extends Component
             $this->discord_token = $this->project->discord_token;
             $this->slack_token = $this->project->slack_token;
             $this->mail_token = $this->project->mail_token;
+            $this->type = $this->project->type->value;
+            $this->priority = $this->project->priority->value;
+            $this->subtitle = $this->project->subtitle;
+            $this->comment = $this->project->comment;
         } else {
             $this->project = new Project();
         }
+
+        $this->typeOptions = ProjectTypeEnum::toArray(false);
+        $this->priorityOptions = ProjectPriorityEnum::toArray(false);
     }
 
     public function save()
     {
         $this->project->name = $this->name;
         $this->project->url = $this->url;
-        $this->project->is_enabled = $this->is_enabled;
         $this->project->with_notifications = $this->with_notifications;
         $this->project->use_discord = $this->use_discord;
         $this->project->use_slack = $this->use_slack;
@@ -80,6 +115,10 @@ class Item extends Component
         $this->project->discord_token = $this->discord_token;
         $this->project->slack_token = $this->slack_token;
         $this->project->mail_token = $this->mail_token;
+        $this->project->type = $this->type;
+        $this->project->priority = $this->priority;
+        $this->project->subtitle = $this->subtitle;
+        $this->project->comment = $this->comment;
         $this->project->save();
 
         $this->notify();

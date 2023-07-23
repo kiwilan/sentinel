@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ProjectPriorityEnum;
 use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +33,8 @@ class Project extends Model
         'mail_token',
 
         'type',
-        'instance',
+        'priority',
+        'subtitle',
         'comment',
     ];
 
@@ -47,6 +49,7 @@ class Project extends Model
         'use_slack' => 'boolean',
         'use_mail' => 'boolean',
         'type' => ProjectTypeEnum::class,
+        'priority' => ProjectPriorityEnum::class,
     ];
 
     public static function randomUuid()

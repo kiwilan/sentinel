@@ -3,7 +3,7 @@
   $reportBoxClass = 'border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0';
   $dtClass = 'font-medium leading-6 text-gray-900';
   $ddClass = 'mt-1 leading-6 text-gray-700 sm:mt-2';
-  $insightClass = 'rounded-md p-3 flex items-start space-x-1 bg-white shadow';
+  $insightClass = 'rounded-md p-6 flex items-start space-x-1 bg-white shadow';
 @endphp
 
 <div class="main-container space-y-6 py-6">
@@ -11,7 +11,7 @@
   <div class="mx-auto max-w-none">
     <div class="overflow-hidden rounded-md bg-white sm:rounded-lg sm:shadow">
 
-      <div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
+      <div class="border-b border-gray-200 bg-white p-6">
         <div class="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
           <div class="ml-4 mt-4 w-full space-y-2">
             <div class="flex justify-between">
@@ -94,7 +94,7 @@
     <div class="h-64 space-y-2 overflow-auto md:h-[30rem]">
       @loop($log->traces as $t)
         <div
-          class="{{ $trace->id === $t->id ? 'bg-primary-100' : 'bg-white hover:bg-primary-100' }} relative w-full space-y-1 overflow-auto rounded-md p-5 shadow"
+          class="{{ $trace->id === $t->id ? 'bg-primary-100' : 'bg-white hover:bg-primary-100' }} relative w-full space-y-1 overflow-auto rounded-md p-6 shadow"
         >
           <div class="text-sm text-gray-600">{{ $t->class }}</div>
           <div>{{ $t->main_class }}:{{ $t->line }}</div>
@@ -106,8 +106,9 @@
         </div>
       @endloop
     </div>
+
     <div class="col-span-2 space-y-3">
-      <div class="overflow-auto rounded-md bg-white p-5 shadow">
+      <div class="overflow-auto rounded-md bg-white p-6 shadow">
         <div class="flex justify-between">
           <div class="text-sm text-gray-500">{{ $trace->class }}</div>
           <div class="flex gap-3">

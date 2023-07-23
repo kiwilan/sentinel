@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\ProjectPriorityEnum;
 use App\Enums\ProjectTypeEnum;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
@@ -28,8 +29,9 @@ class ProjectSeeder extends Seeder
                 'slack_token' => 'T054NKG4NPM:B054T6H1RPG:9M4geVMJFLUlhiXKHB2jjjKi',
                 'mail_token' => 'ewilan.riviere@gmail.com',
                 'type' => ProjectTypeEnum::laravel,
-                'instance' => 'local',
-                'comment' => 'Locall project of P1PDD podcast website.',
+                'priority' => ProjectPriorityEnum::low,
+                'subtitle' => 'local',
+                'comment' => 'Local project of P1PDD podcast website.',
             ])
         ;
     }
