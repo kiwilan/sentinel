@@ -7,6 +7,9 @@ use App\Enums\ProjectTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Slack\SlackRoute;
 use Illuminate\Support\Facades\Hash;
 use Kiwilan\Steward\Traits\HasSlug;
 use Kiwilan\Steward\Traits\LiveModelQueryable;
@@ -16,6 +19,7 @@ class Project extends Model
     use HasFactory;
     use LiveModelQueryable;
     use HasSlug;
+    use Notifiable;
 
     protected $fillable = [
         'name',
@@ -87,5 +91,14 @@ class Project extends Model
     public function logs(): HasMany
     {
         return $this->hasMany(Log::class);
+    }
+
+    public function routeNotificationForSlack(Notification $notification): mixed
+    {
+        $slack = 'https://hooks.slack.com/services/';
+        $tokens = str_replace(':', '/', $this->slack_token);
+        // ray($tokens);
+
+        return SlackRoute::make('T054NKG4NPM/B054T6H1RPG', '9M4geVMJFLUlhiXKHB2jjjKi');
     }
 }

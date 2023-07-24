@@ -4,11 +4,14 @@ namespace App\Jobs;
 
 use App\Models\Log;
 use App\Models\Project;
+use App\Notifications\SlackAlert;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Notification;
+use Spatie\DiscordAlerts\Facades\DiscordAlert;
 
 class LogProcess implements ShouldQueue
 {
@@ -52,17 +55,44 @@ class LogProcess implements ShouldQueue
             $log->saveReport($current);
         }
 
-        // DiscordAlert::message('You have a new subscriber to the newsletter!', [
-        //     [
-        //         'title' => 'My title',
-        //         'description' => 'My description',
-        //         'color' => '#E77625',
-        //         'author' => [
-        //             'name' => 'Spatie',
-        //             'url' => 'https://spatie.be/',
-        //         ],
-        //     ],
-        // ]);
-        // DiscordAlert::to('https://discord.com/api/webhooks/123456789/abcdefg')->message('Hello world!');
+        $this->sendToDiscord();
+        $this->sendToSlack();
+
+        ray('LogProcess done.');
+    }
+
+    private function sendToDiscord(): void
+    {
+        if (! $this->project->use_discord) {
+            return;
+        }
+
+        $discord = 'https://discord.com/api/webhooks/';
+        $tokens = str_replace(':', '/', $this->project->discord_token);
+
+        DiscordAlert::to("{$discord}{$tokens}")
+            ->message('Hello world!')
+        ;
+    }
+
+    private function sendToSlack(): void
+    {
+        if (! $this->project->use_slack) {
+            return;
+        }
+
+        $slack = 'https://hooks.slack.com/services/';
+        $tokens = str_replace(':', '/', $this->project->slack_token);
+        ray($tokens);
+
+        // DiscordAlert::to("{$slack}{$tokens}")
+        //     ->message('Hello world!')
+        // ;
+
+        // Notification::route('slack', [])
+        //     ->notify(new SlackAlert())
+        // ;
+
+        $this->project->notify(new SlackAlert());
     }
 }
