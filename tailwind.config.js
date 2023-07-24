@@ -52,6 +52,14 @@ export default {
         '.scrollbar-thin': {
           'scrollbar-width': 'thin',
         },
+        '.text-gray-medium': {
+          '@apply text-gray-500 dark:text-gray-400':
+          {},
+        },
+        '.text-gray-light': {
+          '@apply text-gray-900 dark:text-gray-100':
+          {},
+        },
       })
     }),
     forms,

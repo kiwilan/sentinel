@@ -16,9 +16,10 @@ class Cell extends Component
         public bool $code = false,
         public bool $mono = false,
         public bool $full = false,
-        public bool $tooltip = false,
+        public string|false $tooltip = false,
         public int $tooltipLimit = 60,
         public string $responsive = 'sm',
+        public int $colspan = 1,
     ) {
     }
 

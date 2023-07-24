@@ -1,9 +1,18 @@
+@props(['hint' => null, 'helperText' => null])
+
 <div class="{{ $attributes->get('class') }}">
-  <x-label
-    for="{{ $attributes->get('name') }}"
-    value="{{ $attributes->get('label') }}"
-    :required="$attributes->get('required')"
-  />
+  <div class="flex justify-between">
+    <x-label
+      for="{{ $attributes->get('name') }}"
+      value="{{ $attributes->get('label') }}"
+      :required="$attributes->get('required')"
+    />
+    @if ($hint)
+      <div class="text-gray-medium text-sm">
+        {{ $hint }}
+      </div>
+    @endif
+  </div>
   @if ($slot)
     <p class="text-sm text-gray-500 dark:text-gray-400">
       {{ $slot }}
@@ -19,4 +28,9 @@
     :required="$attributes->get('required')"
     :multiline="$attributes->get('multiline')"
   />
+  @if ($helperText)
+    <div class="text-gray-medium text-sm">
+      {{ $helperText }}
+    </div>
+  @endif
 </div>

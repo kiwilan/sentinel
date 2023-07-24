@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-use Kiwilan\Steward\Traits\LiveQueryable;
+use Kiwilan\Steward\Traits\LiveModelQueryable;
 
 class Log extends Model
 {
     use HasFactory;
-    use LiveQueryable;
+    use LiveModelQueryable;
 
     protected $fillable = [
         'app',

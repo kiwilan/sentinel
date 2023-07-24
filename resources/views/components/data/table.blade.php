@@ -18,9 +18,9 @@
         {{ $subtitle }}
       </p>
     </div>
-    @isset($item)
+    @isset($action)
       <div>
-        {{ $item }}
+        {{ $action }}
       </div>
     @endisset
   </div>
@@ -45,7 +45,7 @@
               {{ $slot }}
               @if ($empty)
                 <tr>
-                  <x-data.cell>
+                  <x-data.cell colspan="{{ count($head) }}">
                     No data
                   </x-data.cell>
                 </tr>

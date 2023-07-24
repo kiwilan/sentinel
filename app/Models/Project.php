@@ -9,12 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Hash;
 use Kiwilan\Steward\Traits\HasSlug;
-use Kiwilan\Steward\Traits\LiveQueryable;
+use Kiwilan\Steward\Traits\LiveModelQueryable;
 
 class Project extends Model
 {
     use HasFactory;
-    use LiveQueryable;
+    use LiveModelQueryable;
     use HasSlug;
 
     protected $fillable = [
@@ -34,7 +34,7 @@ class Project extends Model
 
         'type',
         'priority',
-        'subtitle',
+        'instance',
         'comment',
     ];
 

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Project;
 
 use App\Models\Project;
-use Kiwilan\Steward\Traits\LiveListing;
+use Kiwilan\Steward\Http\Livewire\Traits\LiveListing;
 use Livewire\Component;
 use Livewire\WithPagination;
 

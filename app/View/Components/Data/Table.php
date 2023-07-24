@@ -17,9 +17,9 @@ class Table extends Component
         public array $head = [],
         public string $title = 'Models',
         public string $subtitle = 'A list of all the models.',
-        public bool $withActions = true,
+        public bool $withActions = false,
         public bool $empty = false,
-        public mixed $item = null,
+        public mixed $action = null,
     ) {
     }
 

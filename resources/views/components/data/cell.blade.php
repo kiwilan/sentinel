@@ -25,16 +25,24 @@
   
 @endphp
 
-<td class="{{ $class }} {{ $responsive }}">
+<td
+  class="{{ $class }} {{ $responsive }}"
+  colspan="{{ $colspan }}"
+>
   <div
     class="{{ $subClass }}"
     x-data
   >
     @if ($tooltip)
       <x-tooltip
-        :text="$slot"
+        :text="$tooltip"
         :limit="$tooltipLimit"
-      />
+      >
+        <div class="flex items-start space-x-1">
+          <div>{{ $slot }}</div>
+          <x-icon-info class="h-3 w-3" />
+        </div>
+      </x-tooltip>
     @else
       {{ $slot }}
     @endif

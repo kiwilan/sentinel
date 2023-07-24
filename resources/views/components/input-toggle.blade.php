@@ -3,16 +3,21 @@
     'label' => '',
     'name' => '',
     'subtitle' => '',
+    'reverse' => false,
 ])
 
 <div
   class="flex items-center justify-between"
   x-data="{
       value: {{ $checked ? 'true' : 'false' }},
+      wire: @entangle($attributes->wire('model')),
       init() {
           if ($refs.toggleInput.getAttribute('wire:model')) {
               this.value = $wire.get($refs.toggleInput.getAttribute('wire:model'))
           }
+          $watch('wire', value => {
+              this.value = value
+          })
       },
       labelClick() {
           $refs.toggle.click()
@@ -33,7 +38,7 @@
     :value="value"
   >
   <label
-    class="flex flex-grow flex-col"
+    class="{{ $reverse ? 'order-first' : 'order-last ml-5' }} flex flex-grow cursor-pointer flex-col"
     @click="labelClick"
     :id="$id('toggle-label')"
   >
@@ -51,7 +56,7 @@
     </span>
   </label>
   <button
-    class="relative ml-5 inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:bg-gray-700 dark:ring-offset-gray-700"
+    class="{{ $reverse ? 'order-last ml-5' : 'order-first' }} relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2 dark:bg-gray-700 dark:ring-offset-gray-700"
     type="button"
     role="switch"
     aria-describedby="availability-description"

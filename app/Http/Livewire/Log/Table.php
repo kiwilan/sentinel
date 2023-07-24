@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Log;
 
 use App\Models\Log;
 use Illuminate\Support\Collection;
-use Kiwilan\Steward\Traits\LiveListing;
+use Kiwilan\Steward\Http\Livewire\Traits\LiveListing;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,7 +15,6 @@ class Table extends Component
 
     public array $head = [
         'Date',
-        'Ago',
         'App',
         'Env.',
         'Error',

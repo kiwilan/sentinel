@@ -15,13 +15,9 @@
       ]) }}"
     >
       <x-data.cell
-        primary
         full
+        :tooltip="$log->date_time->format('Y-m-d H:i:s')"
       >
-        {{ $log->id }}
-        {{ $log->date_time }}
-      </x-data.cell>
-      <x-data.cell full>
         {{ $log->from_date_time }}
       </x-data.cell>
       <x-data.cell response="lg">
@@ -38,9 +34,6 @@
       </x-data.cell>
       <x-data.cell mono>
         {{ $log->url }}
-      </x-data.cell>
-      <x-data.cell>
-        Details
       </x-data.cell>
     </x-data.row>
   @endloop

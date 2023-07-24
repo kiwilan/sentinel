@@ -32,7 +32,7 @@ return new class extends Migration
 
             $table->enum('type', ProjectTypeEnum::toDatabase())->default(ProjectTypeEnum::laravel->value);
             $table->enum('priority', ProjectPriorityEnum::toDatabase())->default(ProjectPriorityEnum::low->value);
-            $table->string('subtitle')->nullable();
+            $table->string('instance')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
         });

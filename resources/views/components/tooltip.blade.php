@@ -10,7 +10,7 @@
   x-data
   x-tooltip="{{ $tooltip }}"
 >
-  {{ $text }}
+  {{ $slot }}
 </div>
 
 @once

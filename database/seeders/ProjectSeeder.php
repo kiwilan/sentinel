@@ -30,7 +30,7 @@ class ProjectSeeder extends Seeder
                 'mail_token' => 'ewilan.riviere@gmail.com',
                 'type' => ProjectTypeEnum::laravel,
                 'priority' => ProjectPriorityEnum::low,
-                'subtitle' => 'local',
+                'instance' => 'local',
                 'comment' => 'Local project of P1PDD podcast website.',
             ])
         ;

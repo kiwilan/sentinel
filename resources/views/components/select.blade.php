@@ -1,24 +1,43 @@
 @props(['label' => '', 'name' => 'select', 'subtitle' => '', 'placeholder' => null, 'options' => [], 'default' => null])
 
 @php
-  if ($placeholder) {
-      $temp = [];
-      foreach ($options as $key => $value) {
-          $temp[$key] = [
-              'name' => $value,
-              'attrs' => '',
-          ];
-      }
-      $options = $temp;
+  $temp = [];
+  foreach ($options as $key => $value) {
+      $temp[$key] = [
+          'name' => $value,
+          'value' => $key,
+          'attrs' => '',
+      ];
+  }
+  $options = $temp;
   
-      array_unshift($options, [
+  if ($placeholder && !$default) {
+      $options['placeholder'] = [
           'name' => $placeholder,
-          'attrs' => 'disabled selected hidden',
-      ]);
+          'value' => '',
+          'attrs' => 'selected disabled hidden',
+      ];
   }
 @endphp
 
-<div>
+<div
+  class="{{ $attributes->get('class') }}"
+  x-data="{
+      init() {
+          let defaultValue = '{{ $default }}'
+          let placeholderValue = '{{ $placeholder }}'
+          let selectEl = document.getElementById('{{ $name }}')
+  
+          if (placeholderValue) {
+              selectEl.value = ''
+          }
+  
+          if (defaultValue) {
+              selectEl.value = defaultValue
+          }
+      }
+  }"
+>
   <x-label
     for="{{ $name }}"
     value="{{ $label }}"
@@ -33,12 +52,13 @@
     class="mt-2 block w-full rounded-md border-0 py-2 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 dark:bg-gray-900 dark:text-white dark:ring-gray-700 sm:leading-6"
     id="{{ $name }}"
     name="{{ $name }}"
-    required="{{ $attributes->get('required') }}"
+    required
+    autocomplete="off"
     wire:model="{{ $attributes->get('wire:model') }}"
   >
-    @loop($options as $value => $item)
+    @loop($options as $item)
       <option
-        value="{{ $value }}"
+        value="{{ $item['value'] }}"
         {{ $item['attrs'] }}
       >{{ $item['name'] }}</option>
     @endloop
