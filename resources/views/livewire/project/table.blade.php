@@ -28,7 +28,11 @@
         {{ $project->priority->locale() }}
       </x-data.cell>
       <x-data.cell>
-        {{ $project->is_enabled ? 'Enabled' : 'Disabled' }}
+        @if ($project->is_enabled)
+          <x-icon-check class="h-5 w-5 text-green-500" />
+        @else
+          <x-icon-x class="h-5 w-5 text-red-500" />
+        @endif
       </x-data.cell>
     </x-data.row>
   @endloop

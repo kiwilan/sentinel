@@ -8,13 +8,12 @@
 
   <x-slot name="content">
     <form
-      class="px-6 py-5"
       id="project-form"
       name="project-form"
       wire:submit.prevent="submit"
       x-data
     >
-      <div class="space-y-8">
+      <div class="space-y-8 px-6 py-5">
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
           <div>
             <h2 class="text-gray-light text-base font-semibold leading-7">Application</h2>

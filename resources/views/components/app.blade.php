@@ -40,7 +40,7 @@
       </header>
     @endif
     <!-- Page Content -->
-    <main class="min-h-[74vh] md:min-h-[80vh]">
+    <main class="min-h-[74vh] md:min-h-[87vh]">
       {{ $slot }}
     </main>
     <x-layout.footer />

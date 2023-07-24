@@ -17,9 +17,9 @@ class Table extends Component
         'Name',
         'URL',
         'Instance',
-        'Enabled',
         'Type',
         'Priority',
+        'Enabled',
     ];
 
     /**

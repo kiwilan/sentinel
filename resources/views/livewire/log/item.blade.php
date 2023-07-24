@@ -6,7 +6,7 @@
   $insightClass = 'rounded-md p-6 flex items-start space-x-1 bg-white dark:bg-gray-800 shadow';
 @endphp
 
-<div class="main-container space-y-6 py-6">
+<div class="main-container space-y-6 py-12">
 
   <div class="mx-auto max-w-none">
     <div class="overflow-hidden rounded-md bg-white dark:bg-gray-800 sm:rounded-lg sm:shadow">

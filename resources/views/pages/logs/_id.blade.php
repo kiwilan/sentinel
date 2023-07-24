@@ -1,9 +1,6 @@
 <x-app-layout>
-  <x-slot name="header">
-    <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-      {{ $log->app }} / Log from {{ $log->from_date_time }}
-    </h2>
-  </x-slot>
-
-  <livewire:log.item :log="$log" />
+  <livewire:log.item
+    class="main-container space-y-6 py-6"
+    :log="$log"
+  />
 </x-app-layout>
