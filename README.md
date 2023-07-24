@@ -14,6 +14,11 @@ Sentinel offers a simple way to track your applications errors, allowing you to 
 
 Some others alternatives are the excellent [Flare](https://flareapp.io/) or [Sentry](https://sentry.io/), but they are not self-hosted and are not free. Sentinel is not a replacement for them, but a simple alternative with less features.
 
+## Features
+
+-   [x] Host your instance
+-   [x] Error tracking
+
 ## Installation
 
 Install dependencies.
