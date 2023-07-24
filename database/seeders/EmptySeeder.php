@@ -29,8 +29,8 @@ class EmptySeeder extends Seeder
             ->create([
                 'name' => 'Sentinel',
                 'url' => config('app.url'),
-                'public_key' => config('app.key'),
-                'private_key' => Hash::make(config('app.key')),
+                'public_key' => config('app.admin.token'),
+                'private_key' => Hash::make(config('app.admin.token')),
                 'is_enabled' => true,
                 'with_notifications' => false,
                 'type' => ProjectTypeEnum::laravel,
