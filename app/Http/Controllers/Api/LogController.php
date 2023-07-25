@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LogCreateRequest;
 use App\Jobs\LogProcess;
 use App\Models\Project;
-use Illuminate\Support\Facades\Hash;
 use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Prefix;
@@ -20,7 +19,7 @@ class LogController extends Controller
     {
         $project = Project::where('key', $request->token)->first();
 
-        if (! $project || ! Hash::check($request->token, $project->key)) {
+        if (! $project || $request->token !== $project->key) {
             return response()->json([
                 'message' => 'Token is invalid',
             ], 401);
