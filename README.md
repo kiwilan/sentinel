@@ -19,6 +19,10 @@ Some others alternatives are the excellent [Flare](https://flareapp.io/) or [Sen
 -   [x] Host your instance
 -   [x] Error tracking
 
+## Compatibility
+
+-   Laravel `10.x` with [`kiwilan/sentinel-laravel`](https://github.com/kiwilan/sentinel-laravel)
+
 ## Installation
 
 Install dependencies.
