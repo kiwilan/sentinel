@@ -18,9 +18,9 @@ class LogController extends Controller
     #[Post('/', name: 'api.logs.create')]
     public function create(LogCreateRequest $request)
     {
-        $project = Project::where('public_key', $request->token)->first();
+        $project = Project::where('key', $request->token)->first();
 
-        if (! $project || ! Hash::check($request->token, $project->private_key)) {
+        if (! $project || ! Hash::check($request->token, $project->key)) {
             return response()->json([
                 'message' => 'Token is invalid',
             ], 401);

@@ -6,7 +6,6 @@ use App\Enums\ProjectPriorityEnum;
 use App\Enums\ProjectTypeEnum;
 use App\Models\Project;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class ProjectSeeder extends Seeder
 {
@@ -20,8 +19,7 @@ class ProjectSeeder extends Seeder
             ->create([
                 'name' => 'P1PDD',
                 'url' => 'http://app.p1pdd.test',
-                'public_key' => $key,
-                'private_key' => Hash::make($key),
+                'key' => $key,
                 'is_enabled' => true,
                 'with_notifications' => true,
                 'use_discord' => true,

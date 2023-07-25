@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique()->index();
             $table->string('url');
-            $table->text('public_key');
-            $table->text('private_key');
+            $table->text('key');
 
             $table->boolean('is_enabled')->default(true);
             $table->boolean('with_notifications')->default(false);

@@ -50,11 +50,11 @@
     </div>
     <div class="items-center space-x-3 md:flex">
       <button
-        class="flex items-center justify-between rounded-md bg-gray-200 p-2 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 md:w-[23.5rem]"
+        class="flex items-center justify-between space-x-1 rounded-md bg-gray-200 p-2 font-mono hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
         x-data="copy"
-        @click="clipboard(`{{ $project->public_key }}`)"
+        @click="clipboard(`{{ $project->key }}`)"
       >
-        <div>{{ $project->public_key }}</div>
+        <div>{{ $project->key }}</div>
         <x-icon-clipboard class="inline-block h-5 w-5" />
       </button>
       <x-secondary-button
@@ -102,11 +102,11 @@
     </div>
     <div class="items-center space-x-3 md:flex">
       <button
-        class="flex items-center justify-between rounded-md bg-gray-200 p-2 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 md:w-[23.5rem]"
+        class="flex items-center justify-between rounded-md bg-gray-200 p-2 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
         x-data="copy"
-        @click="clipboard(`{{ $project->public_key }}`)"
+        @click="clipboard(`{{ $project->key }}`)"
       >
-        <div>{{ $project->public_key }}</div>
+        <div>{{ $project->key }}</div>
         <x-icon-clipboard class="inline-block h-5 w-5" />
       </button>
       <x-button

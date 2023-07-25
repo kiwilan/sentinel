@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Slack\SlackRoute;
-use Illuminate\Support\Facades\Hash;
 use Kiwilan\Steward\Traits\HasSlug;
 use Kiwilan\Steward\Traits\LiveModelQueryable;
 
@@ -24,8 +23,7 @@ class Project extends Model
     protected $fillable = [
         'name',
         'url',
-        'public_key',
-        'private_key',
+        'key',
 
         'is_enabled',
         'with_notifications',
@@ -40,10 +38,6 @@ class Project extends Model
         'priority',
         'instance',
         'comment',
-    ];
-
-    protected $hidden = [
-        'private_key',
     ];
 
     protected $casts = [
@@ -83,8 +77,7 @@ class Project extends Model
     {
         $token = self::randomUuid();
         $this->update([
-            'public_key' => $token,
-            'private_key' => Hash::make($token),
+            'key' => $token,
         ]);
     }
 

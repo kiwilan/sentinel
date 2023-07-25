@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
 class ProjectFactory extends Factory
 {
@@ -27,8 +26,7 @@ class ProjectFactory extends Factory
         return [
             'name' => $this->faker->company(),
             'url' => 'http://'.$this->faker->domainName(),
-            'public_key' => $uuid,
-            'private_key' => Hash::make($uuid),
+            'key' => $uuid,
             'is_enabled' => true,
         ];
     }

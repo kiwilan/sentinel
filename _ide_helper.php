@@ -20208,6 +20208,131 @@
      
 }
 
+    namespace Kiwilan\Sentinel\Facades { 
+            /**
+     * 
+     *
+     * @method static ?string token() Get Sentinel application token.
+     * @method static ?string host() Get Sentinel host.
+     * @method static ?LogHandler error() Get LogHandler instance.
+     * @method static ?string user() Get authenticated user.
+     * @see \Kiwilan\Sentinel\Sentinel::class
+     */ 
+        class Sentinel {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function make()
+        {
+                        return \Kiwilan\Sentinel\Sentinel::make();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function register($e)
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->register($e);
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function token()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->token();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function host()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->host();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function enabled()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->enabled();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function status()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->status();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function payload()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->payload();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function message()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->message();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function error()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->error();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function user()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->user();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function toArray()
+        {
+                        /** @var \Kiwilan\Sentinel\Sentinel $instance */
+                        return $instance->toArray();
+        }
+         
+    }
+     
+}
+
     namespace Kiwilan\Steward\Facades { 
             /**
      * 
@@ -25451,6 +25576,7 @@ namespace  {
             class Toolbar extends \Fruitcake\TelescopeToolbar\Toolbar {}
             class Image extends \Intervention\Image\Facades\Image {}
             class Agent extends \Jenssegers\Agent\Facades\Agent {}
+            class Sentinel extends \Kiwilan\Sentinel\Facades\Sentinel {}
             class Steward extends \Kiwilan\Steward\Facades\Steward {}
             class Livewire extends \Livewire\Livewire {}
             class LogViewer extends \Opcodes\LogViewer\Facades\LogViewer {}
