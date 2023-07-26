@@ -53,12 +53,20 @@ export default {
         '.scrollbar-thin': {
           'scrollbar-width': 'thin',
         },
-        '.text-gray-medium': {
-          '@apply text-gray-500 dark:text-gray-400':
+        '.border-gray-light': {
+          '@apply border-gray-100 dark:border-gray-700':
           {},
         },
         '.text-gray-light': {
           '@apply text-gray-900 dark:text-gray-100':
+          {},
+        },
+        '.text-gray-medium': {
+          '@apply text-gray-500 dark:text-gray-400':
+          {},
+        },
+        '.text-gray-dark': {
+          '@apply text-gray-700 dark:text-gray-200':
           {},
         },
       })

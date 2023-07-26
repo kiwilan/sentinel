@@ -1,17 +1,11 @@
 <x-app-layout>
-  <div class="border-t border-white/10 pt-6">
-    <x-breadcrumb />
-    <div class="mt-5">
-      <h2 class="px-4 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">Latest activity</h2>
-      <x-data.table />
-    </div>
+  <div class="flex items-center justify-between">
+    <h2 class="text-base font-semibold leading-7 text-white">Latest activity</h2>
+    <x-button href="{{ route('projects.create') }}">
+      Create
+    </x-button>
   </div>
-  {{-- <div class="py-12">
-    <div class="main-container">
-      <div class="overflow-hidden bg-white shadow dark:bg-gray-800 sm:rounded-lg">
-        <livewire:project.table />
-        <livewire:project.listing />
-      </div>
-    </div>
-  </div> --}}
+  <x-slot name="bottom">
+    <livewire:project.table />
+  </x-slot>
 </x-app-layout>

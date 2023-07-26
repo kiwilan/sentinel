@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Data;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,10 +11,10 @@ class Table extends Component
     /**
      * Create a new component instance.
      *
-     * @param  string[]  $head
+     * @param  string[]  $headers
      */
     public function __construct(
-        public array $head = [],
+        public array $headers = [],
         public string $title = 'Models',
         public string $subtitle = 'A list of all the models.',
         public bool $withActions = false,
@@ -29,9 +29,9 @@ class Table extends Component
     public function render(): View|Closure|string
     {
         if ($this->withActions) {
-            $this->head[] = '';
+            $this->headers[] = '';
         }
 
-        return view('components.data.table');
+        return view('components.table.index');
     }
 }

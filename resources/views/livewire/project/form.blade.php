@@ -4,7 +4,7 @@
   wire:submit.prevent="submit"
   x-data
 >
-  <div class="space-y-8 px-6 pt-5">
+  <div class="space-y-8 pt-5">
     <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
       <div>
         <h2 class="text-gray-light text-base font-semibold leading-7">Application</h2>
@@ -175,23 +175,23 @@
         @endif
       </div>
     </div>
-  </div>
-  <div class="fixed bottom-0 right-0 z-10 w-full border-t border-gray-700 bg-gray-900/50 px-5 py-5">
-    <div class="main-container flex items-center justify-end space-x-3">
-      <x-button
-        href="{{ url()->previous() }}"
-        size="2xl"
-        outlined
-      >
-        Cancel
-      </x-button>
-      <x-button
-        form="project-form"
-        type="submit"
-        size="2xl"
-      >
-        Save
-      </x-button>
+    <div class="w-full border-t border-gray-700 bg-gray-900/50 px-5 py-5">
+      <div class="main-container flex items-center justify-end space-x-3">
+        <x-button
+          href="{{ url()->previous() }}"
+          size="2xl"
+          outlined
+        >
+          Cancel
+        </x-button>
+        <x-button
+          form="project-form"
+          type="submit"
+          size="2xl"
+        >
+          Save
+        </x-button>
+      </div>
     </div>
   </div>
 </form>

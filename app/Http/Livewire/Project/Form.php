@@ -99,6 +99,10 @@ class Form extends Component
 
     public function mount(): void
     {
+        if ($this->project) {
+            $this->assign();
+        }
+
         $this->typeOptions = ProjectTypeEnum::toArray(false);
         $this->priorityOptions = ProjectPriorityEnum::toArray(false);
     }

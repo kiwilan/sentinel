@@ -1,6 +1,3 @@
 <x-app-layout>
-  project _edit
-  {{-- <div class="main-container py-12">
-    <livewire:project.form />
-  </div> --}}
+  <livewire:project.form :project="$project" />
 </x-app-layout>

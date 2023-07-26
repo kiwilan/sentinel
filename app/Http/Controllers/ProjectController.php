@@ -20,6 +20,17 @@ class ProjectController extends Controller
         return view('pages.projects.index');
     }
 
+    #[Get('/create', name: 'projects.create')]
+    public function create()
+    {
+        View::share('navigation', [
+            'Projects' => route('projects.index'),
+            'Create' => route('projects.create'),
+        ]);
+
+        return view('pages.projects.create');
+    }
+
     #[Get('/{project_slug}', name: 'projects.show')]
     public function show(Project $project)
     {
@@ -42,6 +53,9 @@ class ProjectController extends Controller
         View::share('navigation', [
             'Projects' => route('projects.index'),
             $project->name => route('projects.show', [
+                'project_slug' => $project->slug,
+            ]),
+            'Edit' => route('projects.edit', [
                 'project_slug' => $project->slug,
             ]),
         ]);

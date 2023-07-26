@@ -3,7 +3,7 @@
 @endphp
 
 <nav
-  class="main-container flex"
+  class="flex px-4 sm:px-6 lg:px-8"
   aria-label="Breadcrumb"
 >
   <ol
@@ -32,38 +32,25 @@
         </a>
       </div>
     </li>
-    <li>
-      <div class="flex items-center">
-        <svg
-          class="h-5 w-5 flex-shrink-0 text-gray-300"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-        </svg>
-        <a
-          href="#"
-          @class(['ml-4', $itemClass])
-        >Projects</a>
-      </div>
-    </li>
-    <li>
-      <div class="flex items-center">
-        <svg
-          class="h-5 w-5 flex-shrink-0 text-gray-300"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
-        </svg>
-        <a
-          href="#"
-          aria-current="page"
-          @class(['ml-4', $itemClass])
-        >Project Nero</a>
-      </div>
-    </li>
+    @loop($navigation as $name => $route)
+      <li>
+        <div class="flex items-center">
+          <svg
+            class="h-5 w-5 flex-shrink-0 text-gray-300"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+          </svg>
+          <a
+            href="{{ $route }}"
+            @class(['ml-4', $itemClass])
+          >
+            {{ $name }}
+          </a>
+        </div>
+      </li>
+    @endloop
   </ol>
 </nav>

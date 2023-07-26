@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Data;
+namespace App\View\Components\Table;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -17,6 +17,7 @@ class Cell extends Component
         public bool $mono = false,
         public bool $full = false,
         public string|false $tooltip = false,
+        public ?bool $boolean = null,
         public int $tooltipLimit = 60,
         public string $responsive = 'sm',
         public int $colspan = 1,
@@ -37,6 +38,6 @@ class Cell extends Component
             default => $this->responsive = 'table-cell',
         };
 
-        return view('components.data.cell');
+        return view('components.table.cell');
     }
 }

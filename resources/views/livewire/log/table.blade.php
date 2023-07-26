@@ -1,4 +1,4 @@
-<x-data.table
+{{-- <x-table
   title="Logs"
   :head="$head"
   :empty="$models->isEmpty()"
@@ -8,33 +8,48 @@
     <div class="italic text-gray-500">Auto-fetch enabled</div>
   </x-slot>
   @loop($models as $log)
-    <x-data.row
+    <x-table.row
       href="{{ route('logs.show', [
           'project_slug' => $log->project->slug,
           'log_id' => $log->id,
       ]) }}"
     >
-      <x-data.cell
+
+    </x-table.row>
+  @endloop
+</x-table> --}}
+
+
+<x-table
+  :headers="$headers"
+  :items="$models"
+>
+  @loop($models as $log)
+    <x-table.row :href="route('logs.show', [
+        'project_slug' => $log->project->slug,
+        'log_id' => $log->id,
+    ])">
+      <x-table.cell
         full
         :tooltip="$log->date_time->format('Y-m-d H:i:s')"
       >
         {{ $log->from_date_time }}
-      </x-data.cell>
-      <x-data.cell response="lg">
+      </x-table.cell>
+      <x-table.cell response="lg">
         {{ $log->app }}
-      </x-data.cell>
-      <x-data.cell>
+      </x-table.cell>
+      <x-table.cell>
         <span class="{{ $log->is_production ? 'text-red-500' : '' }}">{{ $log->env }}</span>
-      </x-data.cell>
-      <x-data.cell>
+      </x-table.cell>
+      <x-table.cell>
         {{ $log->message }}
-      </x-data.cell>
-      <x-data.cell mono>
+      </x-table.cell>
+      <x-table.cell mono>
         {{ $log->method }}
-      </x-data.cell>
-      <x-data.cell mono>
+      </x-table.cell>
+      <x-table.cell mono>
         {{ $log->url }}
-      </x-data.cell>
-    </x-data.row>
+      </x-table.cell>
+    </x-table.row>
   @endloop
-</x-data.table>
+</x-table>

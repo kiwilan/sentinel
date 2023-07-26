@@ -1,8 +1,8 @@
-@php
+{{-- @php
   $defaultClass = 'whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-300';
   $mainClass = 'pl-4 pr-3 font-medium text-gray-900 sm:pl-3 dark:text-gray-100';
   $codeClass = 'p-1 bg-gray-100 rounded-md font-mono w-max font-semibold dark:bg-gray-800';
-  
+
   $class = '';
   $subClass = '';
   if ($primary) {
@@ -10,19 +10,19 @@
   } else {
       $class = $defaultClass;
   }
-  
+
   if ($code) {
       $subClass = " $codeClass";
   }
-  
+
   if ($mono) {
       $subClass .= ' font-mono';
   }
-  
+
   if ($full) {
       $subClass .= ' whitespace-nowrap';
   }
-  
+
 @endphp
 
 <td
@@ -47,4 +47,19 @@
       {{ $slot }}
     @endif
   </div>
+</td> --}}
+
+<td
+  class="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8"
+  colspan="{{ $colspan }}"
+>
+  @isset($boolean)
+    @if ($boolean)
+      <x-icon-check class="h-5 w-5 text-green-400" />
+    @else
+      <x-icon-x class="h-5 w-5 text-red-400" />
+    @endif
+  @else
+    {{ $slot }}
+  @endisset
 </td>

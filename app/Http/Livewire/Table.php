@@ -13,11 +13,18 @@ class Table extends Component
 
     public $action = 'Action';
 
+    /** @var array<string, string> */
     public array $headers = [];
 
     public bool $empty = false;
 
     public Collection $items;
+
+    public function mount()
+    {
+        ray($this->headers);
+        ray($this->items);
+    }
 
     public function render()
     {

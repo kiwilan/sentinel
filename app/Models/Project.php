@@ -55,6 +55,11 @@ class Project extends Model
     {
         return [
             SortModule::make('name', 'Name'),
+            SortModule::make('url', 'URL'),
+            SortModule::make('instance', 'Instance'),
+            SortModule::make('type', 'Type'),
+            SortModule::make('priority', 'Priority'),
+            SortModule::make('is_enabled', 'Enabled'),
         ];
     }
 

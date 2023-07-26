@@ -1,39 +1,25 @@
-<x-data.table
-  title="Projects"
-  :head="$head"
-  subtitle="All your projects in one place."
-  :empty="$models->isEmpty()"
+<x-table
+  :headers="$headers"
+  :items="$models"
 >
-  <x-slot name="action">
-    <x-button wire:click="$emit('projectFormOpen')">
-      Create
-    </x-button>
-  </x-slot>
-  <livewire:project.form />
   @loop($models as $project)
-    <x-data.row href="{{ route('projects.show', ['project_slug' => $project->slug]) }}">
-      <x-data.cell primary>
+    <x-table.row :href="route('projects.show', ['project_slug' => $project->slug])">
+      <x-table.cell>
         {{ $project->name }}
-      </x-data.cell>
-      <x-data.cell>
+      </x-table.cell>
+      <x-table.cell>
         {{ $project->url }}
-      </x-data.cell>
-      <x-data.cell>
+      </x-table.cell>
+      <x-table.cell>
         {{ $project->instance }}
-      </x-data.cell>
-      <x-data.cell>
+      </x-table.cell>
+      <x-table.cell>
         {{ $project->type->locale() }}
-      </x-data.cell>
-      <x-data.cell>
+      </x-table.cell>
+      <x-table.cell>
         {{ $project->priority->locale() }}
-      </x-data.cell>
-      <x-data.cell>
-        @if ($project->is_enabled)
-          <x-icon-check class="h-5 w-5 text-green-500" />
-        @else
-          <x-icon-x class="h-5 w-5 text-red-500" />
-        @endif
-      </x-data.cell>
-    </x-data.row>
+      </x-table.cell>
+      <x-table.cell :boolean="$project->is_enabled" />
+    </x-table.row>
   @endloop
-</x-data.table>
+</x-table>

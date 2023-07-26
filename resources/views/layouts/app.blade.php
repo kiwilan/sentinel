@@ -4,11 +4,19 @@
 
   <div class="xl:pl-72">
     <x-layout.header />
-
-    <main>
-      {{-- <x-layout.main.header /> --}}
-      {{ $slot }}
-    </main>
+    <div class="border-t border-white/10 pt-6">
+      <x-breadcrumb />
+      @isset($top)
+        {{ $top }}
+      @endisset
+      <main class="mt-5 px-4 sm:px-6 lg:px-8">
+        {{ $slot }}
+      </main>
+      @isset($bottom)
+        {{ $bottom }}
+      @endisset
+    </div>
+    <x-layout.footer />
   </div>
 
   {{-- <x-banner />

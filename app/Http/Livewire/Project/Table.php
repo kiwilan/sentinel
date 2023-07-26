@@ -13,13 +13,13 @@ class Table extends Component
     use WithPagination;
     use LiveListing;
 
-    public array $head = [
-        'Name',
-        'URL',
-        'Instance',
-        'Type',
-        'Priority',
-        'Enabled',
+    public array $headers = [
+        'name' => 'Name',
+        'url' => 'URL',
+        'instance' => 'Instance',
+        'type' => 'Type',
+        'priority' => 'Priority',
+        'is_enabled' => 'Enabled',
     ];
 
     /**
@@ -36,6 +36,21 @@ class Table extends Component
         'matters' => [],
         'techniques' => [],
     ];
+
+    protected $listeners = [
+        'tableSort' => 'sort',
+    ];
+
+    public function sort(string $field): void
+    {
+        if ($this->sort === $field) {
+            $this->sort = '-'.$field;
+        } else {
+            $this->sort = $field;
+        }
+
+        $this->emit('headReverse', $this->sort);
+    }
 
     public function model(): string
     {
@@ -60,26 +75,6 @@ class Table extends Component
     public function fetch(): void
     {
         $this->models = Project::query()
-            ->orderBy('name')
-            ->get()
-        ;
-    }
-
-    public function mount(): void
-    {
-        $this->fetch();
-    }
-
-    public function delete(int $id): void
-    {
-        Project::find($id)->delete();
-
-        $this->fetch();
-    }
-
-    public function render()
-    {
-        $this->models = Project::query()
             ->liveFilter([
                 ...$this->filter,
                 'q' => $this->q,
@@ -89,6 +84,18 @@ class Table extends Component
             ->get()
             // ->paginate(perPage: $this->size, page: $this->page)
         ;
+    }
+
+    public function delete(int $id): void
+    {
+        Project::find($id)->delete();
+
+        // $this->fetch();
+    }
+
+    public function render()
+    {
+        $this->fetch();
 
         return view('livewire.project.table');
     }

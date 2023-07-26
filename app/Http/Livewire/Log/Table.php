@@ -14,7 +14,7 @@ class Table extends Component
     use WithPagination;
     use LiveListing;
 
-    public array $head = [
+    public array $headers = [
         'date_time' => 'Date',
         'app' => 'App',
         'env' => 'Env.',
@@ -40,6 +40,21 @@ class Table extends Component
         'techniques' => [],
     ];
 
+    protected $listeners = [
+        'tableSort' => 'sort',
+    ];
+
+    public function sort(string $field): void
+    {
+        if ($this->sort === $field) {
+            $this->sort = '-'.$field;
+        } else {
+            $this->sort = $field;
+        }
+
+        $this->emit('headReverse', $this->sort);
+    }
+
     public function model(): string
     {
         return Log::class;
@@ -58,17 +73,6 @@ class Table extends Component
     public function sortable(): array
     {
         return Log::getSortable();
-    }
-
-    public function sort(mixed $item)
-    {
-        if ($this->sort === $item) {
-            $this->sort = '-'.$item;
-
-            return;
-        }
-
-        $this->sort = $item;
     }
 
     public function fetch(): void

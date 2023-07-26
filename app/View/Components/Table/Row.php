@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Data;
+namespace App\View\Components\Table;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -21,6 +21,6 @@ class Row extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.data.row');
+        return view('components.table.row');
     }
 }

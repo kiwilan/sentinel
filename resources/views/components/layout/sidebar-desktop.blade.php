@@ -2,7 +2,7 @@
 <div class="hidden xl:fixed xl:inset-y-0 xl:z-50 xl:flex xl:w-72 xl:flex-col">
   <!-- Sidebar component, swap this element with another sidebar if you like -->
   <div
-    class="flex grow flex-col gap-y-5 overflow-y-auto border-r bg-gray-200/10 px-6 ring-1 ring-white/5 dark:border-gray-800 dark:bg-black/10"
+    class="relative z-10 flex grow flex-col gap-y-5 overflow-y-auto border-r bg-gray-200/10 px-6 ring-1 ring-white/5 dark:border-gray-800 dark:bg-black/10"
   >
     <a
       class="flex h-16 shrink-0 items-center space-x-3"
@@ -90,7 +90,7 @@
           </ul>
         </li>
         <li class="-mx-6 mt-auto space-y-2">
-          <div class="flex items-center space-x-1 px-6">
+          <div class="flex items-center space-x-1 px-4">
             <x-stw-color-mode
               class="flex w-full items-center space-x-1 rounded-md p-2.5 hover:bg-gray-300 dark:hover:bg-gray-800"
               x-cloak

@@ -1,8 +1,12 @@
-@php
-  $dlItemClass = 'border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0 dark:border-gray-800';
-  $dlItemTitleClass = 'text-sm font-medium leading-6 text-gray-900 dark:text-gray-100';
-  $dlItemDescriptionClass = 'mt-1 text-sm leading-6 text-gray-700 sm:mt-2 dark:text-gray-300';
-  
+{{-- <x-invoice :project="$project" /> --}}
+
+<x-deployment :project="$project" />
+
+{{-- @php
+  $dlItemClass = 'border-t border-gray-light px-4 py-6 sm:col-span-1 sm:px-0 dark:border-gray-800';
+  $dlItemTitleClass = 'text-sm font-medium leading-6 text-gray-light dark:text-gray-100';
+  $dlItemDescriptionClass = 'mt-1 text-sm leading-6 text-gray-dark sm:mt-2 dark:text-gray-300';
+
   $items = [
       'Enabled' => $project->is_enabled ? 'Yes' : 'No',
       'URL' => $project->url,
@@ -11,7 +15,7 @@
   ];
 @endphp
 
-<section class="group space-y-5 rounded-md bg-white p-5 shadow dark:bg-gray-800">
+<section class="group space-y-5 rounded-md bg-white dark:bg-gray-900 p-5 shadow dark:bg-gray-800">
   <div
     class="rounded-mdmd:flex relative flex w-full cursor-pointer justify-between space-y-3 md:items-center md:justify-between md:space-y-0"
   >
@@ -29,7 +33,7 @@
       </div>
       <div>
         <h2 class="text-xl font-semibold">{{ $project->name }}</h2>
-        <p class="mt-1 font-mono text-sm text-gray-500 dark:text-gray-400">
+        <p class="mt-1 font-mono text-sm text-gray-medium dark:text-gray-400">
           {{ $project->instance }}
         </p>
       </div>
@@ -54,7 +58,7 @@
     </div>
     <div class="items-center space-x-3 md:flex">
       <button
-        class="flex items-center justify-between space-x-1 rounded-md bg-gray-200 p-2 font-mono hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
+        class="flex items-center justify-between space-x-1 rounded-md bg-gray-200 dark:bg-gray-700 p-2 font-mono hover:bg-gray-100 dark:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"
         x-data="copy"
         @click="clipboard(`{{ $project->key }}`)"
       >
@@ -91,7 +95,7 @@
   </div>
 
   <div
-    class="items-start justify-between space-y-3 bg-white p-5 dark:bg-gray-800 md:flex md:space-y-0"
+    class="items-start justify-between space-y-3 bg-white dark:bg-gray-900 p-5 dark:bg-gray-800 md:flex md:space-y-0"
     x-show="expanded"
     x-collapse
     x-cloak
@@ -106,7 +110,7 @@
     </div>
     <div class="items-center space-x-3 md:flex">
       <button
-        class="flex items-center justify-between rounded-md bg-gray-200 p-2 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
+        class="flex items-center justify-between rounded-md bg-gray-200 dark:bg-gray-700 p-2 hover:bg-gray-100 dark:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600"
         x-data="copy"
         @click="clipboard(`{{ $project->key }}`)"
       >
@@ -121,4 +125,4 @@
       </x-button>
     </div>
   </div>
-</section>
+</section> --}}
