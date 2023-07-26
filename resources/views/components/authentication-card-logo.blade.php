@@ -1,4 +1,6 @@
-<div class="mx-auto h-full w-20 drop-shadow">
+@props(['width' => 'w-20'])
+
+<div class="{{ $width }} mx-auto h-full drop-shadow">
   <svg
     viewBox="0 0 789 1152"
     fill="none"

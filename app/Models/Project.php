@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Slack\SlackRoute;
+use Kiwilan\Steward\Services\Query\SortModule;
 use Kiwilan\Steward\Traits\HasSlug;
 use Kiwilan\Steward\Traits\LiveModelQueryable;
 
@@ -49,6 +50,13 @@ class Project extends Model
         'type' => ProjectTypeEnum::class,
         'priority' => ProjectPriorityEnum::class,
     ];
+
+    public static function sortable(): array
+    {
+        return [
+            SortModule::make('name', 'Name'),
+        ];
+    }
 
     public static function randomUuid()
     {

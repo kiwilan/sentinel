@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Log;
 
 use App\Models\Log;
+use App\Models\Project;
 use Illuminate\Support\Collection;
 use Kiwilan\Steward\Http\Livewire\Traits\LiveListing;
 use Livewire\Component;
@@ -14,13 +15,15 @@ class Table extends Component
     use LiveListing;
 
     public array $head = [
-        'Date',
-        'App',
-        'Env.',
-        'Error',
-        'Method',
-        'URL',
+        'date_time' => 'Date',
+        'app' => 'App',
+        'env' => 'Env.',
+        'message' => 'Error',
+        'method' => 'Method',
+        'url' => 'URL',
     ];
+
+    public Project $project;
 
     /**
      * @var Collection<int, Log>
@@ -49,7 +52,7 @@ class Table extends Component
 
     public function defaultSort(): string
     {
-        return '-id';
+        return '-date_time';
     }
 
     public function sortable(): array
@@ -57,9 +60,20 @@ class Table extends Component
         return Log::getSortable();
     }
 
+    public function sort(mixed $item)
+    {
+        if ($this->sort === $item) {
+            $this->sort = '-'.$item;
+
+            return;
+        }
+
+        $this->sort = $item;
+    }
+
     public function fetch(): void
     {
-        $this->models = Log::query()
+        $this->models = Log::where('project_id', $this->project->id)
             ->liveSort($this->sort)
             ->liveFilter([
                 ...$this->filter,

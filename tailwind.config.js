@@ -7,6 +7,7 @@ import plugin from 'tailwindcss/plugin'
 export default {
   content: [
     './app/Filament/**/*.php',
+    './app/View/**/*.php',
     './resources/**/*.blade.php',
     './vendor/filament/**/*.blade.php',
     './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',

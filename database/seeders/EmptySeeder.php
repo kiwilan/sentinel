@@ -25,17 +25,17 @@ class EmptySeeder extends Seeder
             ])
         ;
 
-        Project::factory()
-            ->create([
-                'name' => 'Sentinel',
-                'url' => config('app.url'),
-                'key' => config('app.admin.token'),
-                'is_enabled' => true,
-                'with_notifications' => false,
-                'type' => ProjectTypeEnum::laravel,
-                'priority' => ProjectPriorityEnum::low,
-                'instance' => config('app.env'),
-            ])
-        ;
+        // Project::factory()
+        //     ->create([
+        //         'name' => 'Sentinel',
+        //         'url' => config('app.url'),
+        //         'key' => config('app.admin.token'),
+        //         'is_enabled' => true,
+        //         'with_notifications' => false,
+        //         'type' => ProjectTypeEnum::laravel,
+        //         'priority' => ProjectPriorityEnum::low,
+        //         'instance' => config('app.env'),
+        //     ])
+        // ;
     }
 }

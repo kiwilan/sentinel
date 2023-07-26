@@ -34,14 +34,18 @@
         </p>
       </div>
     </div>
-    <x-secondary-button wire:click="open">
+    <x-button
+      href="{{ route('projects.edit', ['project_slug' => $project->slug]) }}"
+      color="secondary"
+      outlined
+    >
       {{ __('Edit') }}
-    </x-secondary-button>
+    </x-button>
   </div>
 
   <div class="flex justify-between">
     <div class="relative z-10 flex cursor-auto items-center space-x-5">
-      <x-input-toggle
+      <x-toggle
         name="is_enabled"
         label="Enabled"
         subtitle="Enable Sentinel for this project."
@@ -117,6 +121,4 @@
       </x-button>
     </div>
   </div>
-
-  <livewire:project.form />
 </section>

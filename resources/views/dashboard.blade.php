@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="pt-6">
+  {{-- <div class="pt-6">
     <div class="main-container">
       <div>
         <h2 class="text-sm font-medium text-gray-500">Pinned Projects</h2>
@@ -11,5 +11,6 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
+  dashboard
 </x-app-layout>

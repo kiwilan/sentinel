@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Log;
 use App\Models\Project;
 use Illuminate\Support\Facades\View;
-use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 use Spatie\RouteAttributes\Attributes\Get;
-use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Prefix;
 
 #[Prefix('projects/{project_slug}/logs')]
-#[Middleware(['auth:sanctum', AuthenticateSession::class, 'verified'])]
 class LogController extends Controller
 {
     #[Get('/{log_id}', name: 'logs.show')]
@@ -30,7 +27,7 @@ class LogController extends Controller
 
         $log->append('main_trace');
 
-        return view('pages.logs._id', [
+        return view('pages.logs.show', [
             'log' => $log,
         ]);
     }

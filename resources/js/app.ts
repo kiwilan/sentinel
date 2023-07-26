@@ -8,6 +8,7 @@ import { SlideOver } from '@kiwilan/steward-laravel'
 import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/module.esm'
 
 import { Copy } from './modules/copy'
+import { Sidebar } from './store/sidebar'
 
 Alpine.plugin(AlpineFloatingUI)
 Alpine.plugin(NotificationsAlpinePlugin)
@@ -19,5 +20,6 @@ window.Alpine = Alpine
 
 Alpine.data('copy', Copy)
 Alpine.store('slideOver', SlideOver)
+Alpine.store('sidebar', Sidebar)
 
 Alpine.start()
