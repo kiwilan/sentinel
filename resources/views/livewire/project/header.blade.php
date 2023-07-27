@@ -6,21 +6,18 @@ use function Livewire\Volt\state;
 
 state(['project']);
 
-$is_enabled = computed(fn () => $this->project->is_enabled);
+$is_enabled = computed(fn() => $this->project->is_enabled);
 $toggle = function () {
-    $this->project->is_enabled = ! $this->project->is_enabled;
+    $this->project->is_enabled = !$this->project->is_enabled;
     $this->project->save();
-    $body = $this->project->is_enabled
-        ? "{$this->project->name} will now receive logs."
-        : "{$this->project->name} will not receive any logs now.";
+    $body = $this->project->is_enabled ? "{$this->project->name} will now receive logs." : "{$this->project->name} will not receive any logs now.";
 
     Notification::make()
         ->title($this->project->is_enabled ? 'Project enabled' : 'Project disabled')
         ->icon($this->project->is_enabled ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle')
         ->iconColor($this->project->is_enabled ? 'success' : 'danger')
         ->body($body)
-        ->send()
-    ;
+        ->send();
 };
 ?>
 
@@ -38,14 +35,9 @@ $toggle = function () {
     <div class="absolute inset-x-0 bottom-0 h-px bg-gray-900/5"></div>
   </div>
 
-  <div class="main-container mx-auto py-10">
+  <div class="mx-auto px-4 py-10 sm:px-6 lg:px-8">
     <div class="mx-auto flex max-w-2xl items-center justify-between gap-x-8 lg:mx-0 lg:max-w-none">
       <div class="flex items-center gap-x-6">
-        {{-- <img
-            class="h-16 w-16 flex-none rounded-full ring-1 ring-gray-900/10"
-            src="https://tailwindui.com/img/logos/48x48/tuple.svg"
-            alt=""
-          > --}}
         <button
           @class([
               'rounded-full p-1.5 bg-opacity-30',
@@ -62,8 +54,7 @@ $toggle = function () {
         </button>
         <h1>
           <div class="text-gray-medium text-sm leading-6">
-            {{-- Invoice <span class="text-gray-dark">#00011</span> --}}
-            Project
+            {{ $project->instance }}
           </div>
           <div class="text-gray-light mt-1 text-base font-semibold leading-6">
             {{ $project->name }}
@@ -74,22 +65,18 @@ $toggle = function () {
         <button
           class="text-gray-light hidden text-sm font-semibold leading-6 sm:block"
           type="button"
+          x-data="copy"
+          @click="clipboard(`{{ $project->key }}`)"
         >
-          Copy URL
+          Copy token
         </button>
-        <a
-          class="text-gray-light hidden text-sm font-semibold leading-6 sm:block"
-          href="#"
-        >
+        <x-button href="{{ route('projects.edit', ['project_slug' => $project->slug]) }}">
           Edit
-        </a>
-        <a
-          class="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-          href="#"
-        >
-          Send
-        </a>
+        </x-button>
       </div>
+    </div>
+    <div class="text-gray-medium mt-3 text-sm">
+      {{ $project->comment }}
     </div>
   </div>
 </header>

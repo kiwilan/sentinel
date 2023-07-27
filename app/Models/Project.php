@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ProjectPriorityEnum;
 use App\Enums\ProjectTypeEnum;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -39,6 +40,7 @@ class Project extends Model
         'priority',
         'instance',
         'comment',
+        'last_log_datetime',
     ];
 
     protected $casts = [
@@ -49,6 +51,11 @@ class Project extends Model
         'use_mail' => 'boolean',
         'type' => ProjectTypeEnum::class,
         'priority' => ProjectPriorityEnum::class,
+        'last_log_datetime' => 'datetime',
+    ];
+
+    protected $dates = [
+        'last_log_datetime',
     ];
 
     public static function sortable(): array
@@ -61,6 +68,13 @@ class Project extends Model
             SortModule::make('priority', 'Priority'),
             SortModule::make('is_enabled', 'Enabled'),
         ];
+    }
+
+    public function scopeWhereIsNotSentinel(Builder $query): Builder
+    {
+        ray(config('app.admin.token'));
+
+        return $query->where('key', '!=', config('app.admin.token'));
     }
 
     public static function randomUuid()

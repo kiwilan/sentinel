@@ -19,7 +19,7 @@ class LogController extends Controller
             $project->name => route('projects.show', [
                 'project_slug' => $project->slug,
             ]),
-            "Log {$log->date_time->format('Y-m-d H:m:s')}" => route('logs.show', [
+            "Log {$log->datetime->format('Y-m-d H:m:s')}" => route('logs.show', [
                 'project_slug' => $project->slug,
                 'log_id' => $log->id,
             ]),

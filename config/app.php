@@ -59,6 +59,7 @@ return [
     'admin' => [
         'email' => env('APP_ADMIN_EMAIL', 'superadmin@example.com'),
         'password' => env('APP_ADMIN_PASSWORD', 'password'),
+        'token' => env('APP_ADMIN_TOKEN'),
     ],
 
     'asset_url' => env('ASSET_URL'),

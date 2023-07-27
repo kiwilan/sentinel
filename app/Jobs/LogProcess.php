@@ -44,7 +44,7 @@ class LogProcess implements ShouldQueue
             'user_agent' => $this->request['user_agent'] ?? null,
             'ip' => $this->request['ip'] ?? null,
             'base_path' => $this->request['base_path'] ?? null,
-            'date_time' => $this->request['date_time'] ?? null,
+            'datetime' => $this->request['datetime'] ?? null,
             'timezone' => $this->request['timezone'] ?? null,
             'project_id' => $this->project->id,
         ]);

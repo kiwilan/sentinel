@@ -33,6 +33,7 @@ return new class extends Migration
             $table->enum('priority', ProjectPriorityEnum::toDatabase())->default(ProjectPriorityEnum::low->value);
             $table->string('instance')->nullable();
             $table->text('comment')->nullable();
+            $table->timestamp('last_log_datetime')->nullable();
             $table->timestamps();
         });
     }

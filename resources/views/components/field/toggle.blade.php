@@ -10,10 +10,10 @@
   class="flex items-center justify-between"
   x-data="{
       value: {{ $checked ? 'true' : 'false' }},
-      wire: @entangle($attributes->wire('model')).live,
+      wire: @entangle($attributes->wire('model')),
       init() {
-          if ($refs.toggleInput.getAttribute('wire:model.live')) {
-              this.value = $wire.get($refs.toggleInput.getAttribute('wire:model.live'))
+          if ($refs.toggleInput.getAttribute('wire:model')) {
+              this.value = $wire.get($refs.toggleInput.getAttribute('wire:model'))
           }
           $watch('wire', value => {
               this.value = value
@@ -25,7 +25,7 @@
       },
       buttonClick() {
           this.value = !this.value
-          $wire.set($refs.toggleInput.getAttribute('wire:model.live'), this.value)
+          $wire.set($refs.toggleInput.getAttribute('wire:model'), this.value)
       },
   }"
   x-id="['toggle-label']"
@@ -34,7 +34,7 @@
     name="{{ $name }}"
     type="hidden"
     x-ref="toggleInput"
-    {{ $attributes->whereStartsWith('wire:model.live') }}
+    {{ $attributes->whereStartsWith('wire:model') }}
     :value="value"
   >
   <label
@@ -85,7 +85,7 @@
         },
         toggleValue() {
           this.toggled = !this.toggled
-          this.$wire.set(this.$refs.toggleInput.getAttribute('wire:model.live'), this.toggled)
+          this.$wire.set(this.$refs.toggleInput.getAttribute('wire:model'), this.toggled)
         },
       }))
     })

@@ -17,10 +17,10 @@ class Table extends Component
     public array $headers = [
         'is_enabled' => 'Enabled',
         'name' => 'Name',
+        'last_log_datetime' => 'Last log',
         'url' => 'URL',
         'instance' => 'Instance',
         'type' => 'Type',
-        'priority' => 'Priority',
     ];
 
     /**
@@ -64,7 +64,7 @@ class Table extends Component
 
     public function defaultSort(): string
     {
-        return 'name';
+        return 'last_log_datetime';
     }
 
     public function sortable(): array
@@ -74,7 +74,7 @@ class Table extends Component
 
     public function fetch(): void
     {
-        $this->models = Project::query()
+        $this->models = Project::whereIsNotSentinel()
             ->liveFilter([
                 ...$this->filter,
                 'q' => $this->q,
@@ -82,8 +82,8 @@ class Table extends Component
             ->liveSort($this->sort)
             ->with($this->relations())
             ->get()
-            // ->paginate(perPage: $this->size, page: $this->page)
         ;
+        // ->paginate(perPage: $this->size, page: $this->page)
     }
 
     public function delete(int $id): void

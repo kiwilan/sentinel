@@ -30,7 +30,7 @@ class LogFactory extends Factory
             'user_agent' => $this->faker->userAgent(),
             'ip' => $this->faker->ipv4(),
             'base_path' => base_path(),
-            'date_time' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'datetime' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'timezone' => $this->faker->timezone(),
             'project_id' => Project::inRandomOrder()->first()->id,
         ];

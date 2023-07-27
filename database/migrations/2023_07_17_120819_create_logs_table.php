@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('user_agent')->nullable();
             $table->string('ip')->nullable();
             $table->string('base_path')->nullable();
-            $table->dateTime('date_time')->nullable();
+            $table->dateTime('datetime')->nullable();
             $table->string('timezone')->default('UTC');
 
             $table->integer('code')->nullable();
@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('message')->nullable();
             $table->text('code_block')->nullable();
             $table->json('trace_string')->nullable();
+
+            $table->boolean('is_read')->default(false);
 
             $table->timestamps();
         });

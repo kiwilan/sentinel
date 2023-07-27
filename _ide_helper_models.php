@@ -27,7 +27,7 @@ namespace App\Models{
  * @property string|null $user_agent
  * @property string|null $ip
  * @property string|null $base_path
- * @property \Illuminate\Support\Carbon|null $date_time
+ * @property \Illuminate\Support\Carbon|null $datetime
  * @property string $timezone
  * @property int|null $code
  * @property string|null $file
@@ -38,10 +38,12 @@ namespace App\Models{
  * @property string|null $message
  * @property string|null $code_block
  * @property array|null $trace_string
+ * @property bool $is_read
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $project_id
- * @property-read string $from_date_time
+ * @property-read string $from_datetime
+ * @property-read bool $is_recent
  * @property-read \App\Models\Trace|null $main_trace
  * @property-read \App\Models\Project $project
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Trace> $traces
@@ -57,7 +59,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereCodeBlock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Log whereDateTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereDatetime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereEnv($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereFilename($value)
@@ -65,6 +67,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereIsAuth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereIsProduction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Log whereIsRead($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereLaravelVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereLine($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Log whereMessage($value)
@@ -104,6 +107,7 @@ namespace App\Models{
  * @property \App\Enums\ProjectPriorityEnum $priority
  * @property string|null $instance
  * @property string|null $comment
+ * @property \Illuminate\Support\Carbon|null $last_log_datetime
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Log> $logs
@@ -122,7 +126,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereInstance($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereIsEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereIsNotSentinel()
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Project whereLastLogDatetime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereMailToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project wherePriority($value)
@@ -194,8 +200,6 @@ namespace App\Models{
  * @property string|null $two_factor_recovery_codes
  * @property string|null $two_factor_confirmed_at
  * @property string|null $remember_token
- * @property int|null $current_team_id
- * @property string|null $profile_photo_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -207,13 +211,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)

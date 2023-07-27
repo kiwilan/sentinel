@@ -16,13 +16,13 @@ class LogController extends Controller
     #[Get('/{log_id}', name: 'logs.show')]
     public function show(Project $project, Log $log)
     {
-        PageService::meta("Project {$project->name} - Log {$log->date_time->format('Y-m-d H:m:s')}");
+        PageService::meta("Project {$project->name} - Log {$log->datetime->format('Y-m-d H:m:s')}");
         PageService::breadcrumb([
             'Projects' => route('projects.index'),
             $project->name => route('projects.show', [
                 'project_slug' => $project->slug,
             ]),
-            "Log {$log->date_time->format('Y-m-d H:m:s')}" => route('logs.show', [
+            "Log {$log->datetime->format('Y-m-d H:m:s')}" => route('logs.show', [
                 'project_slug' => $project->slug,
                 'log_id' => $log->id,
             ]),

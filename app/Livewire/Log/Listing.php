@@ -45,7 +45,7 @@ class Listing extends Component
 
     public function defaultSort(): string
     {
-        return '-date_time';
+        return '-datetime';
     }
 
     public function sortable(): array

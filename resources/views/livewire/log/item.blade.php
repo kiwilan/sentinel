@@ -1,3 +1,21 @@
+<?php
+
+use function Livewire\Volt\{state, mount};
+
+state(['log', 'trace']);
+
+$selectTrace = function (int $id) {
+    $this->trace = \App\Models\Trace::find($id);
+};
+
+mount(function () {
+    $this->trace = $this->log->main_trace;
+    $this->log->is_read = true;
+    $this->log->saveQuietly();
+});
+
+?>
+
 @php
   $cardClass = 'bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg';
   $reportBoxClass = 'border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0';
@@ -6,7 +24,7 @@
   $insightClass = 'rounded-md p-6 flex items-start space-x-1 bg-white dark:bg-gray-800 shadow';
 @endphp
 
-<div class="main-container space-y-6 py-12">
+<div class="space-y-6 pb-12 pt-4">
 
   <div class="mx-auto max-w-none">
     <div class="overflow-hidden rounded-md bg-white dark:bg-gray-800 sm:rounded-lg sm:shadow">

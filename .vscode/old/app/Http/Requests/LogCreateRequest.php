@@ -35,7 +35,7 @@ class LogCreateRequest extends FormRequest
             'user_agent' => 'nullable|string',
             'ip' => 'nullable|string',
             'base_path' => 'nullable|string',
-            'date_time' => 'nullable|string',
+            'datetime' => 'nullable|string',
             'timezone' => 'nullable|string',
             'current' => 'nullable|array',
             'previous' => 'nullable|array',

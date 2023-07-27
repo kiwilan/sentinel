@@ -2,29 +2,52 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\ProjectPriorityEnum;
+use App\Enums\ProjectTypeEnum;
 use App\Models\Project;
 use Illuminate\Console\Command;
 
-class SentinelTokenCommand extends Command
+class SentinelSelfCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'sentinel:token';
+    protected $signature = 'sentinel:self';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate a new Sentinel token';
+    protected $description = 'Generate a new project token to track Sentinel itself';
 
     /**
      * Execute the console command.
      */
     public function handle()
+    {
+        $token = $this->generateToken();
+
+        Project::create([
+            'name' => 'Sentinel',
+            'url' => config('app.url'),
+            'key' => $token,
+            'is_enabled' => true,
+            'with_notifications' => false,
+            'type' => ProjectTypeEnum::laravel,
+            'priority' => ProjectPriorityEnum::low,
+            'instance' => config('app.env'),
+            'comment' => 'This project is used to track Sentinel itself',
+        ]);
+
+        $this->info('Sentinel project generated');
+
+        return self::SUCCESS;
+    }
+
+    private function generateToken()
     {
         $dotenv = file_get_contents(base_path('.env'));
         $token = Project::randomUuid();
@@ -42,6 +65,6 @@ class SentinelTokenCommand extends Command
 
         $this->info('Sentinel token generated: '.$token);
 
-        return self::SUCCESS;
+        return $token;
     }
 }

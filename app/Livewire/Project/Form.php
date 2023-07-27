@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Project;
+namespace App\Livewire\Project;
 
 use App\Enums\ProjectPriorityEnum;
 use App\Enums\ProjectTypeEnum;
@@ -129,7 +129,7 @@ class Form extends Component
         $this->opened = false;
         $this->notify()->success();
 
-        $this->emit('projectItemRefresh', $this->project);
+        $this->dispatch('projectItemRefresh', $this->project);
     }
 
     public function render()

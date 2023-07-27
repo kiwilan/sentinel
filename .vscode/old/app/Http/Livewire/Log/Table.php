@@ -15,7 +15,7 @@ class Table extends Component
     use LiveListing;
 
     public array $headers = [
-        'date_time' => 'Date',
+        'datetime' => 'Date',
         'app' => 'App',
         'env' => 'Env.',
         'message' => 'Error',
@@ -67,7 +67,7 @@ class Table extends Component
 
     public function defaultSort(): string
     {
-        return '-date_time';
+        return '-datetime';
     }
 
     public function sortable(): array

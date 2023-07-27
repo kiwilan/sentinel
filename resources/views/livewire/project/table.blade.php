@@ -4,9 +4,12 @@
 >
   @loop($models as $project)
     <x-table.row :href="route('projects.show', ['project_slug' => $project->slug])">
-    <x-table.cell :boolean="$project->is_enabled" />
+      <x-table.cell :boolean="$project->is_enabled" />
       <x-table.cell>
         {{ $project->name }}
+      </x-table.cell>
+      <x-table.cell>
+        {{ $project->last_log_datetime }}
       </x-table.cell>
       <x-table.cell>
         {{ $project->url }}
@@ -16,9 +19,6 @@
       </x-table.cell>
       <x-table.cell>
         {{ $project->type->locale() }}
-      </x-table.cell>
-      <x-table.cell>
-        {{ $project->priority->locale() }}
       </x-table.cell>
     </x-table.row>
   @endloop

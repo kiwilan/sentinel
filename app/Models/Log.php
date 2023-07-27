@@ -30,7 +30,7 @@ class Log extends Model
         'user_agent',
         'ip',
         'base_path',
-        'date_time',
+        'datetime',
         'timezone',
         'project_id',
 
@@ -43,26 +43,31 @@ class Log extends Model
         'message',
         'code_block',
         'trace_string',
+
+        'is_read',
     ];
 
     protected $casts = [
         'is_auth' => 'boolean',
         'is_production' => 'boolean',
-        'date_time' => 'datetime',
+        'datetime' => 'datetime',
 
         'code' => 'integer',
         'line' => 'integer',
         'trace_string' => 'array',
+
+        'is_read' => 'boolean',
     ];
 
     protected $appends = [
-        'from_date_time',
+        'from_datetime',
+        'is_recent',
     ];
 
     public static function sortable(): array
     {
         return [
-            SortModule::make('date_time'),
+            SortModule::make('datetime'),
             SortModule::make('app'),
             SortModule::make('env'),
             SortModule::make('message'),
@@ -197,10 +202,19 @@ class Log extends Model
         return $this->traces->first();
     }
 
-    public function getFromDateTimeAttribute(): string
+    public function getIsRecentAttribute(): bool
     {
         $now = new DateTime(timezone: new DateTimeZone($this->timezone));
-        $date = new DateTime($this->date_time, timezone: new DateTimeZone($this->timezone));
+        $date = new DateTime($this->datetime, timezone: new DateTimeZone($this->timezone));
+        $diff = $now->diff($date);
+
+        return $diff->days < 1;
+    }
+
+    public function getFromDatetimeAttribute(): string
+    {
+        $now = new DateTime(timezone: new DateTimeZone($this->timezone));
+        $date = new DateTime($this->datetime, timezone: new DateTimeZone($this->timezone));
         $diff = $now->diff($date);
 
         if ($diff->days > 0) {

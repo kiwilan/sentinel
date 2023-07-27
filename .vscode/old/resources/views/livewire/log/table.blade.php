@@ -31,9 +31,9 @@
     ])">
       <x-table.cell
         full
-        :tooltip="$log->date_time->format('Y-m-d H:i:s')"
+        :tooltip="$log->datetime->format('Y-m-d H:i:s')"
       >
-        {{ $log->from_date_time }}
+        {{ $log->from_datetime }}
       </x-table.cell>
       <x-table.cell response="lg">
         {{ $log->app }}
