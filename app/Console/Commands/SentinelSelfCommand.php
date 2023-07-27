@@ -50,9 +50,28 @@ class SentinelSelfCommand extends Command
             'comment' => 'This project is used to track Sentinel itself',
         ]);
 
+        $this->replaceSentinelToken();
+
         $this->info('Sentinel project generated');
 
         return self::SUCCESS;
+    }
+
+    private function replaceSentinelToken()
+    {
+        $dotenv = file_get_contents(base_path('.env'));
+        $token = config('app.admin.token');
+
+        if (str_contains($dotenv, 'SENTINEL_TOKEN=')) {
+            // delete the existing token
+            $dotenv = preg_replace('/SENTINEL_TOKEN=([^\n]+)/', 'SENTINEL_TOKEN=', $dotenv);
+            $dotenv = preg_replace('/SENTINEL_TOKEN=/', 'SENTINEL_TOKEN='.$token, $dotenv);
+            file_put_contents(base_path('.env'), $dotenv);
+        } else {
+            // add the token
+            $dotenv .= PHP_EOL.'SENTINEL_TOKEN='.$token;
+            file_put_contents(base_path('.env'), $dotenv);
+        }
     }
 
     private function generateToken(bool $force = false): string
