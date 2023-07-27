@@ -28,16 +28,14 @@ class Table extends Component
      */
     public Collection $models;
 
+    public bool $full = false;
+
     public $queryString = [
         'sort',
     ];
 
     public array $filter = [
-        'statuses' => [],
-        'armies' => [],
-        'universes' => [],
-        'matters' => [],
-        'techniques' => [],
+        'is_enabled' => [],
     ];
 
     #[On('table-sort')]
@@ -50,6 +48,13 @@ class Table extends Component
         }
 
         $this->dispatch('headReverse', $this->sort);
+    }
+
+    #[On('show-full')]
+    public function showFull(): void
+    {
+        $this->full = true;
+        $this->filter = [];
     }
 
     public function model(): string

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Slack\SlackRoute;
+use Kiwilan\Steward\Services\Query\FilterModule;
 use Kiwilan\Steward\Services\Query\SortModule;
 use Kiwilan\Steward\Traits\HasSlug;
 use Kiwilan\Steward\Traits\LiveModelQueryable;
@@ -70,9 +71,21 @@ class Project extends Model
         ];
     }
 
+    public static function filterable()
+    {
+        return [
+            FilterModule::scope('is_enabled', 'whereIsEnabled'),
+        ];
+    }
+
     public function scopeWhereIsNotSentinel(Builder $query): Builder
     {
         return $query->where('key', '!=', config('app.admin.token'));
+    }
+
+    public function scopeWhereIsEnabled(Builder $query): Builder
+    {
+        return $query->where('is_enabled', true);
     }
 
     public static function randomUuid()
