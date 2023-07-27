@@ -23,7 +23,7 @@ class ProjectSeeder extends Seeder
         $projects = Project::factory(15)->create();
 
         $projects->each(function (Project $project) use ($faker) {
-            $logs = Log::factory(50)->createQuietly();
+            $logs = Log::factory(25)->createQuietly();
             $logs->each(function (Log $log) use ($project, $faker) {
                 $exception = LogMessage::make(new Exception($faker->sentence(), $faker->numberBetween(100, 599)));
                 $log->saveReport($exception->toArray());

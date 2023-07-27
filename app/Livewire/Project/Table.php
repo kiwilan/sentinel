@@ -72,6 +72,7 @@ class Table extends Component
         return Project::getSortable();
     }
 
+    #[On('table-fetch')]
     public function fetch(): void
     {
         $this->models = Project::whereIsNotSentinel()

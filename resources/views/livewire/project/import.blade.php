@@ -5,7 +5,6 @@
   >
     Import JSON
   </x-button>
-  {{ $opened ? 'true' : 'false' }}
   <x-modal wire:model="opened">
     <form wire:submit="save">
       <input
