@@ -66,6 +66,7 @@
       <button
         type="{{ $type }}"
         @if ($attributes->has('@click')) @click="{{ $attributes->get('@click') }}" @endif
+        @if ($attributes->has('wire:click')) wire:click="{{ $attributes->get('wire:click') }}" @endif
         @class([$style, 'flex items-center', $fullStyle => $isFull])
       >
         @if ($icon)

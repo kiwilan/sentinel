@@ -72,8 +72,6 @@ class Project extends Model
 
     public function scopeWhereIsNotSentinel(Builder $query): Builder
     {
-        ray(config('app.admin.token'));
-
         return $query->where('key', '!=', config('app.admin.token'));
     }
 
