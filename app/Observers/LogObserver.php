@@ -8,7 +8,7 @@ class LogObserver
 {
     public function saved(Log $log): void
     {
-        if ($log->has('project')) {
+        if ($log->project !== null) {
             $project = $log->project;
             $project->last_log_datetime = $log->created_at;
             $project->save();

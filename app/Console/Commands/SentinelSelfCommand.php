@@ -50,6 +50,7 @@ class SentinelSelfCommand extends Command
             'comment' => 'This project is used to track Sentinel itself',
         ]);
 
+        $this->replaceSentinelTokenHost();
         $this->replaceSentinelToken();
 
         $this->info('Sentinel project generated');
@@ -70,6 +71,23 @@ class SentinelSelfCommand extends Command
         } else {
             // add the token
             $dotenv .= PHP_EOL.'SENTINEL_TOKEN='.$token;
+            file_put_contents(base_path('.env'), $dotenv);
+        }
+    }
+
+    private function replaceSentinelTokenHost()
+    {
+        $dotenv = file_get_contents(base_path('.env'));
+        $host = config('app.url');
+
+        if (str_contains($dotenv, 'SENTINEL_TOKEN=')) {
+            // delete the existing token
+            $dotenv = preg_replace('/SENTINEL_HOST=([^\n]+)/', 'SENTINEL_HOST=', $dotenv);
+            $dotenv = preg_replace('/SENTINEL_HOST=/', 'SENTINEL_HOST='.$host, $dotenv);
+            file_put_contents(base_path('.env'), $dotenv);
+        } else {
+            // add the token
+            $dotenv .= PHP_EOL.'SENTINEL_HOST='.$host;
             file_put_contents(base_path('.env'), $dotenv);
         }
     }
