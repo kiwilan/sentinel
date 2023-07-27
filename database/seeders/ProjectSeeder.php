@@ -17,6 +17,10 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+        if (app()->environment('production')) {
+            return;
+        }
+
         Project::factory()
             ->create([
                 'name' => 'P1PDD',

@@ -14,7 +14,8 @@ class SentinelSelfCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'sentinel:self';
+    protected $signature = 'sentinel:self
+                            {--force : Force the generation of a new token}';
 
     /**
      * The console command description.
@@ -28,7 +29,14 @@ class SentinelSelfCommand extends Command
      */
     public function handle()
     {
-        $token = $this->generateToken();
+        $force = $this->option('force');
+        $token = $this->generateToken($force);
+
+        $exists = Project::where('key', $token)->first();
+
+        if ($exists instanceof Project) {
+            $exists->delete();
+        }
 
         Project::create([
             'name' => 'Sentinel',
@@ -47,8 +55,14 @@ class SentinelSelfCommand extends Command
         return self::SUCCESS;
     }
 
-    private function generateToken()
+    private function generateToken(bool $force = false): string
     {
+        if (config('app.admin.token') && ! $force) {
+            $this->info('Sentinel token already exists: '.config('app.admin.token'));
+
+            return config('app.admin.token');
+        }
+
         $dotenv = file_get_contents(base_path('.env'));
         $token = Project::randomUuid();
 
