@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Kiwilan\Steward\Utils\NavigationItem;
 
@@ -22,9 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::preventLazyLoading(! $this->app->environment('production'));
+        \Illuminate\Database\Eloquent\Model::preventLazyLoading(! $this->app->environment('production'));
 
-        View::share('navMain', [
+        \Illuminate\Support\Facades\View::share('navMain', [
             new NavigationItem(
                 label: 'Projects',
                 route: 'projects.index',

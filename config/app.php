@@ -59,7 +59,6 @@ return [
     'admin' => [
         'email' => env('APP_ADMIN_EMAIL', 'superadmin@example.com'),
         'password' => env('APP_ADMIN_PASSWORD', 'password'),
-        'token' => env('APP_ADMIN_TOKEN'),
     ],
 
     'asset_url' => env('ASSET_URL'),
@@ -169,8 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
-        App\Providers\JetstreamServiceProvider::class,
+        App\Providers\VoltServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
     ])->toArray(),
 

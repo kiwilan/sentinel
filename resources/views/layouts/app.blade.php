@@ -1,42 +1,46 @@
-<x-app>
-  <x-layout.sidebar />
-  <x-layout.sidebar-desktop />
+<x-stw-app dark>
+  <x-slot name="head">
+    {!! SEO::generate() !!}
+    @filamentStyles
+    @vite('resources/css/app.css')
+  </x-slot>
 
-  <div class="xl:pl-72">
-    <x-layout.header />
-    <div class="border-t border-white/10 pt-6">
-      <x-breadcrumb />
-      @isset($top)
-        {{ $top }}
-      @endisset
-      <main class="mt-5 px-4 sm:px-6 lg:px-8">
-        {{ $slot }}
-      </main>
-      @isset($bottom)
-        {{ $bottom }}
-      @endisset
-    </div>
-    <x-layout.footer />
-  </div>
+  @auth
+    <x-layout.sidebar />
+    <x-layout.sidebar-desktop />
+  @endauth
 
-  {{-- <x-banner />
-
-  <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-    @if (isset($nav))
-      {{ $nav }}
-    @endif
-    <!-- Page Heading -->
-    @if (isset($header))
-      <header class="bg-white shadow dark:bg-gray-800">
-        <div class="main-container py-6">
-          {{ $header }}
+  @auth
+    <div class="body xl:pl-72">
+      <main class="main">
+        <x-layout.header />
+        <div class="border-t border-white/10 pt-6">
+          <x-breadcrumb />
+          @isset($top)
+            {{ $top }}
+          @endisset
+          <section class="mt-5 px-4 sm:px-6 lg:px-8">
+            {{ $slot }}
+          </section>
+          @isset($bottom)
+            {{ $bottom }}
+          @endisset
         </div>
-      </header>
-    @endif
-    <!-- Page Content -->
-    <main class="min-h-[74vh] md:min-h-[87vh]">
+      </main>
+      <x-layout.footer />
+    </div>
+  @else
+    <main class="main">
       {{ $slot }}
     </main>
     <x-layout.footer />
-  </div> --}}
-</x-app>
+  @endauth
+
+  @pushOnce('scripts')
+    @livewire('notifications')
+
+    @filamentScripts
+    @vite('resources/js/app.ts')
+    @livewireScriptConfig
+  @endPushOnce
+</x-stw-app>

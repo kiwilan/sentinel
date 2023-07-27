@@ -8,14 +8,14 @@
       class="flex h-16 shrink-0 items-center space-x-3"
       href="/"
     >
-      <img
-        class="h-8 w-auto"
-        src="{{ asset('images/sentinel.svg') }}"
-        alt="Your Company"
-      >
-      <div class="font-mono text-xl uppercase">
-        Sentinel
-      </div>
+      <x-logo
+        class="h-auto w-8"
+        :text="false"
+      />
+      <x-logo
+        class="h-auto w-24"
+        :logo="false"
+      />
     </a>
     <nav class="flex flex-1 flex-col">
       <ul
@@ -36,6 +36,8 @@
                       'text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white' => !$item->current(),
                       'bg-gray-200 dark:bg-gray-800 dark:text-white' => $item->current(),
                   ])
+                  x-data
+                  @click="$store.sidebar.close()"
                 >
                   <x-dynamic-component
                     class="h-6 w-6 shrink-0"

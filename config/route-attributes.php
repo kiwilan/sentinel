@@ -12,8 +12,11 @@ return [
      */
     'directories' => [
         app_path('Http/Controllers') => [
-            'prefix' => '',
             'middleware' => 'web',
+        ],
+        app_path('Http/Controllers/Api') => [
+            'prefix' => 'api',
+            'middleware' => 'api',
         ],
     ],
 

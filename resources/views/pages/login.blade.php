@@ -1,77 +1,74 @@
-<x-guest-layout>
-  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+@php
+  $isDev = config('app.env') === 'local';
+  $email = config('app.admin.email');
+  $password = config('app.admin.password');
+@endphp
+
+<x-app>
+  <div class="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img
-        class="mx-auto h-10 w-auto"
-        src="https://tailwindui.com/img/logos/mark.svg?color=primary&shade=500"
-        alt="Your Company"
-      >
-      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Sign in to your account</h2>
+      <x-logo
+        class="mx-auto w-12"
+        :text="false"
+      />
+      <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight">
+        Sign in to Sentinel
+      </h2>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form
         class="space-y-6"
-        action="#"
         method="POST"
+        action="{{ route('login') }}"
       >
-        <div>
-          <label
-            class="block text-sm font-medium leading-6 text-white"
-            for="email"
-          >Email address</label>
-          <div class="mt-2">
-            <input
-              class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6"
-              id="email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required
-            >
-          </div>
-        </div>
+        @csrf
+
+        <x-form.validation-errors class="mb-4" />
+
+        <x-field.text
+          name="email"
+          type="email"
+          :label="__('Email')"
+          autocomplete="email"
+          :value="$isDev ? $email : old('email')"
+          autofocus
+          required
+        />
+
+        <x-field.text
+          name="password"
+          type="password"
+          :label="__('Password')"
+          :value="$isDev ? $password : old('password')"
+          autocomplete="current-password"
+          required
+        />
+
+        <x-field.checkbox
+          name="remember"
+          label="Remember me"
+        />
 
         <div>
-          <div class="flex items-center justify-between">
-            <label
-              class="block text-sm font-medium leading-6 text-white"
-              for="password"
-            >Password</label>
-            <div class="text-sm">
-              <a
-                class="font-semibold text-primary-400 hover:text-primary-300"
-                href="#"
-              >Forgot password?</a>
-            </div>
-          </div>
-          <div class="mt-2">
-            <input
-              class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6"
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
+          @if (Route::has('password.request'))
+            <a
+              class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800"
+              href="{{ route('password.request') }}"
             >
-          </div>
-        </div>
+              {{ __('Forgot your password?') }}
+            </a>
+          @endif
 
-        <div>
-          <button
-            class="flex w-full justify-center rounded-md bg-primary-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500"
+          <x-button
+            class="mt-4"
             type="submit"
-          >Sign in</button>
+            full
+          >
+            Sign in
+          </x-button>
         </div>
       </form>
-
-      <p class="mt-10 text-center text-sm text-gray-400">
-        Not a member?
-        <a
-          class="font-semibold leading-6 text-primary-400 hover:text-primary-300"
-          href="#"
-        >Start a 14 day free trial</a>
-      </p>
     </div>
   </div>
-</x-guest-layout>
+</x-app>

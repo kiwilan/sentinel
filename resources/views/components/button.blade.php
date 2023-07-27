@@ -4,7 +4,7 @@
   {{ $slot }}
 </button> --}}
 
-@props(['style' => '', 'type' => 'button', 'href' => '', 'loading' => false, 'loadingWire' => '', 'align', 'external' => false, 'icon' => '', 'iconSize' => '5', 'isFull' => false, 'fullStyle'])
+@props(['style' => '', 'type' => 'button', 'href' => '', 'loading' => false, 'loadingWire' => '', 'align' => '', 'external' => false, 'icon' => '', 'iconSize' => '5', 'isFull' => false, 'fullStyle'])
 
 <div @class([
     'flex items-center space-x-3',

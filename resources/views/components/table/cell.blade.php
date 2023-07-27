@@ -50,15 +50,17 @@
 </td> --}}
 
 <td
-  class="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8"
+  class="p-4"
   colspan="{{ $colspan }}"
 >
   @isset($boolean)
-    @if ($boolean)
-      <x-icon-check class="h-5 w-5 text-green-400" />
-    @else
-      <x-icon-x class="h-5 w-5 text-red-400" />
-    @endif
+    <div class="flex justify-center">
+      @if ($boolean)
+        <x-icon-check class="h-5 w-5 text-green-400" />
+      @else
+        <x-icon-x class="h-5 w-5 text-red-400" />
+      @endif
+    </div>
   @else
     {{ $slot }}
   @endisset

@@ -6,17 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LogCreateRequest;
 use App\Jobs\LogProcess;
 use App\Models\Project;
-use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Post;
 use Spatie\RouteAttributes\Attributes\Prefix;
 
 #[Prefix('api/logs')]
-#[Middleware('api')]
 class LogController extends Controller
 {
     #[Post('/', name: 'api.logs.create')]
     public function create(LogCreateRequest $request)
     {
+        ray($request->all());
         $project = Project::where('key', $request->token)->first();
 
         if (! $project || $request->token !== $project->key) {

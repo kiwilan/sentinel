@@ -1,3 +1,3 @@
-<x-app-layout>
+<x-app>
   <livewire:project.form :project="$project" />
-</x-app-layout>
+</x-app>

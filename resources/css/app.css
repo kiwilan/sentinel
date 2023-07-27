@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 body {
-  @apply scrollbar-thin dark:bg-gray-900 dark:text-gray-100;
+  @apply scrollbar-thin text-black dark:text-gray-100 bg-white dark:bg-gray-900;
+}
+
+.body {
+  @apply min-h-screen m-0 flex flex-col;
+}
+
+.main {
+  @apply flex-1;
+}
+
+.footer {
+  @apply min-h-[3rem];
 }
 
 [x-cloak] {
@@ -14,6 +26,7 @@ body {
   @apply dark:bg-gray-800 dark:border-gray-700;
 }
 
-.filament-notifications-title, .filament-notifications-body {
+.filament-notifications-title,
+.filament-notifications-body {
   @apply dark:text-white;
 }

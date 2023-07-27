@@ -2,12 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\ProjectPriorityEnum;
-use App\Enums\ProjectTypeEnum;
-use App\Models\Project;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class EmptySeeder extends Seeder
 {
@@ -16,14 +12,11 @@ class EmptySeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()
-            ->withPersonalTeam()
-            ->create([
-                'name' => 'Super Admin',
-                'email' => config('app.admin.email'),
-                'password' => Hash::make(config('app.admin.password')),
-            ])
-        ;
+        User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => config('app.admin.email'),
+            'password' => config('app.admin.password'),
+        ]);
 
         // Project::factory()
         //     ->create([

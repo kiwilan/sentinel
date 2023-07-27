@@ -2,7 +2,7 @@
 
 <div class="overflow-auto">
   <table class="mt-6 w-full whitespace-nowrap text-left">
-    <livewire:table.head :headers="$headers" />
+    <livewire:table.header :headers="$headers" />
     <tbody class="divide-y divide-white/5">
       @if (count($items) === 0)
         <x-table.row>

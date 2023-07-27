@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Support\Facades\View;
+use App\Services\PageService;
 use Spatie\RouteAttributes\Attributes\Get;
+use Spatie\RouteAttributes\Attributes\Middleware;
 use Spatie\RouteAttributes\Attributes\Prefix;
 
 #[Prefix('projects')]
+#[Middleware('auth')]
 class ProjectController extends Controller
 {
     #[Get('/', name: 'projects.index')]
     public function index()
     {
-        View::share('navigation', [
+        PageService::meta('Projects');
+        PageService::breadcrumb([
             'Projects' => route('projects.index'),
         ]);
 
@@ -23,7 +26,8 @@ class ProjectController extends Controller
     #[Get('/create', name: 'projects.create')]
     public function create()
     {
-        View::share('navigation', [
+        PageService::meta('Create project');
+        PageService::breadcrumb([
             'Projects' => route('projects.index'),
             'Create' => route('projects.create'),
         ]);
@@ -34,7 +38,8 @@ class ProjectController extends Controller
     #[Get('/{project_slug}', name: 'projects.show')]
     public function show(Project $project)
     {
-        View::share('navigation', [
+        PageService::meta("Project {$project->name}");
+        PageService::breadcrumb([
             'Projects' => route('projects.index'),
             $project->name => route('projects.show', [
                 'project_slug' => $project->slug,
@@ -50,7 +55,8 @@ class ProjectController extends Controller
     #[Get('/{project_slug}/edit', name: 'projects.edit')]
     public function edit(Project $project)
     {
-        View::share('navigation', [
+        PageService::meta("Edit project {$project->name}");
+        PageService::breadcrumb([
             'Projects' => route('projects.index'),
             $project->name => route('projects.show', [
                 'project_slug' => $project->slug,
