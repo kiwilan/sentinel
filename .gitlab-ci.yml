@@ -31,7 +31,6 @@ deploy-job:
       php$PHP_VERSION artisan clear:fresh &&
       php$PHP_VERSION artisan migrate --force &&
       php$PHP_VERSION artisan optimize:fresh &&
-      php$PHP_VERSION artisan scout:fresh &&
       /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
       /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm build &&
       supervisorctl start sentinel-worker:sentinel-worker_00 &&
