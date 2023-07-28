@@ -32,8 +32,10 @@ class SlackAlert extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): SlackMessage
+    public function toSlack(object $notifiable): SlackMessage
     {
+        // Illuminate\Notifications\Slack\SlackChannel::buildJsonPayload(): Argument #1 ($message) must be of type Illuminate\Notifications\Slack\SlackMessage, Illuminate\Notifications\Messages\SlackMessage given, called in /Users/ewilan/Workspace/sentinel/vendor/laravel/slack-notification-channel/src/Slack/SlackChannel.php on line 38
+
         // return (new MailMessage)
         //     ->line('The introduction to the notification.')
         //     ->action('Notification Action', url('/'))
