@@ -97,7 +97,7 @@ class Table extends Component
         // ->paginate(perPage: $this->size, page: $this->page)
     }
 
-    public function deleteProject(): void
+    public function deleteProject()
     {
         $id = $this->toDelete['id'];
         $project = Project::whereId($id)->first();
@@ -109,6 +109,8 @@ class Table extends Component
         $this->fetch();
         $this->opened = false;
         $this->toDelete = null;
+
+        return $this->redirect(route('projects.index'));
     }
 
     public function mount()

@@ -44,7 +44,7 @@
               <span>Edit</span>
             </div>
           </x-button>
-          {{-- <x-button
+          <x-button
             class="relative z-10"
             color="danger"
             align="center"
@@ -56,9 +56,31 @@
               <x-icon-trash class="h-4 w-4" />
               <span>Delete</span>
             </div>
-          </x-button> --}}
+          </x-button>
         </div>
       </x-table.cell>
     </x-table.row>
   @endloop
+
+  @teleport('body')
+    <x-modal
+      wire:model="opened"
+      maxWidth="md"
+    >
+      <div class="p-5">
+        <div>
+          Do you want really delete project?
+        </div>
+        <x-button
+          class="mt-3"
+          color="danger"
+          outlined
+          wire:click="deleteProject"
+          align="center"
+        >
+          Delete project
+        </x-button>
+      </div>
+    </x-modal>
+  @endteleport
 </x-table>

@@ -116,7 +116,7 @@ $deleteProject = function () {
         >
           Delete all logs
         </x-button>
-        <x-button
+        {{-- <x-button
           class="relative z-10"
           color="danger"
           align="center"
@@ -127,7 +127,7 @@ $deleteProject = function () {
             <x-icon-trash class="h-4 w-4" />
             <span>Delete</span>
           </div>
-        </x-button>
+        </x-button> --}}
       </div>
     </div>
     <div class="text-gray-medium mt-3 text-sm">
