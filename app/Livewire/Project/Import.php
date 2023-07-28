@@ -3,7 +3,6 @@
 namespace App\Livewire\Project;
 
 use App\Models\Project;
-use Filament\Notifications\Notification;
 use Kiwilan\Steward\Livewire\Traits\LiveNotify;
 use Kiwilan\Steward\Livewire\Traits\LiveValidator;
 use Livewire\Attributes\Rule;
@@ -29,14 +28,15 @@ class Import extends Component
 
     public function save()
     {
+        $this->validator();
+
         $this->opened = false;
         $res = $this->json->store('json');
         $path = storage_path('app/'.$res);
 
         if (! file_exists($path)) {
-            // $this->notify('File not found');
-            Notification::make()
-                ->title('File not found')
+            $this->notify('File not found')
+                ->send()
             ;
 
             return;
@@ -50,10 +50,9 @@ class Import extends Component
             $project->save();
         }
 
-        ray('Projects imported successfully');
-        // $this->notify('Projects imported successfully');
-        Notification::make()
-            ->title('Projects imported successfully')
+        $this->json = null;
+        $this->notify('Projects imported successfully')
+            ->send()
         ;
         $this->dispatch('table-fetch');
     }

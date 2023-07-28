@@ -31,6 +31,7 @@
           type="email"
           :label="__('Email')"
           autocomplete="email"
+          placeholder="user@example.com"
           :value="$isDev ? $email : old('email')"
           autofocus
           required
@@ -48,6 +49,7 @@
         <x-field.checkbox
           name="remember"
           label="Remember me"
+          :checked="$isDev"
         />
 
         <div>

@@ -1,18 +1,9 @@
 <x-app>
   <x-slot name="top">
     <livewire:project.header :project="$project" />
-    {{-- <x-temp.item-head
-      :title="$project->name"
-      subtitle="Project"
-    >
-      <x-slot name="left">
-        logo
-      </x-slot>
-    </x-temp.item-head> --}}
   </x-slot>
-  <livewire:log.listing :project="$project" />
-  <x-slot name="bottom">
-    {{-- <livewire:project.item :project="$project" /> --}}
-    {{-- <livewire:log.table :project="$project" /> --}}
-  </x-slot>
+  <div class="space-y-4 md:grid md:grid-cols-3 md:gap-x-4 md:space-y-0">
+    <livewire:log.listing :project="$project" />
+    <livewire:log.latest />
+  </div>
 </x-app>

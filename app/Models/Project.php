@@ -14,6 +14,7 @@ use Illuminate\Notifications\Slack\SlackRoute;
 use Kiwilan\Steward\Services\Query\FilterModule;
 use Kiwilan\Steward\Services\Query\SortModule;
 use Kiwilan\Steward\Traits\HasSlug;
+use Kiwilan\Steward\Traits\HasUuid;
 use Kiwilan\Steward\Traits\LiveModelQueryable;
 
 class Project extends Model
@@ -22,11 +23,13 @@ class Project extends Model
     use LiveModelQueryable;
     use HasSlug;
     use Notifiable;
+    use HasUuid;
+
+    protected $uuidColumn = 'key';
 
     protected $fillable = [
         'name',
         'url',
-        'key',
 
         'is_enabled',
         'with_notifications',
@@ -88,34 +91,10 @@ class Project extends Model
         return $query->where('is_enabled', true);
     }
 
-    public static function randomUuid()
-    {
-        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-            // 32 bits for "time_low"
-            mt_rand(0, 0xFFFF), mt_rand(0, 0xFFFF),
-
-            // 16 bits for "time_mid"
-            mt_rand(0, 0xFFFF),
-
-            // 16 bits for "time_hi_and_version",
-            // four most significant bits holds version number 4
-            mt_rand(0, 0x0FFF) | 0x4000,
-
-            // 16 bits, 8 bits for "clk_seq_hi_res",
-            // 8 bits for "clk_seq_low",
-            // two most significant bits holds zero and one for variant DCE1.1
-            mt_rand(0, 0x3FFF) | 0x8000,
-
-            // 48 bits for "node"
-            mt_rand(0, 0xFFFF), mt_rand(0, 0xFFFF), mt_rand(0, 0xFFFF)
-        );
-    }
-
     public function regenerateToken(): void
     {
-        $token = self::randomUuid();
         $this->update([
-            'key' => $token,
+            'key' => self::generateUuid(),
         ]);
     }
 

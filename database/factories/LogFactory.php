@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Kiwilan\Steward\Services\FactoryService;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Log>
@@ -17,6 +18,8 @@ class LogFactory extends Factory
      */
     public function definition(): array
     {
+        $factory = FactoryService::make();
+
         return [
             'app' => config('app.name'),
             'env' => config('app.env'),
@@ -33,6 +36,7 @@ class LogFactory extends Factory
             'datetime' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'timezone' => $this->faker->timezone(),
             'project_id' => Project::inRandomOrder()->first()->id,
+            ...$factory->dateTime()->setTimestamps(),
         ];
     }
 }

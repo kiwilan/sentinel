@@ -5,19 +5,41 @@
   >
     Import JSON
   </x-button>
-  <x-modal wire:model="opened">
-    <form wire:submit="save">
-      <input
-        type="file"
-        wire:model="json"
-        accept="application/json"
+  <x-modal
+    wire:model="opened"
+    maxWidth="md"
+  >
+    <div class="p-5">
+      <form
+        class="pt-2"
+        wire:submit="save"
       >
+        <x-field.upload
+          name="json"
+          wire:model="json"
+          label="JSON"
+          accept="application/json"
+        />
 
-      @error('json')
-        <span class="error">{{ $message }}</span>
-      @enderror
+        @error('json')
+          <span class="error">{{ $message }}</span>
+        @enderror
 
-      <button type="submit">Save photo</button>
-    </form>
+        <a
+          class="block w-max pt-2 hover:underline"
+          href="{{ asset('documents/sample.json') }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+        >
+          Download sample
+        </a>
+
+        <x-button
+          class="mt-6"
+          type="submit"
+        >Send JSON</x-button>
+      </form>
+    </div>
   </x-modal>
 </div>

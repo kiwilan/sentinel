@@ -21,6 +21,7 @@ class Table extends Component
         'url' => 'URL',
         'instance' => 'Instance',
         'type' => 'Type',
+        'actions' => 'Actions',
     ];
 
     /**

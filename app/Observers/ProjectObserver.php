@@ -8,8 +8,8 @@ class ProjectObserver
 {
     public function creating(Project $project): void
     {
-        if (! $project->key) {
-            $project->key = Project::randomUuid();
-        }
+        // if (! $project->key) {
+        //     $project->key = Project::generateUuid();
+        // }
     }
 }

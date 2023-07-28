@@ -29,6 +29,18 @@ class AppServiceProvider extends ServiceProvider
                 active: 'projects.index',
                 icon: 'folder'
             ),
+            new NavigationItem(
+                label: 'Sentinel',
+                route: 'sentinel',
+                active: 'sentinel',
+                icon: 'magnifying-glass'
+            ),
+            new NavigationItem(
+                label: 'Settings',
+                route: 'settings',
+                active: 'settings',
+                icon: 'cog'
+            ),
         ]);
     }
 }

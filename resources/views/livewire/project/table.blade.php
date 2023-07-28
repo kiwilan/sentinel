@@ -20,6 +20,33 @@
       <x-table.cell>
         {{ $project->type->locale() }}
       </x-table.cell>
+      <x-table.cell>
+        <div class="flex items-center space-x-2">
+          <x-button
+            class="relative z-10"
+            align="center"
+            size="md"
+            outlined
+          >
+            <div class="flex items-center space-x-1">
+              <x-icon-pen class="h-4 w-4" />
+              <span>Edit</span>
+            </div>
+          </x-button>
+          <x-button
+            class="relative z-10"
+            color="danger"
+            align="center"
+            size="md"
+            outlined
+          >
+            <div class="flex items-center space-x-1">
+              <x-icon-trash class="h-4 w-4" />
+              <span>Delete</span>
+            </div>
+          </x-button>
+        </div>
+      </x-table.cell>
     </x-table.row>
   @endloop
 </x-table>

@@ -38,7 +38,7 @@ class Button extends Component
         $colorClass = match ($this->color) {
             'primary' => 'bg-primary-600 text-white hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
             'secondary' => 'bg-secondary-500 hover:bg-secondary-600',
-            // 'danger' => 'bg-danger-500 hover:bg-danger-600',
+            'danger' => 'bg-danger-500 hover:bg-danger-600',
             // 'warning' => 'bg-warning-500 hover:bg-warning-600',
             // 'success' => 'bg-success-500 hover:bg-success-600',
             // 'info' => 'bg-info-500 hover:bg-info-600',
@@ -47,19 +47,20 @@ class Button extends Component
             default => '',
         };
 
-        // if ($this->outlined) {
-        //     $colorClass = match ($this->color) {
-        //         'primary' => 'border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white text-primary-500 dark:text-primary-500',
-        //         // 'secondary' => 'border border-secondary-500 text-secondary-500 hover:bg-secondary-500 hover:text-white',
-        //         // 'danger' => 'border border-danger-500 text-danger-500 hover:bg-danger-500 hover:text-white',
-        //         // 'warning' => 'border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white',
-        //         // 'success' => 'border border-success-500 text-success-500 hover:bg-success-500 hover:text-white',
-        //         // 'info' => 'border border-info-500 text-info-500 hover:bg-info-500 hover:text-white',
-        //         'light' => 'border border-white text-white hover:bg-white hover:text-black',
-        //         // 'dark' => 'border border-dark-500 text-dark-500 hover:bg-dark-500 hover:text-white',
-        //         default => 'border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white',
-        //     };
-        // }
+        if ($this->outlined) {
+            $outlineClass = match ($this->color) {
+                'primary' => 'border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white text-primary-500 dark:text-primary-500 dark:hover:text-white',
+                'secondary' => 'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-300/10 dark:text-gray-100 dark:ring-gray-400 dark:hover:bg-gray-50/10',
+                'danger' => 'border border-danger-500 text-danger-500 hover:bg-danger-500 hover:text-white dark:text-danger-500 dark:border-danger-500 dark:hover:bg-danger-500 dark:hover:text-white',
+                // 'warning' => 'border border-warning-500 text-warning-500 hover:bg-warning-500 hover:text-white',
+                // 'success' => 'border border-success-500 text-success-500 hover:bg-success-500 hover:text-white',
+                // 'info' => 'border border-info-500 text-info-500 hover:bg-info-500 hover:text-white',
+                'light' => 'border border-white text-white hover:bg-white hover:text-black',
+                // 'dark' => 'border border-dark-500 text-dark-500 hover:bg-dark-500 hover:text-white',
+                default => 'border border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white',
+            };
+            $outlineClass .= ' bg-transparent';
+        }
 
         $sizeClass = match ($this->size) {
             'sm' => 'px-2 py-1 text-xs',
@@ -78,10 +79,6 @@ class Button extends Component
         };
         $this->align = $alignClass;
 
-        $outlineClass = 'bg-transparent text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-300/10 ';
-        $outlineClass .= 'dark:text-gray-100 dark:ring-gray-400 dark:hover:bg-gray-50/10';
-
-        // $outlineClass = 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 text-gray-900 dark:text-gray-100';
         $typoClass = 'font-semibold';
         $extraStyle = 'rounded-md shadow-sm';
         $disabledClass = 'opacity-50 cursor-not-allowed';

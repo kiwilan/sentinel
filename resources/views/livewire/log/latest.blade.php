@@ -21,13 +21,10 @@ mount(function () {
   class="col-span-1 h-fit rounded-md border border-gray-100 bg-black/10 dark:border-gray-800 lg:border-l lg:border-white/5"
   x-data="{
       init() {
-              setInterval(() => {
-                  this.fetchModels();
-              }, 5000);
-          },
-          fetchModels() {
+          setInterval(() => {
               this.$wire.$call('fetch')
-          }
+          }, 5000);
+      },
   }"
 >
   <header class="flex items-center justify-between border-b border-white/5 px-4 py-4 sm:px-6 sm:py-7 lg:px-8">

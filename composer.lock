@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c084b392eff2855f50509a9a65eefa1b",
+    "content-hash": "bf7e8ea1bb638e485adfeb681dcec3cb",
     "packages": [
         {
             "name": "artesaos/seotools",
@@ -1869,16 +1869,16 @@
         },
         {
             "name": "kiwilan/sentinel-laravel",
-            "version": "0.0.21",
+            "version": "0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiwilan/sentinel-laravel.git",
-                "reference": "af49a301939ed2ff8fdcdd9ad64d1eca31a57f3b"
+                "reference": "521bd857a0903fca1b2bf72ac299e96e32218d20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiwilan/sentinel-laravel/zipball/af49a301939ed2ff8fdcdd9ad64d1eca31a57f3b",
-                "reference": "af49a301939ed2ff8fdcdd9ad64d1eca31a57f3b",
+                "url": "https://api.github.com/repos/kiwilan/sentinel-laravel/zipball/521bd857a0903fca1b2bf72ac299e96e32218d20",
+                "reference": "521bd857a0903fca1b2bf72ac299e96e32218d20",
                 "shasum": ""
             },
             "require": {
@@ -1938,9 +1938,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kiwilan/sentinel-laravel/issues",
-                "source": "https://github.com/kiwilan/sentinel-laravel/tree/0.0.21"
+                "source": "https://github.com/kiwilan/sentinel-laravel/tree/0.0.3"
             },
-            "time": "2023-07-26T18:51:22+00:00"
+            "time": "2023-07-28T07:29:26+00:00"
         },
         {
             "name": "kiwilan/steward-laravel",
@@ -1948,12 +1948,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kiwilan/steward-laravel.git",
-                "reference": "73a231d7d44194c61ce69ec68923ebb70b4aa2dd"
+                "reference": "e17345ade1424238edf45e010b21fd9fd7769832"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kiwilan/steward-laravel/zipball/73a231d7d44194c61ce69ec68923ebb70b4aa2dd",
-                "reference": "73a231d7d44194c61ce69ec68923ebb70b4aa2dd",
+                "url": "https://api.github.com/repos/kiwilan/steward-laravel/zipball/e17345ade1424238edf45e010b21fd9fd7769832",
+                "reference": "e17345ade1424238edf45e010b21fd9fd7769832",
                 "shasum": ""
             },
             "require": {
@@ -2027,7 +2027,7 @@
                 "issues": "https://github.com/kiwilan/steward-laravel/issues",
                 "source": "https://github.com/kiwilan/steward-laravel/tree/main"
             },
-            "time": "2023-07-27T09:19:57+00:00"
+            "time": "2023-07-28T12:41:23+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -5980,16 +5980,16 @@
         },
         {
             "name": "spatie/laravel-discord-alerts",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-discord-alerts.git",
-                "reference": "c964208ed645fa4dc9af0575063067cfb69d96fd"
+                "reference": "68bcafdd8774ad3e62185566a1c37eff3c0e1047"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-discord-alerts/zipball/c964208ed645fa4dc9af0575063067cfb69d96fd",
-                "reference": "c964208ed645fa4dc9af0575063067cfb69d96fd",
+                "url": "https://api.github.com/repos/spatie/laravel-discord-alerts/zipball/68bcafdd8774ad3e62185566a1c37eff3c0e1047",
+                "reference": "68bcafdd8774ad3e62185566a1c37eff3c0e1047",
                 "shasum": ""
             },
             "require": {
@@ -6056,7 +6056,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-discord-alerts/issues",
-                "source": "https://github.com/spatie/laravel-discord-alerts/tree/1.3.0"
+                "source": "https://github.com/spatie/laravel-discord-alerts/tree/1.3.1"
             },
             "funding": [
                 {
@@ -6064,7 +6064,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-06-17T16:44:00+00:00"
+            "time": "2023-07-28T06:55:26+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -13166,16 +13166,16 @@
         },
         {
             "name": "spatie/flare-client-php",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/flare-client-php.git",
-                "reference": "943894c6a6b00501365ac0b91ae0dce56f2226fa"
+                "reference": "5f2c6a7a0d2c1d90c12559dc7828fd942911a544"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/943894c6a6b00501365ac0b91ae0dce56f2226fa",
-                "reference": "943894c6a6b00501365ac0b91ae0dce56f2226fa",
+                "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/5f2c6a7a0d2c1d90c12559dc7828fd942911a544",
+                "reference": "5f2c6a7a0d2c1d90c12559dc7828fd942911a544",
                 "shasum": ""
             },
             "require": {
@@ -13224,7 +13224,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/flare-client-php/issues",
-                "source": "https://github.com/spatie/flare-client-php/tree/1.4.1"
+                "source": "https://github.com/spatie/flare-client-php/tree/1.4.2"
             },
             "funding": [
                 {
@@ -13232,7 +13232,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-06T09:29:49+00:00"
+            "time": "2023-07-28T08:07:24+00:00"
         },
         {
             "name": "spatie/ignition",

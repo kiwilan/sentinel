@@ -47,7 +47,10 @@
 
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 ring-1 ring-white/10">
-        <div class="flex h-16 shrink-0 items-center space-x-3">
+        <a
+          class="flex h-16 shrink-0 items-center space-x-3"
+          href="/"
+        >
           <x-logo
             class="h-auto w-8"
             :text="false"
@@ -56,7 +59,7 @@
             class="h-auto w-24"
             :logo="false"
           />
-        </div>
+        </a>
         <nav class="flex flex-1 flex-col">
           <ul
             class="flex flex-1 flex-col gap-y-7"

@@ -15,7 +15,7 @@ class SentinelSelfCommand extends Command
      * @var string
      */
     protected $signature = 'sentinel:self
-                            {--force : Force the generation of a new token}';
+                            {--F|force : Force the generation of a new token}';
 
     /**
      * The console command description.
@@ -32,7 +32,10 @@ class SentinelSelfCommand extends Command
         $force = $this->option('force');
         $token = $this->generateToken($force);
 
-        $exists = Project::where('key', $token)->first();
+        $exists = Project::where('key', $token)
+            ->orWhere('slug', 'sentinel')
+            ->first()
+        ;
 
         if ($exists instanceof Project) {
             $exists->delete();
@@ -50,46 +53,28 @@ class SentinelSelfCommand extends Command
             'comment' => 'This project is used to track Sentinel itself',
         ]);
 
-        $this->replaceSentinelTokenHost();
-        $this->replaceSentinelToken();
+        $this->replaceDotenvValue('SENTINEL_HOST', config('app.url'));
+        $this->replaceDotenvValue('SENTINEL_TOKEN', $token);
 
         $this->info('Sentinel project generated');
 
         return self::SUCCESS;
     }
 
-    private function replaceSentinelToken()
+    private function replaceDotenvValue(string $key, mixed $value): mixed
     {
         $dotenv = file_get_contents(base_path('.env'));
-        $token = config('app.admin.token');
 
-        if (str_contains($dotenv, 'SENTINEL_TOKEN=')) {
-            // delete the existing token
-            $dotenv = preg_replace('/SENTINEL_TOKEN=([^\n]+)/', 'SENTINEL_TOKEN=', $dotenv);
-            $dotenv = preg_replace('/SENTINEL_TOKEN=/', 'SENTINEL_TOKEN='.$token, $dotenv);
-            file_put_contents(base_path('.env'), $dotenv);
+        if (str_contains($dotenv, "{$key}=")) {
+            $dotenv = preg_replace("/$key=([^\n]+)/", "{$key}=", $dotenv);
+            $dotenv = preg_replace("/$key=/", "{$key}=".$value, $dotenv);
         } else {
-            // add the token
-            $dotenv .= PHP_EOL.'SENTINEL_TOKEN='.$token;
-            file_put_contents(base_path('.env'), $dotenv);
+            $dotenv .= PHP_EOL."{$key}=".$value;
         }
-    }
 
-    private function replaceSentinelTokenHost()
-    {
-        $dotenv = file_get_contents(base_path('.env'));
-        $host = config('app.url');
+        file_put_contents(base_path('.env'), $dotenv);
 
-        if (str_contains($dotenv, 'SENTINEL_TOKEN=')) {
-            // delete the existing token
-            $dotenv = preg_replace('/SENTINEL_HOST=([^\n]+)/', 'SENTINEL_HOST=', $dotenv);
-            $dotenv = preg_replace('/SENTINEL_HOST=/', 'SENTINEL_HOST='.$host, $dotenv);
-            file_put_contents(base_path('.env'), $dotenv);
-        } else {
-            // add the token
-            $dotenv .= PHP_EOL.'SENTINEL_HOST='.$host;
-            file_put_contents(base_path('.env'), $dotenv);
-        }
+        return $value;
     }
 
     private function generateToken(bool $force = false): string
@@ -100,20 +85,9 @@ class SentinelSelfCommand extends Command
             return config('app.admin.token');
         }
 
-        $dotenv = file_get_contents(base_path('.env'));
-        $token = Project::randomUuid();
+        $token = Project::generateUuid();
 
-        if (str_contains($dotenv, 'APP_ADMIN_TOKEN=')) {
-            // delete the existing token
-            $dotenv = preg_replace('/APP_ADMIN_TOKEN=([^\n]+)/', 'APP_ADMIN_TOKEN=', $dotenv);
-            $dotenv = preg_replace('/APP_ADMIN_TOKEN=/', 'APP_ADMIN_TOKEN='.$token, $dotenv);
-            file_put_contents(base_path('.env'), $dotenv);
-        } else {
-            // add the token
-            $dotenv .= PHP_EOL.'APP_ADMIN_TOKEN='.$token;
-            file_put_contents(base_path('.env'), $dotenv);
-        }
-
+        $token = $this->replaceDotenvValue('APP_ADMIN_TOKEN', $token);
         $this->info('Sentinel token generated: '.$token);
 
         return $token;

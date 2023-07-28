@@ -15,7 +15,6 @@
     </div>
   </div>
   <x-slot name="bottom">
-    {{-- <x-layout.main.header /> --}}
     <livewire:project.table />
   </x-slot>
 </x-app>
