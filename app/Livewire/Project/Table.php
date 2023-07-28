@@ -31,12 +31,16 @@ class Table extends Component
 
     public bool $full = false;
 
+    public bool $opened = false;
+
+    public mixed $toDelete;
+
     public $queryString = [
         'sort',
     ];
 
     public array $filter = [
-        'is_enabled' => [],
+        // 'is_enabled' => [],
     ];
 
     #[On('table-sort')]
@@ -70,7 +74,7 @@ class Table extends Component
 
     public function defaultSort(): string
     {
-        return 'last_log_datetime';
+        return '-last_log_datetime';
     }
 
     public function sortable(): array
@@ -93,17 +97,27 @@ class Table extends Component
         // ->paginate(perPage: $this->size, page: $this->page)
     }
 
-    public function delete(int $id): void
+    public function deleteProject(): void
     {
-        Project::find($id)->delete();
+        $id = $this->toDelete['id'];
+        $project = Project::whereId($id)->first();
 
-        // $this->fetch();
+        if ($project) {
+            $project->delete();
+        }
+
+        $this->fetch();
+        $this->opened = false;
+        $this->toDelete = null;
+    }
+
+    public function mount()
+    {
+        $this->fetch();
     }
 
     public function render()
     {
-        $this->fetch();
-
         return view('livewire.project.table');
     }
 }

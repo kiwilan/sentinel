@@ -71,6 +71,7 @@ class Project extends Model
             SortModule::make('type', 'Type'),
             SortModule::make('priority', 'Priority'),
             SortModule::make('is_enabled', 'Enabled'),
+            SortModule::make('last_log_datetime', 'Last log'),
         ];
     }
 

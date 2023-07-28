@@ -6,11 +6,14 @@
 
 @props(['style' => '', 'type' => 'button', 'href' => '', 'loading' => false, 'loadingWire' => '', 'align' => '', 'external' => false, 'icon' => '', 'iconSize' => '5', 'isFull' => false, 'fullStyle'])
 
-<div @class([
-    'flex items-center space-x-3',
-    'w-full' => $isFull,
-    $attributes->get('class'),
-])>
+<div
+  @class([
+      'flex items-center space-x-3',
+      'w-full' => $isFull,
+      $attributes->get('class'),
+  ])
+  x-data="{{ $attributes->get('x-data') }}"
+>
   <div @class(["{$align} w-max" => !$isFull, 'w-full' => $isFull])>
     @if ($loading)
       <div>

@@ -3,8 +3,9 @@
 use Filament\Notifications\Notification;
 use function Livewire\Volt\computed;
 use function Livewire\Volt\state;
+use function Livewire\Volt\on;
 
-state(['project']);
+state(['project', 'opened']);
 
 $is_enabled = computed(fn() => $this->project->is_enabled);
 $toggle = function () {
@@ -18,6 +19,41 @@ $toggle = function () {
         ->iconColor($this->project->is_enabled ? 'success' : 'danger')
         ->body($body)
         ->send();
+};
+
+$deleteLogs = function () {
+    $this->project->logs()->delete();
+    $this->opened = false;
+    // $this->dispatch('logs-fetch');
+    Notification::make()
+        ->title('Logs deleted')
+        ->icon('heroicon-o-trash')
+        ->iconColor('danger')
+        ->body("All logs from {$this->project->name} were deleted.")
+        ->send();
+};
+
+$confirmProject = function () {
+    $this->opened = true;
+};
+
+on([
+    'delete-project' => function () {
+        $this->project->delete();
+        $this->dispatch('table-fetch');
+        Notification::make()
+            ->title('Project deleted')
+            ->icon('heroicon-o-trash')
+            ->iconColor('danger')
+            ->send();
+    },
+]);
+
+$deleteProject = function () {
+    $this->opened = false;
+    $this->dispatch('delete-project');
+
+    return $this->redirect('/projects');
 };
 ?>
 
@@ -62,16 +98,35 @@ $toggle = function () {
         </h1>
       </div>
       <div class="flex items-center gap-x-4 sm:gap-x-6">
-        <button
-          class="text-gray-light hidden text-sm font-semibold leading-6 sm:block"
-          type="button"
+        <x-button href="{{ route('projects.edit', ['project_slug' => $project->slug]) }}">
+          Edit
+        </x-button>
+        <x-button
+          color="secondary"
+          outlined
           x-data="copy"
           @click="clipboard(`{{ $project->key }}`)"
         >
           Copy token
-        </button>
-        <x-button href="{{ route('projects.edit', ['project_slug' => $project->slug]) }}">
-          Edit
+        </x-button>
+        <x-button
+          color="danger"
+          outlined
+          wire:click="deleteLogs"
+        >
+          Delete all logs
+        </x-button>
+        <x-button
+          class="relative z-10"
+          color="danger"
+          align="center"
+          outlined
+          wire:click="confirmProject"
+        >
+          <div class="flex items-center space-x-1">
+            <x-icon-trash class="h-4 w-4" />
+            <span>Delete</span>
+          </div>
         </x-button>
       </div>
     </div>
@@ -79,4 +134,26 @@ $toggle = function () {
       {{ $project->comment }}
     </div>
   </div>
+
+  @teleport('body')
+    <x-modal
+      wire:model="opened"
+      maxWidth="md"
+    >
+      <div class="p-5">
+        <div>
+          Do you want really delete project?
+        </div>
+        <x-button
+          class="mt-3"
+          color="danger"
+          outlined
+          wire:click="deleteProject"
+          align="center"
+        >
+          Delete project
+        </x-button>
+      </div>
+    </x-modal>
+  @endteleport
 </header>

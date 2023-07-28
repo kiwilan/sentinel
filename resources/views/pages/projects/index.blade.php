@@ -2,12 +2,12 @@
   <div class="flex items-center justify-between">
     <h2 class="text-base font-semibold leading-7 text-white">Latest activity</h2>
     <div class="flex items-center space-x-3">
-      <button
+      {{-- <button
         x-data
         @click="$dispatch('show-full')"
       >
         show full
-      </button>
+      </button> --}}
       <x-button href="{{ route('projects.create') }}">
         Create
       </x-button>

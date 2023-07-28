@@ -6,6 +6,7 @@ use App\Models\Log;
 use App\Models\Project;
 use Illuminate\Support\Collection;
 use Kiwilan\Steward\Livewire\Traits\LiveListing;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -53,6 +54,7 @@ class Listing extends Component
         return Log::getSortable();
     }
 
+    #[On('logs-fetch')]
     public function fetch(): void
     {
         $this->models = Log::where('project_id', $this->project->id)

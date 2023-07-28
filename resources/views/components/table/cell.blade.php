@@ -50,7 +50,9 @@
 </td> --}}
 
 <td
-  class="p-4"
+  {{ $attributes->merge([
+      'class' => 'p-4',
+  ]) }}
   colspan="{{ $colspan }}"
 >
   @isset($boolean)

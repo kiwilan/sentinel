@@ -21,9 +21,20 @@
         {{ $project->type->locale() }}
       </x-table.cell>
       <x-table.cell>
-        <div class="flex items-center space-x-2">
+        <div
+          class="flex items-center space-x-2"
+          x-data="{
+              deleteProject(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  this.$wire.$set('opened', true)
+                  this.$wire.$set('toDelete', {{ $project }})
+              }
+          }"
+        >
           <x-button
             class="relative z-10"
+            href="{{ route('projects.edit', ['project_slug' => $project->slug]) }}"
             align="center"
             size="md"
             outlined
@@ -33,18 +44,19 @@
               <span>Edit</span>
             </div>
           </x-button>
-          <x-button
+          {{-- <x-button
             class="relative z-10"
             color="danger"
             align="center"
             size="md"
             outlined
+            @click="deleteProject"
           >
             <div class="flex items-center space-x-1">
               <x-icon-trash class="h-4 w-4" />
               <span>Delete</span>
             </div>
-          </x-button>
+          </x-button> --}}
         </div>
       </x-table.cell>
     </x-table.row>

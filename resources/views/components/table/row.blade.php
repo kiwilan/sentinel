@@ -8,3 +8,7 @@
 >
   {{ $slot }}
 </tr>
+
+{{-- <tr @class(['relative even:bg-gray-200/50 dark:even:bg-gray-800/50'])>
+  {{ $slot }}
+</tr> --}}
