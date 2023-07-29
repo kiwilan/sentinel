@@ -55,13 +55,11 @@ class LogProcess implements ShouldQueue
             $log->saveReport($current);
         }
 
-        $this->sendToDiscord();
-        $this->sendToSlack();
-
-        ray('LogProcess done.');
+        $this->sendToDiscord($log);
+        // $this->sendToSlack();
     }
 
-    private function sendToDiscord(): void
+    protected function sendToDiscord(Log $log): void
     {
         if (! $this->project->use_discord) {
             return;
@@ -70,12 +68,30 @@ class LogProcess implements ShouldQueue
         $discord = 'https://discord.com/api/webhooks/';
         $tokens = str_replace(':', '/', $this->project->discord_token);
 
+        $filename = $log->vendor ? $log->vendor : $log->file;
+        $codeBlock = $log->code_block;
+        $msg = [
+            "For **{$this->project->name}**",
+            "> {$log->datetime->format('Y-m-d H:i:s')}",
+            "> On {$log->url} ({$log->method})",
+            '',
+            "{$log->message}",
+            "- Class: {$log->mainTrace->class}",
+            "- Function: {$log->mainTrace->function}",
+            "- Filename: {$filename} (line {$log->line})",
+            '',
+        ];
+
+        if ($codeBlock) {
+            $msg[] = "```\n{$codeBlock}\n```";
+        }
+
         DiscordAlert::to("{$discord}{$tokens}")
-            ->message('Hello world!')
+            ->message(implode(PHP_EOL, $msg))
         ;
     }
 
-    private function sendToSlack(): void
+    protected function sendToSlack(): void
     {
         if (! $this->project->use_slack) {
             return;
