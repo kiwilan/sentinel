@@ -33,7 +33,7 @@ deploy-job:
       php$PHP_VERSION artisan scout:fresh &&
       /home/$SSH_USER/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
       /home/$SSH_USER/.nvm/versions/node/v$NODE_VERSION/bin/pnpm build &&
-      supervisorctl restart sentinel-worker:sentinel-worker_00 &&
+      supervisorctl start sentinel-worker:sentinel-worker_00 &&
       notifier 'Sentinel deployed'"
   only:
     - main
