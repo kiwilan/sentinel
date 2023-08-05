@@ -7,7 +7,7 @@ stages:
   - deploy
 
 variables:
-  NODE_VERSION: "18.12.1"
+  NODE_VERSION: "18.17.0"
   PHP_VERSION: "8.2"
 
 deploy-job:
@@ -24,16 +24,16 @@ deploy-job:
   script:
     - ssh $SSH_USER@$SSH_IP "
       . ~/.zshrc &&
-      cd /home/ewilan/www-volume/$CI_PROJECT_NAME &&
+      cd /home/$SSH_USER/www/$CI_PROJECT_NAME &&
       git pull &&
       supervisorctl stop sentinel-worker:sentinel-worker_00 &&
       composer install &&
       php$PHP_VERSION artisan clear:fresh &&
       php$PHP_VERSION artisan migrate --force &&
       php$PHP_VERSION artisan scout:fresh &&
-      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
-      /home/ewilan/.nvm/versions/node/v$NODE_VERSION/bin/pnpm build &&
-      supervisorctl start sentinel-worker:sentinel-worker_00 &&
+      /home/$SSH_USER/.nvm/versions/node/v$NODE_VERSION/bin/pnpm i &&
+      /home/$SSH_USER/.nvm/versions/node/v$NODE_VERSION/bin/pnpm build &&
+      supervisorctl restart sentinel-worker:sentinel-worker_00 &&
       notifier 'Sentinel deployed'"
   only:
     - main
