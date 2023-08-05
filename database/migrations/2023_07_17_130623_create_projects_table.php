@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique()->index();
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->text('key');
 
             $table->boolean('is_enabled')->default(true);

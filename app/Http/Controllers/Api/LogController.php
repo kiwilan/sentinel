@@ -15,7 +15,6 @@ class LogController extends Controller
     #[Post('/', name: 'api.logs.create')]
     public function create(LogCreateRequest $request)
     {
-        ray($request->all());
         $project = Project::where('key', $request->token)->first();
 
         if (! $project || $request->token !== $project->key) {

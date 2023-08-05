@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Log;
+use App\Models\Log as ModelsLog;
 use App\Models\Project;
 use App\Observers\LogObserver;
 use App\Observers\ProjectObserver;
@@ -29,8 +29,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        ModelsLog::observe(LogObserver::class);
         Project::observe(ProjectObserver::class);
-        Log::observe(LogObserver::class);
     }
 
     /**

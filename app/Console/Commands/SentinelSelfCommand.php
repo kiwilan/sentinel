@@ -33,7 +33,7 @@ class SentinelSelfCommand extends Command
         $token = $this->generateToken($force);
 
         $exists = Project::where('key', $token)
-            ->orWhere('slug', 'sentinel')
+            ->orWhere('name', 'Sentinel')
             ->first()
         ;
 

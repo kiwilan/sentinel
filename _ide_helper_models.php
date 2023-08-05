@@ -49,8 +49,6 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Trace> $traces
  * @property-read int|null $traces_count
  * @method static \Database\Factories\LogFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Log liveFilter(array $filters, ?array $configuration = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Log liveSort(string $field)
  * @method static \Illuminate\Database\Eloquent\Builder|Log newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Log newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Log query()
@@ -92,8 +90,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property string $slug
- * @property string $url
+ * @property string|null $url
  * @property string $key
  * @property bool $is_enabled
  * @property bool $with_notifications
@@ -115,8 +112,6 @@ namespace App\Models{
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @method static \Database\Factories\ProjectFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Project liveFilter(array $filters, ?array $configuration = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Project liveSort(string $field)
  * @method static \Illuminate\Database\Eloquent\Builder|Project newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Project newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Project query()
@@ -133,7 +128,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project wherePriority($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereSlackToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Project whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Project whereUrl($value)
@@ -196,9 +190,6 @@ namespace App\Models{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property mixed $password
- * @property string|null $two_factor_secret
- * @property string|null $two_factor_recovery_codes
- * @property string|null $two_factor_confirmed_at
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -217,9 +208,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorConfirmedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}

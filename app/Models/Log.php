@@ -9,13 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-use Kiwilan\Steward\Services\Query\SortModule;
-use Kiwilan\Steward\Traits\LiveModelQueryable;
 
 class Log extends Model
 {
     use HasFactory;
-    use LiveModelQueryable;
 
     protected $fillable = [
         'app',
@@ -63,18 +60,6 @@ class Log extends Model
         'from_datetime',
         'is_recent',
     ];
-
-    public static function sortable(): array
-    {
-        return [
-            SortModule::make('datetime'),
-            SortModule::make('app'),
-            SortModule::make('env'),
-            SortModule::make('message'),
-            SortModule::make('method'),
-            SortModule::make('url'),
-        ];
-    }
 
     public function saveReport(array $input): self
     {

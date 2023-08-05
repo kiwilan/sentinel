@@ -11,17 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Slack\SlackRoute;
-use Kiwilan\Steward\Services\Query\FilterModule;
-use Kiwilan\Steward\Services\Query\SortModule;
-use Kiwilan\Steward\Traits\HasSlug;
 use Kiwilan\Steward\Traits\HasUuid;
-use Kiwilan\Steward\Traits\LiveModelQueryable;
 
 class Project extends Model
 {
     use HasFactory;
-    use LiveModelQueryable;
-    use HasSlug;
     use Notifiable;
     use HasUuid;
 
@@ -61,26 +55,6 @@ class Project extends Model
     protected $dates = [
         'last_log_datetime',
     ];
-
-    public static function sortable(): array
-    {
-        return [
-            SortModule::make('name', 'Name'),
-            SortModule::make('url', 'URL'),
-            SortModule::make('instance', 'Instance'),
-            SortModule::make('type', 'Type'),
-            SortModule::make('priority', 'Priority'),
-            SortModule::make('is_enabled', 'Enabled'),
-            SortModule::make('last_log_datetime', 'Last log'),
-        ];
-    }
-
-    public static function filterable()
-    {
-        return [
-            FilterModule::scope('is_enabled', 'whereIsEnabled'),
-        ];
-    }
 
     public function scopeWhereIsNotSentinel(Builder $query): Builder
     {

@@ -55,7 +55,7 @@ class LogProcess implements ShouldQueue
             $log->saveReport($current);
         }
 
-        $this->sendToDiscord($log);
+        // $this->sendToDiscord($log);
         // $this->sendToSlack();
     }
 
