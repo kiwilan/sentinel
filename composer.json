@@ -18,6 +18,8 @@
     "filament/widgets": "^3.0-stable",
     "guzzlehttp/guzzle": "^7.2",
     "http-interop/http-factory-guzzle": "^1.2",
+    "kiwilan/php-ebook": "^2.0.1",
+    "kiwilan/php-http-pool": "^0.2.0",
     "kiwilan/sentinel-laravel": "^0.0.31",
     "kiwilan/steward-laravel": "dev-main",
     "laravel/framework": "^10.10",

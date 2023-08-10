@@ -13,7 +13,8 @@ class ViewLog extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->outlined(),
         ];
     }
 }

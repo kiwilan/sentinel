@@ -10,6 +10,8 @@ use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -23,14 +25,17 @@ class ProjectResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Form $form): Form
     {
         return FilamentLayout::make($form, [
             FilamentLayout::column([
                 [
                     Forms\Components\Toggle::make('is_enabled')
-                        ->helperText('If disabled, the project will not be monitored.')
-                        ->columnSpan(2),
+                        ->helperText('If disabled, the project will not be monitored.'),
+                    Forms\Components\TextInput::make('key')
+                        ->required(),
                     Forms\Components\TextInput::make('name')
                         ->required(),
                     Forms\Components\TextInput::make('url')
@@ -109,6 +114,44 @@ class ProjectResource extends Resource
         ]);
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\Fieldset::make('Label')
+                    ->label(function (Project $project) {
+                        return $project->name;
+                    })
+                    ->schema([
+                        Infolists\Components\Grid::make([
+                            'default' => 1,
+                            'sm' => 2,
+                            'md' => 3,
+                        ])
+                            ->schema([
+                                Infolists\Components\TextEntry::make('name'),
+                                Infolists\Components\TextEntry::make('key')
+                                    ->hint('Click on the key to copy it')
+                                    ->copyable(),
+                                Infolists\Components\TextEntry::make('url')
+                                    ->label('URL')
+                                    ->hint('Click on the URL to open it')
+                                    ->url(function (Project $project) {
+                                        return $project->url;
+                                    }, true),
+                                Infolists\Components\TextEntry::make('instance'),
+                                Infolists\Components\IconEntry::make('is_enabled')
+                                    ->label('Enabled')
+                                    ->boolean(),
+                                Infolists\Components\IconEntry::make('with_notifications')
+                                    ->label('Notifications')
+                                    ->boolean(),
+                            ]),
+                    ]),
+            ])
+        ;
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -134,10 +177,14 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('Logs')
-                    ->icon('heroicon-m-magnifying-glass')
-                    ->url(fn (Project $project) => route('filament.admin.resources.projects.logs', ['record' => $project->id])),
+                // Tables\Actions\Action::make('Logs')
+                //     ->icon('heroicon-m-magnifying-glass')
+                //     ->url(fn (Project $project) => route('filament.admin.resources.projects.logs', ['record' => $project->id])),
+                // Tables\Actions\Action::make('Card')
+                //     ->icon('heroicon-m-magnifying-glass')
+                //     ->url(fn (Project $project) => route('filament.admin.resources.projects.card', ['record' => $project->id])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -162,9 +209,9 @@ class ProjectResource extends Resource
     {
         return [
             'index' => Pages\ListProjects::route('/'),
+            'view' => Pages\ViewProject::route('/{record}'),
             'create' => Pages\CreateProject::route('/create'),
             'edit' => Pages\EditProject::route('/{record}/edit'),
-            'logs' => Pages\ProjectLogs::route('/{record}/logs'),
         ];
     }
 }

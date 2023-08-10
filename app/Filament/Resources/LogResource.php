@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\LogResource\Pages;
 use App\Models\Log;
-use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,9 +22,21 @@ class LogResource extends Resource
     {
         return $infolist
             ->schema([
-                TextEntry::make('message'),
-                TextEntry::make('code_block'),
-                TextEntry::make('filename')
+                Infolists\Components\TextEntry::make('filename')
+                    ->columnSpanFull(),
+                Infolists\Components\Section::make(fn (Log $record) => "{$record->datetime} ({$record->from_datetime})")
+                    ->description(fn (Log $record) => str("Env. `{$record->env}`")
+                        ->markdown()
+                        ->toHtmlString())
+                    ->schema([
+                        Infolists\Components\TextEntry::make('url')
+                            ->prose(fn (Log $record) => str("Method: `{$record->method}`")
+                                ->markdown()
+                                ->toHtmlString()),
+                    ]),
+                Infolists\Components\TextEntry::make('message'),
+                Infolists\Components\TextEntry::make('code_block'),
+                Infolists\Components\TextEntry::make('filename')
                     ->columnSpanFull(),
             ])
         ;
@@ -57,7 +69,8 @@ class LogResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (Log $record) => route('filament.admin.resources.logs.view', ['record' => $record->id])),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
