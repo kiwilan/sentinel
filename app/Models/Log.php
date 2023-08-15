@@ -62,6 +62,7 @@ class Log extends Model
     protected $appends = [
         'from_datetime',
         'is_recent',
+        'main_trace',
     ];
 
     public function saveReport(array $input): self

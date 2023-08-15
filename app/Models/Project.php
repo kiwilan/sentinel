@@ -82,7 +82,6 @@ class Project extends Model
     {
         $slack = 'https://hooks.slack.com/services/';
         $tokens = str_replace(':', '/', $this->slack_token);
-        // ray($tokens);
 
         return SlackRoute::make('T054NKG4NPM/B054T6H1RPG', '9M4geVMJFLUlhiXKHB2jjjKi');
     }

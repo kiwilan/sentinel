@@ -99,7 +99,6 @@ class LogProcess implements ShouldQueue
 
         $slack = 'https://hooks.slack.com/services/';
         $tokens = str_replace(':', '/', $this->project->slack_token);
-        ray($tokens);
 
         // DiscordAlert::to("{$slack}{$tokens}")
         //     ->message('Hello world!')

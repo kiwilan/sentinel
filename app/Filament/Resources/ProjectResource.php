@@ -13,6 +13,7 @@ use Filament\Forms\Get;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\FontFamily;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
@@ -132,6 +133,7 @@ class ProjectResource extends Resource
                                 Infolists\Components\TextEntry::make('name'),
                                 Infolists\Components\TextEntry::make('key')
                                     ->hint('Click on the key to copy it')
+                                    ->fontFamily(FontFamily::Mono)
                                     ->copyable(),
                                 Infolists\Components\TextEntry::make('url')
                                     ->label('URL')

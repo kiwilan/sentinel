@@ -3,10 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LogResource\Pages;
+use App\Infolists\Components\CodeBlock;
 use App\Models\Log;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\FontFamily;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -22,22 +24,58 @@ class LogResource extends Resource
     {
         return $infolist
             ->schema([
-                Infolists\Components\TextEntry::make('filename')
-                    ->columnSpanFull(),
-                Infolists\Components\Section::make(fn (Log $record) => "{$record->datetime} ({$record->from_datetime})")
-                    ->description(fn (Log $record) => str("Env. `{$record->env}`")
+                Infolists\Components\Section::make(fn (Log $record) => "In {$record->app} at {$record->datetime} ({$record->from_datetime})")
+                    ->description(fn (Log $record) => str("Env. `{$record->env}` | Laravel `{$record->laravel_version}` | PHP `{$record->php_version}`")
                         ->markdown()
                         ->toHtmlString())
                     ->schema([
-                        Infolists\Components\TextEntry::make('url')
-                            ->prose(fn (Log $record) => str("Method: `{$record->method}`")
-                                ->markdown()
-                                ->toHtmlString()),
+                        Infolists\Components\Fieldset::make('main')
+                            ->label('Main info')
+                            ->schema([
+                                Infolists\Components\TextEntry::make('message')
+                                    ->columnSpan(2),
+                                Infolists\Components\TextEntry::make('filename'),
+                                Infolists\Components\TextEntry::make('vendor')
+                                    ->hidden(fn (Log $record) => empty($record->vendor)),
+                                Infolists\Components\TextEntry::make('file'),
+                                Infolists\Components\TextEntry::make('line'),
+                                Infolists\Components\TextEntry::make('code')
+                                    ->hidden(fn (Log $record) => empty($record->code) || $record->code == 0),
+                                Infolists\Components\TextEntry::make('user')
+                                    ->hidden(fn (Log $record) => ! $record->is_auth),
+                            ])
+                            ->columns(3),
+                        Infolists\Components\Fieldset::make('where')
+                            ->label('Where')
+                            ->schema([
+                                Infolists\Components\TextEntry::make('method'),
+                                Infolists\Components\TextEntry::make('url')
+                                    ->columnSpan(2),
+                                Infolists\Components\IconEntry::make('is_production')
+                                    ->label('Production')
+                                    ->boolean(),
+                                Infolists\Components\TextEntry::make('ip'),
+                                Infolists\Components\TextEntry::make('user_agent'),
+                            ])
+                            ->columns(3),
+                        Infolists\Components\Fieldset::make('code_block')
+                            ->label('Code block')
+                            ->schema([
+                                Infolists\Components\TextEntry::make('code_block')
+                                    ->fontFamily(FontFamily::Mono)
+                                    ->columnSpanFull(),
+                            ])
+                            ->hidden(fn (Log $record) => empty($record->code_block)),
+                        CodeBlock::make('main_trace')
+                            ->columnSpanFull(),
+                    ])
+                    ->columns(3),
+                Infolists\Components\Fieldset::make('trace')
+                    ->label('Trace')
+                    ->schema([
+                        CodeBlock::make('trace_string')
+                            ->columnSpanFull(),
                     ]),
-                Infolists\Components\TextEntry::make('message'),
-                Infolists\Components\TextEntry::make('code_block'),
-                Infolists\Components\TextEntry::make('filename')
-                    ->columnSpanFull(),
             ])
         ;
     }
