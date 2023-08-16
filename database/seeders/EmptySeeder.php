@@ -21,7 +21,7 @@ class EmptySeeder extends Seeder
 
         Project::create([
             'name' => 'P1PDD',
-            'url' => 'http://app.sentinel.test',
+            'url' => 'http://app.p1pdd.test',
             'key' => 'd7b57f8f-e45a-4535-a73c-44191b6a78c5',
             'instance' => 'staging',
             'comment' => 'Local project of P1PDD podcast website.',

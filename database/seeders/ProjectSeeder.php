@@ -19,22 +19,22 @@ class ProjectSeeder extends Seeder
             return;
         }
 
-        $faker = \Faker\Factory::create();
-        $projects = Project::factory(15)->create();
+        // $faker = \Faker\Factory::create();
+        // $projects = Project::factory(15)->create();
 
-        $sample = file_get_contents(database_path('seeders/media/sample.json'));
-        $sample = json_decode($sample, true);
+        // $sample = file_get_contents(database_path('seeders/media/sample.json'));
+        // $sample = json_decode($sample, true);
 
-        foreach ($sample as $data) {
-            Project::create($data);
-        }
+        // foreach ($sample as $data) {
+        //     Project::create($data);
+        // }
 
-        $projects->each(function (Project $project) use ($faker) {
-            $logs = Log::factory(25)->createQuietly();
-            $logs->each(function (Log $log) use ($project, $faker) {
-                $exception = LogMessage::make(new Exception($faker->words($faker->numberBetween(3, 10), asText: true), $faker->numberBetween(100, 599)));
-                $log->saveReport($exception->toArray());
-            });
-        });
+        // $projects->each(function (Project $project) use ($faker) {
+        //     $logs = Log::factory(25)->createQuietly();
+        //     $logs->each(function (Log $log) use ($project, $faker) {
+        //         $exception = LogMessage::make(new Exception($faker->words($faker->numberBetween(3, 10), asText: true), $faker->numberBetween(100, 599)));
+        //         $log->saveReport($exception->toArray());
+        //     });
+        // });
     }
 }
