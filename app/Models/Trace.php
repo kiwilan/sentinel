@@ -61,6 +61,10 @@ class Trace extends Model
         $index++;
         $spaces = str_repeat('-', $index * 4);
 
+        if (! is_array($args)) {
+            return null;
+        }
+
         foreach ($args as $key => $arg) {
             if (is_array($arg) && empty($arg) && is_string($key)) {
                 $res .= $key."\n";
