@@ -45,6 +45,7 @@ class Log extends Model
         'trace_string',
 
         'is_read',
+        'increment',
     ];
 
     protected $casts = [
@@ -57,6 +58,7 @@ class Log extends Model
         'trace_string' => 'array',
 
         'is_read' => 'boolean',
+        'increment' => 'integer',
     ];
 
     protected $appends = [
@@ -65,6 +67,27 @@ class Log extends Model
         'main_trace',
     ];
 
+    protected $with = [
+        'traces',
+    ];
+
+    public function parseMessage(array $input): self
+    {
+        $message = $input['message'] ?? null;
+
+        if ($message) {
+            $this->code_block = $this->setCodeBlock($message);
+
+            if ($this->code_block) {
+                $message = str_replace("({$this->code_block})", '', $message);
+            }
+        }
+
+        $this->message = $message;
+
+        return $this;
+    }
+
     public function saveReport(array $input): self
     {
         $trace_string = $input['trace_string'] ?? null;
@@ -72,25 +95,18 @@ class Log extends Model
 
         $file = $input['file'] ?? null;
         $filename = null;
-        $message = $input['message'] ?? null;
 
         if ($file) {
             $filename = pathinfo($file, PATHINFO_FILENAME);
         }
 
-        $codeBlock = $this->setCodeBlock($message);
-
-        if ($codeBlock) {
-            $message = str_replace("({$codeBlock})", '', $message);
-        }
+        $this->parseMessage($input);
 
         $this->code = $input['code'] ?? null;
         $this->file = $file;
         $this->vendor = $this->setVendor($file);
         $this->filename = $filename;
         $this->line = $input['line'] ?? null;
-        $this->message = $message;
-        $this->code_block = $codeBlock;
         $this->trace_string = $trace_string;
 
         $this->save();

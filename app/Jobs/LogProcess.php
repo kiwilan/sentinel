@@ -5,6 +5,8 @@ namespace App\Jobs;
 use App\Models\Log;
 use App\Models\Project;
 use App\Notifications\SlackAlert;
+use Carbon\Carbon;
+use DateTime;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -31,7 +33,7 @@ class LogProcess implements ShouldQueue
      */
     public function handle(): void
     {
-        $log = Log::create([
+        $log = new Log([
             'app' => $this->request['app'] ?? null,
             'env' => $this->request['env'] ?? null,
             'laravel_version' => $this->request['laravel_version'] ?? null,
@@ -50,10 +52,25 @@ class LogProcess implements ShouldQueue
         ]);
 
         $current = $this->request['current'] ?? null;
+        $lastLog = $this->project->load('logs')->logs->last();
+        $lastLogDate = $lastLog->datetime;
+
+        $log = $log->parseMessage($current);
+
+        if (! $this->differenceBetweenDatesIsMoreThanOneHour($lastLogDate, $log->timezone) && $lastLog->message === $log->message) {
+            $lastLog->load('project')->update([
+                'is_read' => false,
+                'increment' => $lastLog->increment + 1,
+            ]);
+
+            return;
+        }
 
         if ($current) {
-            $log->saveReport($current);
+            $log = $log->saveReport($current);
         }
+
+        $this->sendToDiscord($log);
 
         if (config('app.env') === 'production') {
             $this->sendToDiscord($log);
@@ -111,5 +128,19 @@ class LogProcess implements ShouldQueue
         // ;
 
         $this->project->notify(new SlackAlert());
+    }
+
+    private function differenceBetweenDatesIsMoreThanOneHour(?Carbon $lastLogDate, string $timezone): bool
+    {
+        if (! $lastLogDate) {
+            return false;
+        }
+
+        $timezone = new \DateTimeZone($timezone);
+        $now = now($timezone);
+        $lastLogDate = new DateTime($lastLogDate->format('Y-m-d H:i:s'), $timezone);
+        $lastLogDate = Carbon::instance($lastLogDate);
+
+        return $now->diffInHours($lastLogDate) > 1;
     }
 }

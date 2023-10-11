@@ -39,6 +39,7 @@ return new class extends Migration
             $table->json('trace_string')->nullable();
 
             $table->boolean('is_read')->default(false);
+            $table->integer('increment')->default(1);
 
             $table->timestamps();
         });

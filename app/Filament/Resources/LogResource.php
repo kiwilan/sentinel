@@ -39,6 +39,7 @@ class LogResource extends Resource
                                     ->hidden(fn (Log $record) => empty($record->vendor)),
                                 Infolists\Components\TextEntry::make('file'),
                                 Infolists\Components\TextEntry::make('line'),
+                                Infolists\Components\TextEntry::make('increment'),
                                 Infolists\Components\TextEntry::make('code')
                                     ->hidden(fn (Log $record) => empty($record->code) || $record->code == 0),
                                 Infolists\Components\TextEntry::make('user')
@@ -99,6 +100,7 @@ class LogResource extends Resource
                     ->label('Production')
                     ->sortable()
                     ->boolean(),
+                TextColumn::make('increment'),
                 TextColumn::make('url')
                     ->limit(50),
                 TextColumn::make('method'),
