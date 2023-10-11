@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use App\Enums\ProjectPriorityEnum;
 use App\Enums\ProjectTypeEnum;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 
 class SentinelSelfCommand extends Command
 {
@@ -29,6 +31,16 @@ class SentinelSelfCommand extends Command
      */
     public function handle()
     {
+        $users = User::all();
+
+        if ($users->isEmpty()) {
+            User::create([
+                'name' => 'Admin',
+                'email' => config('app.admin.email'),
+                'password' => Hash::make(config('app.admin.password')),
+            ]);
+        }
+
         $force = $this->option('force');
         $token = $this->generateToken($force);
 
