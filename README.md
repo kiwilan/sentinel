@@ -2,11 +2,13 @@
 
 [![php][php-version-src]][php-version-href]
 [![laravel][laravel-src]][laravel-href]
+
 [![version][version-src]][version-href]
 [![license][license-src]][license-href]
-[![tests][tests-src]][tests-href]
 [![codecov][codecov-src]][codecov-href]
-[![netlify][netlify-src]][netlify-href]
+
+<!-- [![tests][tests-src]][tests-href] -->
+<!-- [![netlify][netlify-src]][netlify-href] -->
 
 ## About
 
@@ -82,7 +84,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [license-href]: https://github.com/kiwilan/sentinel/blob/main/README.md
 [tests-src]: https://img.shields.io/github/actions/workflow/status/kiwilan/sentinel/run-tests.yml?branch=main&label=tests&style=flat-square&colorA=18181B
 [tests-href]: https://github.com/kiwilan/sentinel/actions/workflows/run-tests.yml
-[codecov-src]: https://codecov.io/gh/kiwilan/sentinel/branch/main/graph/badge.svg?token=P9XIK2KV9G
+[codecov-src]: https://img.shields.io/codecov/c/gh/kiwilan/sentinel/main?style=flat&colorA=18181B&colorB=777BB4
 [codecov-href]: https://codecov.io/gh/kiwilan/sentinel
 [laravel-src]: https://img.shields.io/static/v1?label=Laravel&message=v10&style=flat-square&colorA=18181B&colorB=FF2D20
 [laravel-href]: https://laravel.com

@@ -1,6 +1,7 @@
 {
   "name": "sentinel/core",
   "type": "project",
+  "version": "0.0.1",
   "description": "Sentinel offers a simple way to track your applications errors",
   "keywords": [
     "sentinel",
@@ -62,9 +63,6 @@
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi",
       "@php artisan filament:upgrade"
-    ],
-    "post-update-cmd": [
-      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
     ],
     "post-root-package-install": [
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
