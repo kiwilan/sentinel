@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('')
+            ->favicon('/android-chrome-192x192.png')
             ->login(Login::class)
             ->colors([
                 'primary' => Color::Blue,
